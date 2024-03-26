@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Carousel } from 'flowbite-react'
 
 function Product() {

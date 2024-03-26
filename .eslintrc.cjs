@@ -15,6 +15,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/prop-types': 0,
     'react/display-name': 0,
+    'react/no-unescaped-entities': 0,
 
     'no-console': 1,
     'no-lonely-if': 1,

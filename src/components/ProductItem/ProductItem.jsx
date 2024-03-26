@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 function ProductItem({ isHover = false }) {
   return (
     <div className={'bg-white rounded-lg p-4' + (isHover ? ' hover:border hover:border-[#007745]' : '')}>

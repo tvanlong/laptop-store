@@ -33,7 +33,7 @@ function Header() {
                 type='text'
                 name='keyword'
                 id='search-navbar'
-                className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
+                className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50'
                 placeholder='Bạn muốn tìm sản phẩm gì...'
               />
             </form>
@@ -111,7 +111,10 @@ function Header() {
       <div className='sticky z-20 top-[88px] left-0 right-0 flex bg-[#2e3030] h-14'>
         <ul className='flex w-full items-center justify-between px-32'>
           {Array.from({ length: 10 }).map((_, index) => (
-            <li key={index} className='relative flex items-center text-white opacity-60 hover:opacity-100 h-full group'>
+            <li
+              key={index}
+              className='relative flex items-center text-white opacity-60 hover:opacity-100 h-full cursor-pointer group'
+            >
               <a className='text-xs font-semibold uppercase'>Laptop Dell</a>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

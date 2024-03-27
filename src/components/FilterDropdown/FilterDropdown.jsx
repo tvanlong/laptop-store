@@ -31,10 +31,7 @@ function FilterDropdown({ title, options }) {
               value={option.value}
               className='w-4 h-4 text-blue-600 bg-white border-gray-300 rounded'
             />
-            <label
-              htmlFor={`checkbox-${index}`}
-              className='ml-2 text-sm text-gray-900 dark:text-gray-300 hover:underline'
-            >
+            <label htmlFor={`checkbox-${index}`} className='ml-2 text-sm text-gray-900 hover:underline'>
               {option.label}
             </label>
           </form>

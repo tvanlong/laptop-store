@@ -1,14 +1,29 @@
+import { useEffect, useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import SlickSlider from '~/components/SlickSlider'
 import Banner from '~/components/Banner'
 import ProductItem from '~/components/ProductItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
+import { getAllVersions } from '~/apis/versions.api'
+import { shuffle } from '~/utils/shuffle'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import { useEffect } from 'react'
 
 function Home({ setProgress }) {
+  const { data } = useQuery({
+    queryKey: ['versions'],
+    queryFn: getAllVersions
+  })
+
+  const versions = useMemo(() => data?.data?.data?.docs || [], [data])
+
+  const reorderVersions = useMemo(() => {
+    const shuffledVersions = versions.length > 0 ? shuffle(versions) : []
+    return shuffledVersions
+  }, [versions])
+
   useEffect(() => {
     setProgress(20)
     setTimeout(() => {
@@ -101,19 +116,19 @@ function Home({ setProgress }) {
             modules={[Mousewheel, Keyboard, Autoplay]}
             style={{ padding: '20px' }}
           >
-            {Array.from({ length: 10 }).map((_, index) => (
-              <SwiperSlide key={index}>
-                <ProductItem />
-              </SwiperSlide>
-            ))}
+            {reorderVersions.length > 0 &&
+              reorderVersions.map((version) => (
+                <SwiperSlide key={version._id}>
+                  <ProductItem version={version} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
         <div className='mb-20'>
           <h2 className='font-extrabold text-xl text-center mb-5'>LAPTOP DOANH NHÂN CAO CẤP</h2>
           <div className='grid grid-cols-5 gap-3 p-6'>
-            {Array.from({ length: 10 }).map((_, index) => (
-              <ProductItem key={index} isHover />
-            ))}
+            {versions.length > 0 &&
+              versions.map((version) => <ProductItem key={version._id} version={version} isHover />)}
           </div>
         </div>
       </div>

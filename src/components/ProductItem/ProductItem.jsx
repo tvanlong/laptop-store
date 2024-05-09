@@ -1,53 +1,53 @@
-function ProductItem({ isHover = false }) {
+import { Link } from 'react-router-dom'
+import { formatCurrency } from '~/utils/format'
+import config from '~/constants/config'
+
+function ProductItem({ version, isHover = false }) {
   return (
-    <div className={'bg-white rounded-lg p-6' + (isHover ? ' hover:border hover:border-[#007745]' : '')}>
-      <a className=''>
+    <div
+      className={
+        'bg-white rounded-lg p-6' +
+        (isHover
+          ? ' hover:border hover:border-[#007745] transition ease-in-out delay-150 hover:-translate-y-1 duration-300'
+          : '')
+      }
+    >
+      <Link to={''}>
         <img
-          src='https://laptopkhanhtran.vn/pic/product/dell-7780_638417823695647983-w.250-q.80.png'
-          alt=''
+          src={`${config.baseURL}/api/upload/${version.product.images[0]}`}
+          alt={`${version.product.name} ${version.name}`}
           className='rounded-lg'
         />
         <div className='font-bold text-sm line-clamp-2 my-2'>
-          Laptop Dell Precision 7780 Core i9-13950HX - RAM 64GB - SSD 1TB - NVIDIA RTX 3500 Ada - Màn 17.3 FHD+
+          {version?.product.name} {version?.name}
         </div>
         <div className='flex my-2'>
-          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border--[#dcdcdc] border mr-3'>
-            16GB
-          </div>
-          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border--[#dcdcdc] border'>1TB SSD</div>
+          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border-[#dcdcdc] border mr-3'>DDR4</div>
+          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border-[#dcdcdc] border'>SSD</div>
         </div>
         <ol className='my-2 list-none max-w-md space-y-1 text-gray-500 list-inside'>
-          <li className='text-xs truncate'>
-            <span className='font-semibold text-gray-900'>Màn hình </span>
-            17.3" FHD 1920x1080 WVA, 60Hz, anti-glare, non-touch, 99% DCI-P3, 500 nits, RGB Camera, with Mic
-          </li>
-          <li className='text-xs truncate'>
-            <span className='font-semibold text-gray-900'>CPU </span>
-            17.3" FHD 1920x1080 WVA, 60Hz, anti-glare, non-touch, 99% DCI-P3, 500 nits, RGB Camera, with Mic
-          </li>
-          <li className='text-xs truncate'>
-            <span className='font-semibold text-gray-900'>Card </span>
-            17.3" FHD 1920x1080 WVA, 60Hz, anti-glare, non-touch, 99% DCI-P3, 500 nits, RGB Camera, with Mic
-          </li>
-          <li className='text-xs truncate'>
-            <span className='font-semibold text-gray-900'>Pin </span>
-            17.3" FHD 1920x1080 WVA, 60Hz, anti-glare, non-touch, 99% DCI-P3, 500 nits, RGB Camera, with Mic
-          </li>
-          <li className='text-xs truncate'>
-            <span className='font-semibold text-gray-900'>Tình trạng </span>
-            17.3" FHD 1920x1080 WVA, 60Hz, anti-glare, non-touch, 99% DCI-P3, 500 nits, RGB Camera, with Mic
-          </li>
+          {version?.description.map((spec) => {
+            const [key, value] = spec.split(':')
+            return (
+              <li key={key} className='text-xs truncate'>
+                <span className='font-semibold text-gray-900'>{key} </span>
+                {value}
+              </li>
+            )
+          })}
         </ol>
         <div className='flex justify-between my-2 text-sm'>
-          <div className='text-red-700 font-bold'>63.900.000 đ</div>
-          <div className='font-bold text-gray-500 line-through'>88.900.000 đ</div>
-          <div className='text-red-700 font-bold'>-28%</div>
+          <div className='text-red-700 font-bold'>{formatCurrency(version.current_price)} đ</div>
+          <div className='font-bold text-gray-500 line-through'>{formatCurrency(version.old_price)} đ</div>
+          <div className='text-red-700 font-bold'>
+            -{Math.round(((version.old_price - version.current_price) / version.old_price) * 100)}%
+          </div>
         </div>
         <div className='flex'>
           <img src='https://laptopkhanhtran.vn/css/icon/arrange-square.svg' alt='' className='mr-2' />
           <span className='text-sm'>So sánh</span>
         </div>
-      </a>
+      </Link>
     </div>
   )
 }

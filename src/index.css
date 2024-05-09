@@ -1,8 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.cdnfonts.com/css/svn-gilroy');
 
 /* ---------------------Srollbar CSS------------------------ */
+body {
+  font-family: 'SVN-Gilroy', sans-serif;
+}
+
 body::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #fff;

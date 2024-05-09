@@ -1,4 +1,12 @@
-function Login() {
+import { useEffect } from 'react'
+
+function Login({ setProgress }) {
+  useEffect(() => {
+    setProgress(20)
+    setTimeout(() => {
+      setProgress(100)
+    }, 200)
+  }, [setProgress])
   return (
     <div className='bg-white py-16'>
       <div className='max-w-[600px] form-shadow px-12 py-8 m-auto'>

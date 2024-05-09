@@ -1,4 +1,13 @@
-function Cart() {
+import { useEffect } from 'react'
+
+function Cart({ setProgress }) {
+  useEffect(() => {
+    setProgress(20)
+    setTimeout(() => {
+      setProgress(100)
+    }, 200)
+  }, [setProgress])
+
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <nav className='flex' aria-label='Breadcrumb'>

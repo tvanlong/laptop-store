@@ -6,8 +6,15 @@ import { Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { useEffect } from 'react'
 
-function Home() {
+function Home({ setProgress }) {
+  useEffect(() => {
+    setProgress(20)
+    setTimeout(() => {
+      setProgress(100)
+    }, 200)
+  }, [setProgress])
   return (
     <>
       <div className='max-w-[1400px] mx-auto'>
@@ -76,7 +83,6 @@ function Home() {
             </div>
           </div>
           <Swiper
-            className='p-6'
             breakpoints={{
               1024: {
                 slidesPerView: 5,
@@ -93,6 +99,7 @@ function Home() {
             mousewheel={true}
             keyboard={true}
             modules={[Mousewheel, Keyboard, Autoplay]}
+            style={{ padding: '20px' }}
           >
             {Array.from({ length: 10 }).map((_, index) => (
               <SwiperSlide key={index}>

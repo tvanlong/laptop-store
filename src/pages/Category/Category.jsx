@@ -1,8 +1,15 @@
+import { useEffect } from 'react'
 import FilterDropdown from '~/components/FilterDropdown/FilterDropdown'
 import ProductItem from '~/components/ProductItem'
 import { priceOptions, ramOptions, screenSizeOptions } from '~/constants/options'
 
-function Category() {
+function Category({ setProgress }) {
+  useEffect(() => {
+    setProgress(20)
+    setTimeout(() => {
+      setProgress(100)
+    }, 200)
+  }, [setProgress])
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <div className='flex justify-between'>

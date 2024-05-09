@@ -1,4 +1,12 @@
-function ChangePassword() {
+import { useEffect } from 'react'
+
+function ChangePassword({ setProgress }) {
+  useEffect(() => {
+    setProgress(20)
+    setTimeout(() => {
+      setProgress(100)
+    }, 200)
+  }, [setProgress])
   return (
     <div className='max-w-[1400px] mx-auto mt-10 mb-20'>
       <div className='grid grid-cols-5 gap-8 px-6'>

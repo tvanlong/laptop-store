@@ -1,6 +1,6 @@
 function ProductItem({ isHover = false }) {
   return (
-    <div className={'bg-white rounded-lg p-4' + (isHover ? ' hover:border hover:border-[#007745]' : '')}>
+    <div className={'bg-white rounded-lg p-6' + (isHover ? ' hover:border hover:border-[#007745]' : '')}>
       <a className=''>
         <img
           src='https://laptopkhanhtran.vn/pic/product/dell-7780_638417823695647983-w.250-q.80.png'

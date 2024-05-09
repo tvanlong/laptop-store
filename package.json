@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.35.1",
     "axios": "^1.6.8",
     "flowbite": "^2.3.0",
     "flowbite-react": "^0.7.5",
@@ -22,6 +23,7 @@
     "react-slick": "^0.30.2",
     "react-top-loading-bar": "^2.3.1",
     "slick-carousel": "^1.8.1",
+    "sonner": "^1.4.41",
     "swiper": "^11.0.7"
   },
   "devDependencies": {

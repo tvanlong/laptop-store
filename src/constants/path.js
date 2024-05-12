@@ -3,13 +3,13 @@ export const path = {
   login: '/login',
   register: '/register',
   logout: '/logout',
-  product: '/product/:id',
+  product: '/product/:versionId',
   cart: '/cart',
   checkout: '/checkout',
   search: '/search',
   profile: '/profile',
   changePassword: '/change-password',
   order: '/order',
-  category: '/category/:id',
-  subcategory: '/subcategory/:id'
+  category: '/category/:categoryId',
+  subcategory: '/subcategory/:subcategoryId'
 }

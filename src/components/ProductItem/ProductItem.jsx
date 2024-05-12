@@ -12,7 +12,7 @@ function ProductItem({ version, isHover = false }) {
           : '')
       }
     >
-      <Link to={''}>
+      <Link to={`/product/${version._id}`}>
         <img
           src={`${config.baseURL}/api/upload/${version.product.images[0]}`}
           alt={`${version.product.name} ${version.name}`}

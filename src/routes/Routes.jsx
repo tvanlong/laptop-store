@@ -29,7 +29,7 @@ function ProtectedRoute() {
 function RejectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
   // Nếu đã đăng nhập thì chuyển hướng về trang chủ, ngược lại cho phép truy cập các route con
-  return !isAuthenticated ? <Outlet /> : <Navigate to={path.dashboard} />
+  return !isAuthenticated ? <Outlet /> : <Navigate to={path.home} />
 }
 
 function Routes() {
@@ -37,6 +37,7 @@ function Routes() {
   const element = useRoutes([
     {
       path: path.home,
+      index: true,
       element: (
         <MainLayout>
           <Suspense fallback={<Loading />}>

@@ -1,19 +1,44 @@
+import { useQuery } from '@tanstack/react-query'
 import { Carousel } from 'flowbite-react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { getProductById } from '~/apis/products.api'
+import { getVersionById } from '~/apis/versions.api'
+import Loading from '~/components/Loading'
+import config from '~/constants/config'
+import { formatCurrency } from '~/utils/format'
 
 function Product({ setProgress }) {
+  const { versionId } = useParams()
+  const { data: versionData, isLoading } = useQuery({
+    queryKey: ['version', versionId],
+    queryFn: () => getVersionById(versionId),
+    enabled: !!versionId
+  })
+  const version = useMemo(() => versionData?.data?.data || {}, [versionData])
+
+  const { data: productData } = useQuery({
+    queryKey: ['product', version?.product?._id],
+    queryFn: () => getProductById(version?.product?._id),
+    enabled: !!version?.product?._id
+  })
+  const product = useMemo(() => productData?.data?.data || {}, [productData])
+
   useEffect(() => {
     setProgress(20)
     setTimeout(() => {
       setProgress(100)
     }, 200)
   }, [setProgress])
+
+  if (isLoading) return <Loading />
+
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <nav className='flex' aria-label='Breadcrumb'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>
-            <a className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'>
+            <Link to='/' className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'>
               <svg
                 className='w-3 h-3 mr-2.5'
                 aria-hidden='true'
@@ -24,7 +49,7 @@ function Product({ setProgress }) {
                 <path d='m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z' />
               </svg>
               Trang chủ
-            </a>
+            </Link>
           </li>
           <li className='opacity-60'>
             <div className='flex items-center'>
@@ -43,7 +68,12 @@ function Product({ setProgress }) {
                   d='m1 9 4-4-4-4'
                 />
               </svg>
-              <a className='ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2'>Sản phẩm</a>
+              <Link
+                to={`/product/${versionId}`}
+                className='ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2'
+              >
+                Sản phẩm
+              </Link>
             </div>
           </li>
           <li aria-current='page opacity-60'>
@@ -63,9 +93,9 @@ function Product({ setProgress }) {
                   d='m1 9 4-4-4-4'
                 />
               </svg>
-              <span className='ml-1 text-sm text-gray-500 md:ml-2'>
-                [ Mới 100% ] Laptop Dell Inspiron 3501 i3 1005G1/4GB/256GB/15.6" FHD/Win10
-              </span>
+              <Link to={`/product/${versionId}`} className='ml-1 text-sm text-gray-500 md:ml-2'>
+                [ Mới 100% ] {version?.product?.name} {version?.name}
+              </Link>
             </div>
           </li>
         </ol>
@@ -73,8 +103,14 @@ function Product({ setProgress }) {
       <div className='grid grid-cols-12 gap-8 mt-10'>
         <div className='col-span-6'>
           <Carousel className='h-[30rem]' indicators={false}>
-            <img src='https://laptopkhanhtran.vn/pic/product/_638150952203275072_HasThumb.png' alt='...' />
-            <img src='https://laptopkhanhtran.vn/pic/product/_638150952270147516_HasThumb.png' alt='...' />
+            {version?.product?.images?.map((image, index) => (
+              <img
+                key={index}
+                src={`${config.baseURL}/api/upload/${image}`}
+                alt={`${version.product.name} ${version.name}`}
+                className='w-full h-full object-cover'
+              />
+            ))}
           </Carousel>
           <div className='flex justify-center gap-4 mt-10'>
             <div className='border border-gray-300 py-2 px-4 flex flex-col items-center hover:border-green-600'>
@@ -125,16 +161,24 @@ function Product({ setProgress }) {
         </div>
         <div className='col-span-6'>
           <h2 className='font-bold text-2xl mb-5'>
-            [ Mới 100% ] Laptop Dell Inspiron 3501 i3 1005G1/4GB/256GB/15.6" FHD/Win10
+            [ Mới 100% ] {version?.product?.name} {version?.name}
           </h2>
           <div className='flex items-end my-2 gap-3'>
-            <div className='text-red-500 font-bold text-2xl'>20.000.000 đ</div>
-            <div className='font-semibold text-gray-500 line-through text-lg'>20.000.000 đ</div>
+            <div className='text-red-500 font-bold text-3xl'>{formatCurrency(version?.current_price)} đ</div>
+            <div className='font-semibold text-gray-500 line-through text-lg'>
+              {formatCurrency(version?.old_price)} đ
+            </div>
           </div>
-          <ol className='my-5 list-none max-w-md space-y-1 text-gray-500 list-inside'>
-            <li className='text-sm'>
-              <span className='font-semibold text-gray-900'> </span>
-            </li>
+          <ol className='my-5 list-none space-y-1 text-gray-500 list-inside'>
+            {version?.description?.map((spec, index) => {
+              const [key, value] = spec.split(':')
+              return (
+                <li key={index} className='text-sm'>
+                  <span className='font-semibold text-gray-700'>{key}</span>
+                  {value}
+                </li>
+              )
+            })}
           </ol>
           <div className='flex'>
             <div className='text-sm text-green-700 underline'>Xem chi tiết cấu hình</div>
@@ -143,28 +187,26 @@ function Product({ setProgress }) {
           </div>
           <h3 className='my-5 font-semibold text-xl'>Tùy chọn cấu hình</h3>
           <div className='grid grid-cols-2 gap-3'>
-            <div className='border border-green-600 p-3 bg-[#ebfff7] rounded-lg'>
-              <a>
-                <div className='text-sm mb-2'>
-                  Intel Core i3-1005G1 (4MB, up to 3.4GHz) / 4GB DDR4 2666MHz / 256GB M.2 PCIe NVMe / 15.6" FHD
-                </div>
-                <div className='flex'>
-                  <div className='text-sm font-semibold mr-3'>20.000.000 đ</div>
-                  <div className='text-sm font-semibold opacity-60 line-through'>20.000.000 đ</div>
-                </div>
-              </a>
-            </div>
-            <div className='border border-gray-300 hover:border-green-600 hover:bg-[#ebfff7] p-3 bg-white rounded-lg'>
-              <a>
-                <div className='text-sm mb-2'>
-                  Intel Core i3-1005G1 (4MB, up to 3.4GHz) / 4GB DDR4 2666MHz / 256GB M.2 PCIe NVMe / 15.6" FHD
-                </div>
-                <div className='flex'>
-                  <div className='text-sm font-semibold mr-3'>20.000.000 đ</div>
-                  <div className='text-sm font-semibold opacity-60 line-through'>20.000.000 đ</div>
-                </div>
-              </a>
-            </div>
+            {product?.versions?.map((version, index) => (
+              <div
+                key={index}
+                className={
+                  versionId === version._id
+                    ? 'border border-green-600 p-3 bg-[#ebfff7] rounded-lg'
+                    : 'border border-gray-300 hover:border-green-600 hover:bg-[#ebfff7] p-3 bg-white rounded-lg'
+                }
+              >
+                <Link to={`/product/${version._id}`}>
+                  <div className='text-sm mb-2'>{version?.name}</div>
+                  <div className='flex'>
+                    <div className='text-sm font-semibold mr-3'>{formatCurrency(version.current_price)} đ</div>
+                    <div className='text-sm font-semibold opacity-60 line-through'>
+                      {formatCurrency(version.old_price)} đ
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
           <ul className='list-none mt-5 px-5 py-6 bg-[#f4f4f4] text-sm rounded-lg'>
             <li className='py-2'>🎁Giảm tới 1.000.000VNĐ khi quý khách mua máy lần 2.</li>
@@ -177,7 +219,7 @@ function Product({ setProgress }) {
           <form className='flex mt-5' method='POST'>
             <div className='flex items-center w-[65%]'>
               <div className='text-base font-semibold mr-2'>Số lượng</div>
-              <input type='number' name='quantity' value='1' className='rounded-lg text-center h-full' />
+              <input type='number' name='quantity' defaultValue='1' className='rounded-lg text-center h-full' />
             </div>
             <button type='submit' className='ml-2 text-sm text-white bg-[#d62454] uppercase w-full rounded-lg'>
               Thêm vào giỏ hàng

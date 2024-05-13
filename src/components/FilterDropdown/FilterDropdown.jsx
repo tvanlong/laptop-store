@@ -28,7 +28,7 @@ function FilterDropdown({ title, options }) {
             <input
               id={`checkbox-${index}`}
               type='checkbox'
-              value={option.value}
+              defaultValue={option.value}
               className='w-4 h-4 text-blue-600 bg-white border-gray-300 rounded'
             />
             <label htmlFor={`checkbox-${index}`} className='ml-2 text-sm text-gray-900 hover:underline'>

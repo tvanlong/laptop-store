@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import { toast } from 'sonner'
+import { Link, useNavigate } from 'react-router-dom'
 import { getAllCategories } from '~/apis/categories.api'
 import { AppContext } from '~/context/app.context'
 
 function Header() {
   const { isAuthenticated } = useContext(AppContext)
+  const navigate = useNavigate()
   const { data } = useQuery({
     queryKey: ['categories'],
     queryFn: () => getAllCategories()
@@ -14,10 +14,10 @@ function Header() {
 
   const categories = data?.data?.data || []
 
-  const handleMouseEnter = (category) => {
-    if (category.subcategories.length === 0) {
-      toast.warning(`Danh mục "${category.name}" chưa hỗ trợ danh mục thêm!`)
-    }
+  const navigateToSubcategory = (categoryId, subcategoryId) => {
+    navigate(`/subcategory/${subcategoryId}`, {
+      state: { categoryId }
+    })
   }
 
   return (
@@ -147,12 +147,8 @@ function Header() {
             <li
               key={category._id}
               className='relative flex items-center text-white opacity-60 hover:opacity-100 h-full cursor-pointer group'
-              onMouseEnter={() => handleMouseEnter(category)}
             >
-              <Link
-                to={category.subcategories.length > 0 ? `/category/${category._id}` : ''}
-                className='text-xs font-semibold uppercase'
-              >
+              <Link to={`/category/${category._id}`} className='text-xs font-semibold uppercase'>
                 {category.name}
               </Link>
               {category.subcategories.length > 0 && (
@@ -172,7 +168,10 @@ function Header() {
                   {category.subcategories.length > 0 &&
                     category.subcategories.map((subcategory) => (
                       <li key={subcategory._id} className='py-3 px-6 text-sm text-gray-900 hover:text-green-700'>
-                        <Link to={`/subcategory/${subcategory._id}`} className='font-semibold'>
+                        <Link
+                          className='font-semibold'
+                          onClick={() => navigateToSubcategory(category._id, subcategory._id)}
+                        >
                           {subcategory.name}
                         </Link>
                       </li>

@@ -1,11 +1,11 @@
 import { omit } from 'lodash'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 
-function SortProductList({ categoryId, queryParamsConfig }) {
+function SortProductList({ pathname, queryParamsConfig }) {
   const navigate = useNavigate()
   const handleOrderBy = (sort_type, order_by) => {
     navigate({
-      pathname: `/category/${categoryId}`,
+      pathname: pathname,
       search: createSearchParams({
         ...queryParamsConfig,
         sort: sort_type,
@@ -16,7 +16,7 @@ function SortProductList({ categoryId, queryParamsConfig }) {
 
   const handleRemoveFilter = () => {
     navigate({
-      pathname: `/category/${categoryId}`,
+      pathname: pathname,
       search: createSearchParams(omit(queryParamsConfig, ['sort', 'order'])).toString()
     })
   }

@@ -170,6 +170,7 @@ function Header() {
                       <li key={subcategory._id} className='py-3 px-6 text-sm text-gray-900 hover:text-green-700'>
                         <Link
                           className='font-semibold'
+                          to={`/subcategory/${subcategory._id}`}
                           onClick={() => navigateToSubcategory(category._id, subcategory._id)}
                         >
                           {subcategory.name}

@@ -1,6 +1,5 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { Pagination } from 'flowbite-react'
-import { omit } from 'lodash'
 import { useEffect } from 'react'
 import { Link, createSearchParams, useNavigate, useParams } from 'react-router-dom'
 import { getAllVersionsByCategoryId } from '~/apis/versions.api'
@@ -15,7 +14,7 @@ function Category({ setProgress }) {
   const navigate = useNavigate()
   const queryParamsConfig = useQueryParamsConfig()
   const { data } = useQuery({
-    queryKey: ['versions', categoryId, queryParamsConfig],
+    queryKey: ['versions-by-category', categoryId, queryParamsConfig],
     queryFn: () => getAllVersionsByCategoryId(categoryId, queryParamsConfig),
     placeholderData: keepPreviousData
   })
@@ -121,7 +120,7 @@ function Category({ setProgress }) {
           </div>
         </div>
         <div className='col-span-10'>
-          <SortProductList categoryId={categoryId} queryParamsConfig={queryParamsConfig} />
+          <SortProductList pathname={`/category/${categoryId}`} queryParamsConfig={queryParamsConfig} />
           <div className='grid grid-cols-4 gap-3 p-6 mb-10'>
             {versions.map((version) => (
               <ProductItem key={version._id} version={version} isHover />

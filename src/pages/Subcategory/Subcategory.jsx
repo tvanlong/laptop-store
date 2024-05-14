@@ -2,6 +2,7 @@ import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { Pagination } from 'flowbite-react'
 import { useEffect } from 'react'
 import { Link, createSearchParams, useNavigate, useParams } from 'react-router-dom'
+import { getSubcategoryById } from '~/apis/subcategories.api'
 import { getAllVersionsBySubcategoryId } from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
 import ProductItem from '~/components/ProductItem'
@@ -13,6 +14,13 @@ function Subcategory({ setProgress }) {
   const { subcategoryId } = useParams()
   const navigate = useNavigate()
   const queryParamsConfig = useQueryParamsConfig()
+
+  const { data: subcategoryData } = useQuery({
+    queryKey: ['subcategory', subcategoryId],
+    queryFn: () => getSubcategoryById(subcategoryId)
+  })
+  const subcategory = subcategoryData?.data?.data || {}
+
   const { data } = useQuery({
     queryKey: ['versions-by-subcategory', subcategoryId, queryParamsConfig],
     queryFn: () => getAllVersionsBySubcategoryId(subcategoryId, queryParamsConfig),
@@ -40,7 +48,7 @@ function Subcategory({ setProgress }) {
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <div className='flex justify-between'>
-        <h2 className='text-3xl font-bold uppercase'>Laptop Dell</h2>
+        <h2 className='text-3xl font-bold uppercase'>{subcategory?.name}</h2>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='cursor-pointer inline-flex items-center opacity-60'>
@@ -95,7 +103,7 @@ function Subcategory({ setProgress }) {
                   />
                 </svg>
                 <Link to={`/subcategory/${subcategoryId}`} className='ml-1 text-sm text-gray-500 md:ml-2'>
-                  Laptop Dell
+                  {subcategory?.name}
                 </Link>
               </div>
             </li>

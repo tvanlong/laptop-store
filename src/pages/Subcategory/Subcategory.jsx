@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import FilterDropdown from '~/components/FilterDropdown/FilterDropdown'
+import FilterDropdown from '~/components/FilterDropdown'
 import ProductItem from '~/components/ProductItem'
 import { priceOptions, ramOptions, screenSizeOptions } from '~/constants/options'
 

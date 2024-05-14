@@ -1,15 +1,37 @@
+import { omit } from 'lodash'
 import { useState } from 'react'
+import { createSearchParams, useNavigate } from 'react-router-dom'
 
-function FilterDropdown({ title, options }) {
+function FilterDropdown({ title, options, queryParamsConfig }) {
+  const navigate = useNavigate()
   const [isVisible, setIsVisible] = useState(false)
+  const [selectedOption, setSelectedOption] = useState(null)
 
   const toggleVisibility = () => {
     setIsVisible(!isVisible)
   }
 
+  const handleCheckboxChange = (optionParam, optionValue) => {
+    if (selectedOption === optionValue) {
+      navigate({
+        search: createSearchParams(omit(queryParamsConfig, optionParam)).toString()
+      })
+      setSelectedOption(null)
+    } else {
+      navigate({
+        search: createSearchParams({
+          ...queryParamsConfig,
+          [optionParam]: optionValue
+        }).toString()
+      })
+
+      setSelectedOption(selectedOption === optionValue ? null : optionValue)
+    }
+  }
+
   return (
-    <div className='mb-4 cursor-pointer' onClick={toggleVisibility}>
-      <div className='flex justify-between items-center mb-4'>
+    <div className='mb-4 cursor-pointer'>
+      <div className='flex justify-between items-center mb-4' onClick={toggleVisibility}>
         <div className='font-semibold hover:underline text-sm'>{title}</div>
         <svg
           xmlns='http://www.w3.org/2000/svg'
@@ -24,17 +46,18 @@ function FilterDropdown({ title, options }) {
       </div>
       <div className={`filter ${isVisible ? '' : 'hidden'}`}>
         {options.map((option, index) => (
-          <form className='flex items-center mb-3' key={index} method='POST'>
+          <div className='flex items-center mb-3' key={index}>
             <input
               id={`checkbox-${index}`}
               type='checkbox'
-              defaultValue={option.value}
+              checked={selectedOption === option.value || queryParamsConfig[option.param] === option.value}
+              onChange={() => handleCheckboxChange(option.param, option.value)}
               className='w-4 h-4 text-blue-600 bg-white border-gray-300 rounded'
             />
             <label htmlFor={`checkbox-${index}`} className='ml-2 text-sm text-gray-900 hover:underline'>
               {option.label}
             </label>
-          </form>
+          </div>
         ))}
       </div>
     </div>

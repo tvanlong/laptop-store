@@ -9,7 +9,13 @@ function useQueryParamsConfig() {
     limit: queryParams.limit ? Number(queryParams.limit) : 10,
     sort: queryParams.sort,
     order: queryParams.order,
-    search: queryParams.search
+    search: queryParams.search,
+    price_range: queryParams.price_range,
+    ram: queryParams.ram,
+    memory: queryParams.memory,
+    screen: queryParams.screen,
+    cpu: queryParams.cpu,
+    vga: queryParams.vga
   }
   const filteredQueryParamsConfig = omitBy(queryParamsConfig, (value) => isUndefined(value) || value === '')
   return filteredQueryParamsConfig

@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllCategories } from '~/apis/categories.api'
 import { AppContext } from '~/context/app.context'
+import Search from './Search'
 
 function Header() {
   const { isAuthenticated } = useContext(AppContext)
@@ -31,34 +32,7 @@ function Header() {
               alt='Flowbite Logo'
             />
           </Link>
-          <div className='basis-2/5 flex'>
-            <form className='w-4/5 relative hidden md:block' method='POST'>
-              <button type='submit' className='absolute inset-y-0 left-0 z-10 flex items-center pl-3'>
-                <svg
-                  className='w-4 h-4 text-gray-500'
-                  aria-hidden='true'
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  viewBox='0 0 20 20'
-                >
-                  <path
-                    stroke='currentColor'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
-                  />
-                </svg>
-              </button>
-              <input
-                type='text'
-                name='keyword'
-                id='search-navbar'
-                className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50'
-                placeholder='Bạn muốn tìm sản phẩm gì...'
-              />
-            </form>
-          </div>
+          <Search />
           <div className='justify-between hidden w-full md:flex md:w-auto' id='navbar-search'>
             <ul className='flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:mt-0 md:border-0 bg-[#242525]'>
               <li>

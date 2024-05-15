@@ -1,6 +1,6 @@
 import http from '~/utils/http'
 
-export const getAllVersions = () => http.get('/api/versions')
+export const getAllVersions = (params) => http.get('/api/versions', { params })
 
 export const getAllVersionsByCategoryId = (id, params) => http.get(`/api/versions/category/${id}`, { params })
 

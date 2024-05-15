@@ -1,14 +1,18 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { Carousel } from 'flowbite-react'
-import { useEffect, useMemo } from 'react'
+import { useContext, useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { toast } from 'sonner'
+import { addToCart } from '~/apis/carts.api'
 import { getProductById } from '~/apis/products.api'
 import { getVersionById } from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import config from '~/constants/config'
+import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
 
 function Product({ setProgress }) {
+  const { isAuthenticated, profile } = useContext(AppContext)
   const { versionId } = useParams()
   const { data: versionData, isLoading } = useQuery({
     queryKey: ['version', versionId],
@@ -30,6 +34,22 @@ function Product({ setProgress }) {
       setProgress(100)
     }, 200)
   }, [setProgress])
+
+  const { mutateAsync } = useMutation({
+    mutationFn: (data) => addToCart(profile?._id, data)
+  })
+
+  const handleAddToCart = async () => {
+    if (!isAuthenticated) {
+      toast.error('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng')
+      return
+    }
+    toast.promise(mutateAsync({ versionId }), {
+      loading: 'Đang thêm sản phẩm vào giỏ hàng...',
+      success: 'Thêm sản phẩm vào giỏ hàng thành công',
+      error: 'Thêm sản phẩm vào giỏ hàng thất bại'
+    })
+  }
 
   if (isLoading) return <Loading />
 
@@ -216,15 +236,14 @@ function Product({ setProgress }) {
             <li className='py-2'>🎁Chuột quang không dây + bàn di chuột</li>
             <li className='py-2'>🎁Tặng gói cài đặt + vệ sinh, bảo dưỡng, trọn đời</li>
           </ul>
-          <form className='flex mt-5' method='POST'>
-            <div className='flex items-center w-[65%]'>
-              <div className='text-base font-semibold mr-2'>Số lượng</div>
-              <input type='number' name='quantity' defaultValue='1' className='rounded-lg text-center h-full' />
-            </div>
-            <button type='submit' className='ml-2 text-sm text-white bg-[#d62454] uppercase w-full rounded-lg'>
+          <div className='mt-5'>
+            <button
+              className='text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out'
+              onClick={handleAddToCart}
+            >
               Thêm vào giỏ hàng
             </button>
-          </form>
+          </div>
           <div className='grid grid-cols-3 gap-3 mt-5'>
             <button className='bg-[#e00] p-1 rounded-lg'>
               <a>

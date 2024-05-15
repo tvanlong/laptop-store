@@ -1,9 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllCategories } from '~/apis/categories.api'
 import { AppContext } from '~/context/app.context'
 import Search from './Search'
+import { path } from '~/constants/path'
+import { signOut } from '~/apis/auth.api'
+import { toast } from 'sonner'
 
 function Header() {
   const { isAuthenticated } = useContext(AppContext)
@@ -19,6 +22,16 @@ function Header() {
     navigate(`/subcategory/${subcategoryId}`, {
       state: { categoryId }
     })
+  }
+
+  const { mutateAsync } = useMutation({
+    mutationFn: () => signOut()
+  })
+
+  const handleSignOut = async () => {
+    await mutateAsync()
+    window.location.reload()
+    toast.success('Đăng xuất thành công')
   }
 
   return (
@@ -37,7 +50,7 @@ function Header() {
             <ul className='flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:mt-0 md:border-0 bg-[#242525]'>
               <li>
                 <Link
-                  to='/'
+                  to={path.home}
                   className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
                   aria-current='page'
                 >
@@ -60,19 +73,21 @@ function Header() {
                   Tin tức
                 </Link>
               </li>
-              <li>
-                <Link
-                  to='/'
-                  className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
-                >
-                  Đăng nhập
-                </Link>
-              </li>
+              {!isAuthenticated && (
+                <li>
+                  <Link
+                    to={path.login}
+                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                  >
+                    Đăng nhập
+                  </Link>
+                </li>
+              )}
               {isAuthenticated && (
                 <li>
                   <Link
                     to=''
-                    class='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
                   >
                     Tài khoản
                   </Link>
@@ -82,7 +97,8 @@ function Header() {
                 <li>
                   <Link
                     to=''
-                    class='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    onClick={handleSignOut}
                   >
                     Đăng xuất
                   </Link>

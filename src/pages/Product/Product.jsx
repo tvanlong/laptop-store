@@ -1,18 +1,20 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Carousel } from 'flowbite-react'
 import { useContext, useEffect, useMemo } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { addToCart } from '~/apis/carts.api'
 import { getProductById } from '~/apis/products.api'
 import { getVersionById } from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import config from '~/constants/config'
+import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
 
 function Product({ setProgress }) {
   const { isAuthenticated, profile } = useContext(AppContext)
+  const navigate = useNavigate()
   const { versionId } = useParams()
   const { data: versionData, isLoading } = useQuery({
     queryKey: ['version', versionId],
@@ -46,7 +48,10 @@ function Product({ setProgress }) {
     }
     toast.promise(mutateAsync({ versionId }), {
       loading: 'Đang thêm sản phẩm vào giỏ hàng...',
-      success: 'Thêm sản phẩm vào giỏ hàng thành công',
+      success: () => {
+        navigate(path.cart)
+        return 'Thêm sản phẩm vào giỏ hàng thành công'
+      },
       error: 'Thêm sản phẩm vào giỏ hàng thất bại'
     })
   }

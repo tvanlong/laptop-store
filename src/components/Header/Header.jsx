@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { useContext } from 'react'
+import { useContext, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllCategories } from '~/apis/categories.api'
 import { AppContext } from '~/context/app.context'
@@ -7,16 +7,23 @@ import Search from './Search'
 import { path } from '~/constants/path'
 import { signOut } from '~/apis/auth.api'
 import { toast } from 'sonner'
+import { getCart } from '~/apis/carts.api'
 
 function Header() {
-  const { isAuthenticated } = useContext(AppContext)
+  const { isAuthenticated, profile } = useContext(AppContext)
   const navigate = useNavigate()
-  const { data } = useQuery({
+  const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
     queryFn: () => getAllCategories()
   })
+  const categories = categoriesData?.data?.data || []
 
-  const categories = data?.data?.data || []
+  const { data: cartData } = useQuery({
+    queryKey: ['cart'],
+    queryFn: () => getCart(profile?._id)
+  })
+  const cart = useMemo(() => cartData?.data?.data, [cartData])
+  const totalQuantity = useMemo(() => cart?.versions?.map((item) => item.quantity).reduce((a, b) => a + b, 0), [cart])
 
   const navigateToSubcategory = (categoryId, subcategoryId) => {
     navigate(`/subcategory/${subcategoryId}`, {
@@ -107,7 +114,7 @@ function Header() {
             </ul>
           </div>
           <div className='relative text-white ms-12'>
-            <Link to={''}>
+            <Link to={path.cart}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -122,9 +129,9 @@ function Header() {
                   d='M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z'
                 />
               </svg>
-              {isAuthenticated && (
+              {isAuthenticated && cart?.versions?.length > 0 && (
                 <div className='absolute p-1 w-5 h-5 bg-red-500 rounded-full top-[-10px] right-[-10px] text-xs flex items-center justify-center'>
-                  1
+                  {totalQuantity}
                 </div>
               )}
             </Link>

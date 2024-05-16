@@ -7,6 +7,7 @@ import { signIn } from '~/apis/auth.api'
 import { toast } from 'sonner'
 import { AppContext } from '~/context/app.context'
 import { useNavigate } from 'react-router-dom'
+import { path } from '~/constants/path'
 
 function Login({ setProgress }) {
   const navigate = useNavigate()
@@ -107,6 +108,12 @@ function Login({ setProgress }) {
                 d='M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2'
               />
             </svg>
+          </button>
+          <button
+            className='bg-[#ec2127] w-full p-4 rounded-md hover:opacity-80 mt-8'
+            onClick={() => navigate(path.register)}
+          >
+            <span className='text-white font-medium text-xl uppercase'>Đăng ký</span>
           </button>
         </form>
         <div className='relative py-6 flex justify-center'>

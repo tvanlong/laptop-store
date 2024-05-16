@@ -161,7 +161,9 @@ function Cart({ setProgress }) {
             <h3 className='font-semibold text-xl mb-10'>Thông tin đơn hàng</h3>
             <div className='flex justify-between items-center mb-6'>
               <span className='text-sm font-semibold'>Tổng thanh toán:</span>
-              <span className='text-xl font-semibold text-[#d62454]'>{formatCurrency(totalAmount)} đ</span>
+              <span className='text-xl font-semibold text-[#d62454]'>
+                {totalAmount ? formatCurrency(totalAmount) : 0} đ
+              </span>
             </div>
             <div className='grid grid-cols-1 gap-3 mt-5'>
               <button className='bg-[#e00] p-1 rounded-lg'>
@@ -170,7 +172,7 @@ function Cart({ setProgress }) {
                   <span className='text-xs text-white capitalize'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
                 </a>
               </button>
-              <button className='bg-[#288ad6] p-1 rounded-lg'>
+              <button className='bg-[#288ad6] p-3 rounded-lg'>
                 <a>
                   <div className='text-sm font-semibold text-white uppercase'>Trả góp qua thẻ</div>
                   <span className='text-xs text-white capitalize'>Visa, Master, JCB</span>

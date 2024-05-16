@@ -14,6 +14,10 @@ function Cart({ setProgress }) {
     queryFn: () => getCart(profile?._id)
   })
   const cart = useMemo(() => cartData?.data?.data, [cartData])
+  const totalAmount = useMemo(
+    () => cart?.cart_items?.map((item) => item.version.current_price * item.quantity).reduce((a, b) => a + b, 0),
+    [cart]
+  )
 
   useEffect(() => {
     setProgress(20)
@@ -157,7 +161,7 @@ function Cart({ setProgress }) {
             <h3 className='font-semibold text-xl mb-10'>Thông tin đơn hàng</h3>
             <div className='flex justify-between items-center mb-6'>
               <span className='text-sm font-semibold'>Tổng thanh toán:</span>
-              <span className='text-xl font-semibold text-[#d62454]'>2.000.000 đ</span>
+              <span className='text-xl font-semibold text-[#d62454]'>{formatCurrency(totalAmount)} đ</span>
             </div>
             <div className='grid grid-cols-1 gap-3 mt-5'>
               <button className='bg-[#e00] p-1 rounded-lg'>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { getCart, removeCart, removeItem } from '~/apis/carts.api'
 import InputQuantity from '~/components/InputQuantity'
+import Loading from '~/components/Loading'
 import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -11,7 +12,11 @@ import { formatCurrency } from '~/utils/format'
 
 function Cart({ setProgress }) {
   const { profile } = useContext(AppContext)
-  const { data: cartData, refetch } = useQuery({
+  const {
+    data: cartData,
+    isLoading,
+    refetch
+  } = useQuery({
     queryKey: ['cart'],
     queryFn: () => getCart(profile?._id)
   })
@@ -57,6 +62,8 @@ function Cart({ setProgress }) {
       error: 'Xóa thất bại'
     })
   }
+
+  if (isLoading) return <Loading />
 
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>

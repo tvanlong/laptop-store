@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Carousel } from 'flowbite-react'
+import { Carousel, Spinner } from 'flowbite-react'
 import { useContext, useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -36,7 +36,7 @@ function Product({ setProgress }) {
     }, 200)
   }, [setProgress])
 
-  const { mutateAsync } = useMutation({
+  const { mutateAsync, isPending } = useMutation({
     mutationFn: (data) => addToCart(profile?._id, data)
   })
 
@@ -242,10 +242,15 @@ function Product({ setProgress }) {
           </ul>
           <div className='mt-5'>
             <button
-              className='text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out'
+              disabled={isPending}
+              className={
+                isPending
+                  ? 'text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out cursor-not-allowed'
+                  : 'text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out'
+              }
               onClick={handleAddToCart}
             >
-              Thêm vào giỏ hàng
+              {isPending ? <Spinner size='sm' /> : 'Thêm vào giỏ hàng'}
             </button>
           </div>
           <div className='grid grid-cols-3 gap-3 mt-5'>

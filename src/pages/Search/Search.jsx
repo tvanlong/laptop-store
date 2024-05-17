@@ -40,7 +40,7 @@ function Search({ setProgress }) {
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <div className='flex justify-between'>
-        <h2 className='text-3xl font-bold uppercase'>Từ khóa tìm kiếm: {queryParamsConfig.search}</h2>
+        <h2 className='text-3xl font-bold h-10 uppercase'>Từ khóa tìm kiếm: {queryParamsConfig.search}</h2>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='cursor-pointer inline-flex items-center opacity-60'>

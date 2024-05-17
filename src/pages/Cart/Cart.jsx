@@ -1,7 +1,9 @@
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { getCart } from '~/apis/carts.api'
+import { toast } from 'sonner'
+import { getCart, removeCart, removeItem } from '~/apis/carts.api'
+import InputQuantity from '~/components/InputQuantity'
 import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -9,7 +11,7 @@ import { formatCurrency } from '~/utils/format'
 
 function Cart({ setProgress }) {
   const { profile } = useContext(AppContext)
-  const { data: cartData } = useQuery({
+  const { data: cartData, refetch } = useQuery({
     queryKey: ['cart'],
     queryFn: () => getCart(profile?._id)
   })
@@ -25,6 +27,36 @@ function Cart({ setProgress }) {
       setProgress(100)
     }, 200)
   }, [setProgress])
+
+  const { mutateAsync: removeItemAsync } = useMutation({
+    mutationFn: (data) => removeItem(profile?._id, data)
+  })
+
+  const { mutateAsync: removeCartAsync } = useMutation({
+    mutationFn: () => removeCart(profile?._id)
+  })
+
+  const handleRemoveItem = async (id) => {
+    await removeItemAsync({ versionId: id })
+    refetch()
+  }
+
+  const refreshCart = () => {
+    if (!cart?.cart_items?.length) return toast.error('Giỏ hàng trống')
+    refetch()
+  }
+
+  const handleRemoveCart = async () => {
+    if (!cart?.cart_items?.length) return toast.error('Giỏ hàng trống')
+    toast.promise(removeCartAsync(), {
+      loading: 'Đang xóa tiến hành xóa giỏ hàng...',
+      success: () => {
+        window.location.reload()
+        return 'Xóa giỏ hàng thành công'
+      },
+      error: 'Xóa thất bại'
+    })
+  }
 
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
@@ -71,7 +103,7 @@ function Cart({ setProgress }) {
       </nav>
       <h2 className='font-bold text-2xl my-5'>Giỏ hàng</h2>
       <div className='grid grid-cols-12 gap-8'>
-        <form method='POST' className='col-span-9'>
+        <div className='col-span-9'>
           <div className='relative shadow-lg sm:rounded-lg'>
             <table className='w-full text-sm text-left text-gray-500'>
               <thead className='text-xs text-gray-700 uppercase bg-[#f4f4f4]'>
@@ -95,7 +127,7 @@ function Cart({ setProgress }) {
                 {cart?.cart_items?.map((item) => (
                   <tr key={item._id} className='bg-white border-b hover:bg-gray-50'>
                     <td className='p-4 font-bold cursor-pointer text-center'>
-                      <div>
+                      <button onClick={() => handleRemoveItem(item.version._id)}>
                         <svg
                           className='w-6 h-6 text-gray-600 cursor-pointer hover:text-red-500 transition-colors duration-200'
                           aria-hidden='true'
@@ -111,7 +143,7 @@ function Cart({ setProgress }) {
                             clipRule='evenodd'
                           />
                         </svg>
-                      </div>
+                      </button>
                     </td>
                     <td className='flex items-center px-6 py-4 font-medium text-gray-900'>
                       <img
@@ -123,16 +155,12 @@ function Cart({ setProgress }) {
                         [Mới 100%] {item.version.product.name} {item.version.name}
                       </div>
                     </td>
-                    <td className='px-6 py-4 text-center font-bold'>{formatCurrency(item.version.current_price)} đ</td>
+                    <td className='px-6 py-4 text-center font-bold'>₫{formatCurrency(item.version.current_price)} </td>
                     <td className='px-6 py-4 text-center'>
-                      <input
-                        type='number'
-                        className='w-24 h-8 text-center outline-none border border-gray-300 rounded-lg'
-                        defaultValue={item.quantity}
-                      />
+                      <InputQuantity item={item} />
                     </td>
-                    <td className='px-6 py-4 text-center font-bold'>
-                      {formatCurrency(item.version.current_price * item.quantity)} đ
+                    <td className='px-6 py-4 text-center font-bold text-[#d62454]'>
+                      ₫{formatCurrency(item.version.current_price * item.quantity)}
                     </td>
                   </tr>
                 ))}
@@ -142,27 +170,33 @@ function Cart({ setProgress }) {
             {!cart?.cart_items?.length && (
               <div className='flex justify-center items-center h-80'>
                 <div className='text-center'>
-                  <h3 className='font-semibold text-xl my-5'>Giỏ hàng trống</h3>
-                  <a className='underline text-sm font-semibold'>Tiếp tục mua hàng</a>
+                  <h3 className='font-semibold text-2xl my-5'>Giỏ hàng trống</h3>
+                  <Link to={path.home} className='hover:underline text-sm font-semibold'>
+                    Tiếp tục mua hàng
+                  </Link>
                 </div>
               </div>
             )}
           </div>
-          <div className='mt-5 text-right'>
-            <a className='underline text-sm font-semibold mr-4'>Xóa toàn bộ sản phẩm</a>
-            <a className='underline text-sm font-semibold'>Tiếp tục mua hàng</a>
+          <div className='flex justify-end mt-5 gap-5'>
+            <div className='hover:underline text-sm font-semibold mr-4 cursor-pointer' onClick={handleRemoveCart}>
+              Xóa toàn bộ sản phẩm
+            </div>
+            <Link to={path.home} className='hover:underline text-sm font-semibold'>
+              Tiếp tục mua hàng
+            </Link>
           </div>
-          <button type='submit' className='bg-yellow-400 px-3 py-2 text-white rounded-lg'>
+          <button className='bg-yellow-400 px-3 py-2 text-white rounded-lg hover:bg-yellow-300' onClick={refreshCart}>
             Cập nhật giỏ hàng
           </button>
-        </form>
+        </div>
         <div className='col-span-3'>
           <div className='bg-[#f4f4f4] rounded-lg p-6'>
             <h3 className='font-semibold text-xl mb-10'>Thông tin đơn hàng</h3>
             <div className='flex justify-between items-center mb-6'>
               <span className='text-sm font-semibold'>Tổng thanh toán:</span>
               <span className='text-xl font-semibold text-[#d62454]'>
-                {totalAmount ? formatCurrency(totalAmount) : 0} đ
+                ₫{totalAmount ? formatCurrency(totalAmount) : 0}
               </span>
             </div>
             <div className='grid grid-cols-1 gap-3 mt-5'>

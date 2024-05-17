@@ -5,6 +5,7 @@ import { Link, createSearchParams, useNavigate, useParams } from 'react-router-d
 import { getSubcategoryById } from '~/apis/subcategories.api'
 import { getAllVersionsBySubcategoryId } from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
+import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
@@ -21,7 +22,7 @@ function Subcategory({ setProgress }) {
   })
   const subcategory = subcategoryData?.data?.data || {}
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['versions-by-subcategory', subcategoryId, queryParamsConfig],
     queryFn: () => getAllVersionsBySubcategoryId(subcategoryId, queryParamsConfig),
     placeholderData: keepPreviousData
@@ -45,6 +46,9 @@ function Subcategory({ setProgress }) {
       }).toString()
     })
   }
+
+  if (isLoading) return <Loading />
+
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <div className='flex justify-between'>

@@ -10,9 +10,10 @@ import { shuffle } from '~/utils/shuffle'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import Loading from '~/components/Loading'
 
 function Home({ setProgress }) {
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['versions'],
     queryFn: getAllVersions
   })
@@ -30,6 +31,9 @@ function Home({ setProgress }) {
       setProgress(100)
     }, 200)
   }, [setProgress])
+
+  if (isLoading) return <Loading />
+
   return (
     <>
       <div className='max-w-[1400px] mx-auto'>

@@ -5,6 +5,7 @@ import { Link, createSearchParams, useNavigate, useParams } from 'react-router-d
 import { getCategoryById } from '~/apis/categories.api'
 import { getAllVersionsByCategoryId } from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
+import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
@@ -21,7 +22,7 @@ function Category({ setProgress }) {
   })
   const category = categoryData?.data?.data || {}
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['versions-by-category', categoryId, queryParamsConfig],
     queryFn: () => getAllVersionsByCategoryId(categoryId, queryParamsConfig),
     placeholderData: keepPreviousData
@@ -44,6 +45,8 @@ function Category({ setProgress }) {
       }).toString()
     })
   }
+
+  if (isLoading) return <Loading />
 
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>

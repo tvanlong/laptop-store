@@ -1,12 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext, useState } from 'react'
-import { decreaseQuantity, increaseQuantity } from '~/apis/carts.api'
+import { decreaseQuantity, increaseQuantity, updateQuantity } from '~/apis/carts.api'
 import { AppContext } from '~/context/app.context'
 
 function InputQuantity({ item }) {
   const { profile } = useContext(AppContext)
   const queryClient = useQueryClient()
   const [buyCount, setBuyCount] = useState(item.quantity)
+
   const { mutateAsync: increaseQuantityAsync } = useMutation({
     mutationFn: (data) => increaseQuantity(profile?._id, data),
     onSuccess: () => {
@@ -16,6 +17,13 @@ function InputQuantity({ item }) {
 
   const { mutateAsync: decreaseQuantityAsync } = useMutation({
     mutationFn: (data) => decreaseQuantity(profile?._id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['cart'] })
+    }
+  })
+
+  const { mutateAsync: updateQuantityAsync } = useMutation({
+    mutationFn: (data) => updateQuantity(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     }
@@ -34,14 +42,18 @@ function InputQuantity({ item }) {
     setBuyCount(cartItem.quantity)
   }
 
+  const handleUpdateQuantity = async (id) => {
+    if (buyCount === item.quantity) return
+    const data = await updateQuantityAsync({ versionId: id, quantity: buyCount })
+    const cartItem = data.data.data.cart_items.find((item) => item.version === item.version._id)
+    setBuyCount(cartItem.quantity)
+  }
+
   const handleChangeQuantity = (e) => {
     let quantity = e.target.value
     if (/^\d+$/.test(quantity) || quantity === '') {
       if (quantity < 1) {
         quantity = 1
-      }
-      if (quantity > 10) {
-        quantity = 10
       }
       setBuyCount(quantity)
     }
@@ -69,6 +81,7 @@ function InputQuantity({ item }) {
           className='text-xs h-6 w-12 border-t border-b border-gray-300 p-1 text-center outline-none'
           value={buyCount}
           onChange={(e) => handleChangeQuantity(e)}
+          onBlur={() => handleUpdateQuantity(item.version._id)}
           onKeyDown={(e) => {
             if (!/[0-9]|Backspace|Enter|Delete|ArrowLeft|ArrowRight/.test(e.key)) {
               e.preventDefault()

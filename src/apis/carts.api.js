@@ -8,6 +8,8 @@ export const increaseQuantity = (userId, data) => http.patch(`/api/carts/${userI
 
 export const decreaseQuantity = (userId, data) => http.patch(`/api/carts/${userId}/decrease`, data)
 
+export const updateQuantity = (userId, data) => http.patch(`/api/carts/${userId}`, data)
+
 export const removeItem = (userId, data) => http.delete(`/api/carts/${userId}`, { data })
 
 export const removeCart = (userId) => http.delete(`/api/carts/${userId}/all`)

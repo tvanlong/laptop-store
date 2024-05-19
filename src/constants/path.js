@@ -11,5 +11,6 @@ export const path = {
   changePassword: '/change-password',
   order: '/order',
   category: '/category/:categoryId',
-  subcategory: '/subcategory/:subcategoryId'
+  subcategory: '/subcategory/:subcategoryId',
+  loginSuccess: '/login-success/:userId'
 }

@@ -6,6 +6,7 @@ import { lazy, useContext, useState, Suspense } from 'react'
 import { AppContext } from '~/context/app.context'
 import Loading from '~/components/Loading'
 import LoadingBar from 'react-top-loading-bar'
+import LoginSuccess from '~/pages/LoginSuccess'
 
 const Cart = lazy(() => import('~/pages/Cart'))
 const Category = lazy(() => import('~/pages/Category'))
@@ -167,6 +168,10 @@ function Routes() {
           )
         }
       ]
+    },
+    {
+      path: path.loginSuccess,
+      element: <LoginSuccess />
     }
   ])
 

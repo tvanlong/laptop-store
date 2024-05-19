@@ -20,7 +20,8 @@ function Header() {
 
   const { data: cartData } = useQuery({
     queryKey: ['cart'],
-    queryFn: () => getCart(profile?._id)
+    queryFn: () => getCart(profile?._id),
+    enabled: !!isAuthenticated // Only fetch cart when user is authenticated
   })
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalQuantity = useMemo(() => cart?.cart_items?.map((item) => item.quantity).reduce((a, b) => a + b, 0), [cart])

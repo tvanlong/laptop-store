@@ -8,6 +8,7 @@ import { toast } from 'sonner'
 import { AppContext } from '~/context/app.context'
 import { useNavigate } from 'react-router-dom'
 import { path } from '~/constants/path'
+import config from '~/constants/config'
 
 function Login({ setProgress }) {
   const navigate = useNavigate()
@@ -54,6 +55,10 @@ function Login({ setProgress }) {
       }
     })
   })
+
+  const signInWithGoogle = () => {
+    window.open(`${config.baseURL}/auth/google`, '_self')
+  }
 
   return (
     <div className='bg-white py-16'>
@@ -128,7 +133,10 @@ function Login({ setProgress }) {
           />
           <span className='text-white font-normal text-xl uppercase'>Đăng nhập bằng Facebook</span>
         </button>
-        <button className='flex items-center justify-start w-full p-4 rounded-md hover:opacity-80 bg-[#3f81f9]'>
+        <button
+          className='flex items-center justify-start w-full p-4 rounded-md hover:opacity-80 bg-[#3f81f9]'
+          onClick={signInWithGoogle}
+        >
           <img
             className='w-8 h-8 mr-4 rounded-lg'
             src='https://www.nguyenkim.com/images/login_form/icon-gg.png'

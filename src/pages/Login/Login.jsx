@@ -57,7 +57,11 @@ function Login({ setProgress }) {
   })
 
   const signInWithGoogle = () => {
-    window.open(`${config.baseURL}/auth/google`, '_self')
+    window.open(`${config.baseURL}/api/auth/google`, '_self')
+  }
+
+  const signInWithFacebook = () => {
+    window.open(`${config.baseURL}/api/auth/facebook`, '_self')
   }
 
   return (
@@ -125,7 +129,10 @@ function Login({ setProgress }) {
           <div className=' flex justify-center w-40 bg-white relative z-10'>Hoặc</div>
           <div className='absolute w-full h-[4px] border-y border-y-[#ced4da] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'></div>
         </div>
-        <button className='flex items-center justify-start w-full p-4 rounded-md hover:opacity-80 bg-[#3b5998] mb-5'>
+        <button
+          className='flex items-center justify-start w-full p-4 rounded-md hover:opacity-80 bg-[#3b5998] mb-5'
+          onClick={signInWithFacebook}
+        >
           <img
             className='w-8 h-8 mr-4 rounded-lg'
             src='https://www.nguyenkim.com/images/login_form/icon-fb.svg'

@@ -7,6 +7,7 @@ import { AppContext } from '~/context/app.context'
 import Loading from '~/components/Loading'
 import LoadingBar from 'react-top-loading-bar'
 import LoginSuccess from '~/pages/LoginSuccess'
+import RegisterSuccess from '~/pages/RegisterSuccess'
 
 const Cart = lazy(() => import('~/pages/Cart'))
 const Category = lazy(() => import('~/pages/Category'))
@@ -172,6 +173,10 @@ function Routes() {
     {
       path: path.loginSuccess,
       element: <LoginSuccess />
+    },
+    {
+      path: path.registerSuccess,
+      element: <RegisterSuccess />
     }
   ])
 

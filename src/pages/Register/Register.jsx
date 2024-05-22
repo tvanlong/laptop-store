@@ -2,14 +2,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { signUp } from '~/apis/auth.api'
-import { path } from '~/constants/path'
 import { signUpSchema } from '~/schemas/auth.schema'
 
 function Register({ setProgress }) {
-  const navigate = useNavigate()
   const {
     register,
     setValue,
@@ -40,10 +37,7 @@ function Register({ setProgress }) {
   const onSubmit = handleSubmit(async (data) => {
     toast.promise(mutateAsync({ ...data, role: 'member' }), {
       loading: 'Đang tiến hành đăng ký...',
-      success: () => {
-        navigate(path.login)
-        return 'Đăng ký thành công'
-      },
+      success: (res) => res?.data?.message || 'Đăng ký thành công, vui lòng kiểm tra email để xác thực tài khoản',
       error: (err) => {
         return err?.response?.data?.message || 'Đăng nhập thất bại'
       }

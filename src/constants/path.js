@@ -12,5 +12,6 @@ export const path = {
   order: '/order',
   category: '/category/:categoryId',
   subcategory: '/subcategory/:subcategoryId',
-  loginSuccess: '/login-success/:userId'
+  loginSuccess: '/login-success/:userId',
+  registerSuccess: '/register-success/:token'
 }

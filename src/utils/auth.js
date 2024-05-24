@@ -7,14 +7,14 @@ export const getUserDataFromLocalStorage = () => {
 }
 
 export const removeLocalStorage = () => {
-  localStorage.removeItem('isSignedIn')
+  localStorage.removeItem('isSignedInMember')
   localStorage.removeItem('member')
 }
 
 export const setIsSignedIn = (value) => {
-  localStorage.setItem('isSignedIn', value)
+  localStorage.setItem('isSignedInMember', value)
 }
 
 export const getIsSignedIn = () => {
-  return localStorage.getItem('isSignedIn') || ''
+  return localStorage.getItem('isSignedInMember') || ''
 }

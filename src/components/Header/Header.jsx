@@ -94,8 +94,8 @@ function Header() {
               {isAuthenticated && (
                 <li>
                   <Link
-                    to=''
-                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    to={path.profile}
+                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0 cursor-pointer'
                   >
                     Tài khoản
                   </Link>

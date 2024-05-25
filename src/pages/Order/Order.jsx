@@ -1,6 +1,19 @@
-import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useContext, useEffect, useMemo } from 'react'
+import { getProfile } from '~/apis/user.api'
+import Navbar from '~/components/Navbar'
+import { AppContext } from '~/context/app.context'
 
 function Order({ setProgress }) {
+  const { profile } = useContext(AppContext)
+  const { data: userData } = useQuery({
+    queryKey: ['profile', profile?._id],
+    queryFn: () => getProfile(profile?._id),
+    enabled: !!profile?._id
+  })
+
+  const user = useMemo(() => userData?.data?.data || {}, [userData])
+
   useEffect(() => {
     setProgress(20)
     setTimeout(() => {
@@ -10,36 +23,7 @@ function Order({ setProgress }) {
   return (
     <div className='max-w-[1400px] mx-auto mt-10 mb-20'>
       <div className='grid grid-cols-5 gap-8 px-6'>
-        <div className='col-span-1'>
-          <div className='flex items-center pb-6 border-b border-gray-200'>
-            <img
-              className='w-12 h-12 rounded-full'
-              src='https://i.pinimg.com/736x/9a/63/e1/9a63e148aaff53532b045f6d1f09d762.jpg'
-              alt='avatar'
-            />
-            <span className='text-sm font-semibold ml-5'>Nguyễn Văn A</span>
-          </div>
-          <ul className='list-none mt-5'>
-            <li className='py-2'>
-              <i className='fa-solid fa-user w-6 h-6 text-center text-gray-600'></i>
-              <a className='text-gray-500 hover:text-gray-900' href="{{ route('client.profile') }}">
-                Tài khoản của tôi
-              </a>
-            </li>
-            <li className='py-2'>
-              <i className='fa-solid fa-receipt w-6 h-6 text-center text-gray-600'></i>
-              <a className='text-gray-500 hover:text-gray-900' href="{{ route('client.order') }}">
-                Đơn mua
-              </a>
-            </li>
-            <li className='py-2'>
-              <i className='fa-solid fa-key w-6 h-6 text-center text-gray-600'></i>
-              <a className='text-gray-500 hover:text-gray-900' href="{{ route('client.changePassword') }}">
-                Đổi mật khẩu
-              </a>
-            </li>
-          </ul>
-        </div>
+        <Navbar user={user} />
         <div className='col-span-4'>
           <div className='p-4 shadow-inner border border-gray-200 mb-10'>
             <div className='flex justify-between p-4 border-b border-gray-200'>

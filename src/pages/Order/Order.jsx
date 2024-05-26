@@ -16,9 +16,13 @@ function Order({ setProgress }) {
 
   useEffect(() => {
     setProgress(20)
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setProgress(100)
     }, 200)
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
   }, [setProgress])
   return (
     <div className='max-w-[1400px] mx-auto mt-10 mb-20'>

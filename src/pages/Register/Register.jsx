@@ -25,9 +25,13 @@ function Register({ setProgress }) {
 
   useEffect(() => {
     setProgress(20)
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setProgress(100)
     }, 200)
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
   }, [setProgress])
 
   const { mutateAsync } = useMutation({

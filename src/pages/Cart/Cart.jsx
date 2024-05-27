@@ -166,7 +166,7 @@ function Cart({ setProgress }) {
                         [Mới 100%] {item.version.product.name} {item.version.name}
                       </div>
                     </td>
-                    <td className='px-6 py-4 text-center font-bold'>₫{formatCurrency(item.version.current_price)} </td>
+                    <td className='px-6 py-4 text-center font-bold'>₫{formatCurrency(item.version.current_price)}</td>
                     <td className='px-6 py-4 text-center'>
                       <InputQuantity item={item} />
                     </td>
@@ -212,19 +212,19 @@ function Cart({ setProgress }) {
             </div>
             <div className='grid grid-cols-1 gap-3 mt-5'>
               <button className='bg-[#e00] p-1 rounded-lg'>
-                <a>
+                <Link to={path.checkout}>
                   <div className='text-sm font-semibold text-white uppercase'>Mua ngay</div>
                   <span className='text-xs text-white capitalize'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
-                </a>
+                </Link>
               </button>
               <button className='bg-[#288ad6] p-3 rounded-lg'>
-                <a>
+                <Link>
                   <div className='text-sm font-semibold text-white uppercase'>Trả góp qua thẻ</div>
                   <span className='text-xs text-white capitalize'>Visa, Master, JCB</span>
-                </a>
+                </Link>
               </button>
               <button className='bg-[#f1eb1f] p-1 rounded-lg'>
-                <a>
+                <Link>
                   <div className='text-sm font-semibold text-[#235d97] uppercase'>mua ngay - trả sau</div>
                   <div className='flex justify-center'>
                     <img className='w-14' src='https://pc.baokim.vn/platform/img/icon-kredivo.svg' alt='' />
@@ -234,7 +234,7 @@ function Cart({ setProgress }) {
                       alt=''
                     />
                   </div>
-                </a>
+                </Link>
               </button>
             </div>
           </div>

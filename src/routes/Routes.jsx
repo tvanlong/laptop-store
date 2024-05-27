@@ -8,6 +8,7 @@ import Loading from '~/components/Loading'
 import LoadingBar from 'react-top-loading-bar'
 import LoginSuccess from '~/pages/LoginSuccess'
 import RegisterSuccess from '~/pages/RegisterSuccess'
+import CheckoutSuccess from '~/pages/CheckoutSuccess'
 
 const Cart = lazy(() => import('~/pages/Cart'))
 const Category = lazy(() => import('~/pages/Category'))
@@ -177,6 +178,10 @@ function Routes() {
     {
       path: path.registerSuccess,
       element: <RegisterSuccess />
+    },
+    {
+      path: path.checkoutSuccess,
+      element: <CheckoutSuccess />
     }
   ])
 

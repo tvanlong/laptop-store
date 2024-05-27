@@ -13,5 +13,6 @@ export const path = {
   category: '/category/:categoryId',
   subcategory: '/subcategory/:subcategoryId',
   loginSuccess: '/login-success/:userId',
-  registerSuccess: '/register-success/:token'
+  registerSuccess: '/register-success/:token',
+  checkoutSuccess: '/checkout-success'
 }

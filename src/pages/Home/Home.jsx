@@ -1,8 +1,9 @@
 import { useEffect, useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import SlickSlider from '~/components/SlickSlider'
-import Banner from '~/components/Banner'
+import SlickSlider from '~/pages/Home/components/SlickSlider'
+import Banner from '~/pages/Home/components/Banner'
 import ProductItem from '~/components/ProductItem'
+import Loading from '~/components/Loading'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
 import { getAllVersions } from '~/apis/versions.api'
@@ -10,7 +11,6 @@ import { shuffle } from '~/utils/shuffle'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import Loading from '~/components/Loading'
 
 function Home({ setProgress }) {
   const { data, isLoading } = useQuery({

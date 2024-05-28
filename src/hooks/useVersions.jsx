@@ -1,10 +1,10 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getAllVersions } from '~/apis/versions.api'
 
-export const useVersions = (queryParamsConfig) => {
+export const useVersions = (queryParamsConfig, options = {}) => {
   return useQuery({
+    ...options,
     queryKey: queryParamsConfig ? ['versions', queryParamsConfig] : ['versions'],
-    queryFn: queryParamsConfig ? () => getAllVersions(queryParamsConfig) : getAllVersions,
-    ...(queryParamsConfig && { placeholderData: keepPreviousData })
+    queryFn: queryParamsConfig ? () => getAllVersions(queryParamsConfig) : getAllVersions
   })
 }

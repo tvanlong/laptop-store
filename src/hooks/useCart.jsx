@@ -4,11 +4,11 @@ import { useQuery } from '@tanstack/react-query'
 import { AppContext } from '~/context/app.context'
 
 export const useCart = (options = {}) => {
-  const { profile } = useContext(AppContext)
+  const { isAuthenticated, profile } = useContext(AppContext)
   return useQuery({
     ...options,
     queryKey: ['cart', profile?._id],
     queryFn: () => getCart(profile?._id),
-    enabled: !!profile?._id
+    enabled: isAuthenticated && !!profile?._id
   })
 }

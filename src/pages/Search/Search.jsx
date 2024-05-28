@@ -1,8 +1,7 @@
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import { Pagination } from 'flowbite-react'
 import { useEffect } from 'react'
+import { useVersions } from '~/hooks/useVersions'
+import { Pagination } from 'flowbite-react'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
-import { getAllVersions } from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
 import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
@@ -14,11 +13,7 @@ import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
 function Search({ setProgress }) {
   const navigate = useNavigate()
   const queryParamsConfig = useQueryParamsConfig()
-  const { data, isLoading } = useQuery({
-    queryKey: ['versions', queryParamsConfig],
-    queryFn: () => getAllVersions(queryParamsConfig),
-    placeholderData: keepPreviousData
-  })
+  const { data, isLoading } = useVersions(queryParamsConfig)
   const versions = data?.data?.data?.docs || []
 
   useEffect(() => {

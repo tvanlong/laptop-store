@@ -1,22 +1,18 @@
 import { useEffect, useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useVersions } from '~/hooks/useVersions'
 import SlickSlider from '~/pages/Home/components/SlickSlider'
 import Banner from '~/pages/Home/components/Banner'
 import ProductItem from '~/components/ProductItem'
 import Loading from '~/components/Loading'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
-import { getAllVersions } from '~/apis/versions.api'
 import { shuffle } from '~/utils/shuffle'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 function Home({ setProgress }) {
-  const { data, isLoading } = useQuery({
-    queryKey: ['versions'],
-    queryFn: getAllVersions
-  })
+  const { data, isLoading } = useVersions()
 
   const versions = useMemo(() => data?.data?.data?.docs || [], [data])
 

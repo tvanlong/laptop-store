@@ -52,7 +52,7 @@ function Product({ setProgress }) {
     toast.promise(mutateAsync({ versionId }), {
       loading: 'Đang thêm sản phẩm vào giỏ hàng...',
       success: () => {
-        queryClient.invalidateQueries({ queryKey: ['cart'] })
+        queryClient.invalidateQueries({ queryKey: ['cart', profile?._id] })
         return 'Thêm sản phẩm vào giỏ hàng thành công'
       },
       error: 'Thêm sản phẩm vào giỏ hàng thất bại'

@@ -7,10 +7,10 @@ import Search from './Search'
 import { path } from '~/constants/path'
 import { signOut } from '~/apis/auth.api'
 import { toast } from 'sonner'
-import { getCart } from '~/apis/carts.api'
+import { useCart } from '~/hooks/useCart'
 
 function Header() {
-  const { isAuthenticated, profile } = useContext(AppContext)
+  const { isAuthenticated } = useContext(AppContext)
   const navigate = useNavigate()
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
@@ -18,11 +18,7 @@ function Header() {
   })
   const categories = categoriesData?.data?.data || []
 
-  const { data: cartData } = useQuery({
-    queryKey: ['cart'],
-    queryFn: () => getCart(profile?._id),
-    enabled: !!isAuthenticated // Only fetch cart when user is authenticated
-  })
+  const { data: cartData } = useCart()
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalQuantity = useMemo(() => cart?.cart_items?.map((item) => item.quantity).reduce((a, b) => a + b, 0), [cart])
 

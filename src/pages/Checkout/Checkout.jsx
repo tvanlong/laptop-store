@@ -1,14 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { getCart } from '~/apis/carts.api'
 import { createOrderCheckout } from '~/apis/order.api'
 import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
+import { useCart } from '~/hooks/useCart'
 import { useProfile } from '~/hooks/useProfile'
 import { checkoutSchema } from '~/schemas/checkout.schema'
 import { formatCurrency } from '~/utils/format'
@@ -35,11 +35,7 @@ function Checkout({ setProgress }) {
     resolver: yupResolver(checkoutSchema)
   })
 
-  const { data: cartData } = useQuery({
-    queryKey: ['cart'],
-    queryFn: () => getCart(profile?._id),
-    enabled: !!profile?._id
-  })
+  const { data: cartData } = useCart()
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalAmount = useMemo(
     () => cart?.cart_items?.map((item) => item.version.current_price * item.quantity).reduce((a, b) => a + b, 0),

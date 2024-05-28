@@ -1,22 +1,18 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { changePassword, getProfile } from '~/apis/user.api'
+import { changePassword } from '~/apis/user.api'
 import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
+import { useProfile } from '~/hooks/useProfile'
 import { changePasswordSchema } from '~/schemas/user.schema'
 
 function ChangePassword({ setProgress }) {
   const [showPassword, setShowPassword] = useState(false)
   const { profile } = useContext(AppContext)
-  const { data: userData } = useQuery({
-    queryKey: ['profile', profile?._id],
-    queryFn: () => getProfile(profile?._id),
-    enabled: !!profile?._id
-  })
-
+  const { data: userData } = useProfile()
   const user = useMemo(() => userData?.data?.data || {}, [userData])
 
   useEffect(() => {

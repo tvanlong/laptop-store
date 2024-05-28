@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo } from 'react'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { getProfile, updateProfile } from '~/apis/user.api'
+import { useMutation } from '@tanstack/react-query'
+import { updateProfile } from '~/apis/user.api'
 import { AppContext } from '~/context/app.context'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -8,16 +8,23 @@ import { profileSchema } from '~/schemas/user.schema'
 import { toast } from 'sonner'
 import { setUserDataIntoLocalStorage } from '~/utils/auth'
 import Navbar from '~/components/Navbar'
+import { useProfile } from '~/hooks/useProfile'
 
 function Profile({ setProgress }) {
   const { profile, setProfile } = useContext(AppContext)
-  const { data: userData } = useQuery({
-    queryKey: ['profile', profile?._id],
-    queryFn: () => getProfile(profile?._id),
-    enabled: !!profile?._id
-  })
-
+  const { data: userData } = useProfile()
   const user = useMemo(() => userData?.data?.data || {}, [userData])
+
+  useEffect(() => {
+    setProgress(20)
+    const timeoutId = setTimeout(() => {
+      setProgress(100)
+    }, 200)
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [setProgress])
 
   const {
     register,
@@ -33,17 +40,6 @@ function Profile({ setProgress }) {
     },
     resolver: yupResolver(profileSchema)
   })
-
-  useEffect(() => {
-    setProgress(20)
-    const timeoutId = setTimeout(() => {
-      setProgress(100)
-    }, 200)
-
-    return () => {
-      clearTimeout(timeoutId)
-    }
-  }, [setProgress])
 
   useEffect(() => {
     if (user) {

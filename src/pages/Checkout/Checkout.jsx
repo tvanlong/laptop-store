@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { getCart } from '~/apis/carts.api'
 import { createOrderCheckout } from '~/apis/order.api'
-import { getProfile } from '~/apis/user.api'
 import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
+import { useProfile } from '~/hooks/useProfile'
 import { checkoutSchema } from '~/schemas/checkout.schema'
 import { formatCurrency } from '~/utils/format'
 
@@ -17,14 +17,8 @@ function Checkout({ setProgress }) {
   const { profile } = useContext(AppContext)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const { data: userData } = useQuery({
-    queryKey: ['profile', profile?._id],
-    queryFn: () => getProfile(profile?._id),
-    enabled: !!profile?._id
-  })
-
+  const { data: userData } = useProfile()
   const user = useMemo(() => userData?.data?.data || {}, [userData])
-
   const {
     register,
     setValue,

@@ -1,20 +1,15 @@
 import { useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { getOrders } from '~/apis/order.api'
-import { getProfile } from '~/apis/user.api'
 import Navbar from '~/components/Navbar'
 import config from '~/constants/config'
 import { AppContext } from '~/context/app.context'
+import { useProfile } from '~/hooks/useProfile'
 import { formatCurrency } from '~/utils/format'
 
 function Order({ setProgress }) {
   const { profile } = useContext(AppContext)
-  const { data: userData } = useQuery({
-    queryKey: ['profile', profile?._id],
-    queryFn: () => getProfile(profile?._id),
-    enabled: !!profile?._id
-  })
-
+  const { data: userData } = useProfile()
   const user = useMemo(() => userData?.data?.data || {}, [userData])
 
   useEffect(() => {

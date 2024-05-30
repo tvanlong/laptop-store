@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext, useState } from 'react'
+import { toast } from 'sonner'
 import { decreaseQuantity, increaseQuantity, updateQuantity } from '~/apis/carts.api'
 import { AppContext } from '~/context/app.context'
 
@@ -30,16 +31,36 @@ function InputQuantity({ item }) {
   })
 
   const handleIncreaseQuantity = async (id) => {
-    const data = await increaseQuantityAsync({ versionId: id })
-    const cartItem = data.data.data.cart_items.find((item) => item.version === id)
-    setBuyCount(cartItem.quantity)
+    toast.promise(increaseQuantityAsync({ versionId: id }), {
+      loading: 'Đang tăng số lượng...',
+      success: (data) => {
+        const cartItem = data.data.data.cart_items.find((item) => item.version === id)
+        setBuyCount(cartItem.quantity)
+        return 'Tăng số lượng thành công'
+      },
+      error: (error) => {
+        return error.response.data.message || 'Có lỗi xảy ra'
+      },
+      duration: 2000
+    })
   }
 
   const handleDecreaseQuantity = async (id) => {
-    const data = await decreaseQuantityAsync({ versionId: id })
-    const cartItem = data.data.data.cart_items.find((item) => item.version === id)
-    if (!cartItem || cartItem.quantity === 0) return
-    setBuyCount(cartItem.quantity)
+    toast.promise(decreaseQuantityAsync({ versionId: id }), {
+      loading: 'Đang giảm số lượng...',
+      success: (data) => {
+        const cartItem = data.data.data.cart_items.find((item) => item.version === id)
+        if (!cartItem || cartItem.quantity === 0) {
+          return 'Số lượng đã giảm tối thiểu'
+        }
+        setBuyCount(cartItem.quantity)
+        return 'Giảm số lượng thành công'
+      },
+      error: (error) => {
+        return error.response.data.message || 'Có lỗi xảy ra'
+      },
+      duration: 2000
+    })
   }
 
   const handleUpdateQuantity = async (id) => {

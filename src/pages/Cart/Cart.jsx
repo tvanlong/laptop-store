@@ -39,8 +39,14 @@ function Cart({ setProgress }) {
   })
 
   const handleRemoveItem = async (id) => {
-    await removeItemAsync({ versionId: id })
-    refetch()
+    toast.promise(removeItemAsync({ versionId: id }), {
+      loading: 'Đang xóa sản phẩm khỏi giỏ hàng...',
+      success: () => {
+        refetch()
+        return 'Xóa sản phẩm thành công'
+      },
+      error: 'Xóa sản phẩm thất bại'
+    })
   }
 
   const refreshCart = () => {

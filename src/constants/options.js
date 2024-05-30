@@ -1,10 +1,26 @@
 export const priceOptions = [
-  { param: 'price_range', label: 'Dưới 10 triệu', value: 'under10' },
-  { param: 'price_range', label: '10 triệu - 20 triệu', value: '10to20' },
-  { param: 'price_range', label: '20 triệu - 40 triệu', value: '20to40' },
-  { param: 'price_range', label: '40 triệu - 60 triệu', value: '40to60' },
-  { param: 'price_range', label: '60 triệu - 80 triệu', value: '60to80' },
-  { param: 'price_range', label: 'Trên 80 triệu', value: 'above80' }
+  { param: 'price_max', label: 'Dưới 10 triệu', value: 10000000 },
+  {
+    param: ['price_min', 'price_max'],
+    label: '10 triệu - 20 triệu',
+    value: [10000000, 20000000]
+  },
+  {
+    param: ['price_min', 'price_max'],
+    label: '20 triệu - 40 triệu',
+    value: [20000000, 40000000]
+  },
+  {
+    param: ['price_min', 'price_max'],
+    label: '40 triệu - 60 triệu',
+    value: [40000000, 60000000]
+  },
+  {
+    param: ['price_min', 'price_max'],
+    label: '60 triệu - 80 triệu',
+    value: [60000000, 80000000]
+  },
+  { param: 'price_min', label: 'Trên 80 triệu', value: 80000000 }
 ]
 
 export const screenSizeOptions = [

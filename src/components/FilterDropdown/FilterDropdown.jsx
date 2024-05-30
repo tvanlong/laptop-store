@@ -18,12 +18,22 @@ function FilterDropdown({ title, options, queryParamsConfig }) {
       })
       setSelectedOption(null)
     } else {
-      navigate({
-        search: createSearchParams({
-          ...queryParamsConfig,
-          [optionParam]: optionValue
-        }).toString()
-      })
+      if (Array.isArray(optionParam)) {
+        navigate({
+          search: createSearchParams({
+            ...queryParamsConfig,
+            [optionParam[0]]: optionValue[0],
+            [optionParam[1]]: optionValue[1]
+          }).toString()
+        })
+      } else {
+        navigate({
+          search: createSearchParams({
+            ...queryParamsConfig,
+            [optionParam]: optionValue
+          }).toString()
+        })
+      }
 
       setSelectedOption(selectedOption === optionValue ? null : optionValue)
     }

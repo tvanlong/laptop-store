@@ -7,7 +7,6 @@ import { addToCart } from '~/apis/carts.api'
 import { getProductById } from '~/apis/products.api'
 import { getVersionById } from '~/apis/versions.api'
 import Loading from '~/components/Loading'
-import config from '~/constants/config'
 import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
 
@@ -134,7 +133,7 @@ function Product({ setProgress }) {
             {version?.product?.images?.map((image, index) => (
               <img
                 key={index}
-                src={`${config.baseURL}/api/upload/${image}`}
+                src={image}
                 alt={`${version.product.name} ${version.name}`}
                 className='w-full h-full object-cover'
               />

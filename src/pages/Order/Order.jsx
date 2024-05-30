@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { getOrders } from '~/apis/order.api'
 import Navbar from '~/components/Navbar'
-import config from '~/constants/config'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
 import { formatCurrency } from '~/utils/format'
@@ -108,7 +107,7 @@ function Order({ setProgress }) {
                   <div key={item._id} className='flex items-center py-4'>
                     <img
                       className='w-20 h-20 object-cover rounded-lg'
-                      src={`${config.baseURL}/api/upload/${item.version.product.images[0]}`}
+                      src={item.version.product.images[0]}
                       alt={`${item.version.product.name} ${item.version.name}`}
                     />
                     <div className='flex-1 ml-5'>

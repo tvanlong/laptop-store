@@ -5,7 +5,6 @@ import { toast } from 'sonner'
 import { removeCart, removeItem } from '~/apis/carts.api'
 import InputQuantity from '~/pages/Cart/components/InputQuantity'
 import Loading from '~/components/Loading'
-import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
@@ -153,7 +152,7 @@ function Cart({ setProgress }) {
                     <td className='flex items-center px-6 py-4 font-medium text-gray-900'>
                       <img
                         className='w-14 h-14 object-cover border border-gray-300 rounded-lg mr-3'
-                        src={`${config.baseURL}/api/upload/${item.version.product.images[0]}`}
+                        src={item.version.product.images[0]}
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
                       <div className='font-semibold'>

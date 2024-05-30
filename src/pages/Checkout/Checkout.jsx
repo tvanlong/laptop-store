@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { createOrderCheckout } from '~/apis/order.api'
-import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { useCart } from '~/hooks/useCart'
@@ -157,7 +156,7 @@ function Checkout({ setProgress }) {
                 <li key={item._id} className='text-sm flex items-center justify-between my-3'>
                   <img
                     className='w-16 h-16 mr-4 object-cover'
-                    src={`${config.baseURL}/api/upload/${item.version.product.images[0]}`}
+                    src={item.version.product.images[0]}
                     alt={`${item.version.product.name} ${item.version.name}`}
                   />
                   <div>

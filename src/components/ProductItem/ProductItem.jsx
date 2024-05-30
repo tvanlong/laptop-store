@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { formatCurrency } from '~/utils/format'
-import config from '~/constants/config'
 
 function ProductItem({ version, isHover = false }) {
   return (
@@ -13,11 +12,7 @@ function ProductItem({ version, isHover = false }) {
       }
     >
       <Link to={`/product/${version._id}`}>
-        <img
-          src={`${config.baseURL}/api/upload/${version.product.images[0]}`}
-          alt={`${version.product.name} ${version.name}`}
-          className='rounded-lg'
-        />
+        <img src={version.product.images[0]} alt={`${version.product.name} ${version.name}`} className='rounded-lg' />
         <div className='font-bold text-sm line-clamp-2 my-2'>
           {version?.product.name} {version?.name}
         </div>

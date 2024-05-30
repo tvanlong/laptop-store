@@ -43,7 +43,7 @@ function Search({ setProgress }) {
   return (
     <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
       <div className='flex justify-between'>
-        <h2 className='text-3xl font-bold h-10 uppercase'>Từ khóa tìm kiếm: {queryParamsConfig.search}</h2>
+        <h2 className='text-xl font-bold h-10 uppercase'>Từ khóa tìm kiếm: {queryParamsConfig.keyword}</h2>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='cursor-pointer inline-flex items-center opacity-60'>
@@ -97,7 +97,7 @@ function Search({ setProgress }) {
                     d='m1 9 4-4-4-4'
                   />
                 </svg>
-                <div className='ml-1 text-sm text-gray-500 md:ml-2'>Tìm kiếm: {queryParamsConfig.search}</div>
+                <div className='ml-1 text-sm text-gray-500 md:ml-2'>Tìm kiếm: {queryParamsConfig.keyword}</div>
               </div>
             </li>
           </ol>

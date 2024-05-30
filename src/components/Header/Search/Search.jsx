@@ -9,19 +9,19 @@ function Search() {
   const inputRef = useRef(null)
   const { setValue, handleSubmit } = useForm({
     defaultValues: {
-      search: ''
+      keyword: ''
     }
   })
 
   useEffect(() => {
     if (searchValue !== '') {
-      setValue('search', searchValue)
+      setValue('keyword', searchValue.toLowerCase())
     }
   }, [searchValue, setValue])
 
   const handleClearSearch = () => {
     setSearchValue('')
-    setValue('search', '')
+    setValue('keyword', '')
     inputRef.current.focus()
   }
 

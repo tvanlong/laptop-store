@@ -9,7 +9,7 @@ function useQueryParamsConfig() {
     limit: queryParams.limit ? Number(queryParams.limit) : 10,
     sort: queryParams.sort,
     order: queryParams.order,
-    search: queryParams.search,
+    keyword: queryParams.keyword,
     price_min: queryParams.price_min,
     price_max: queryParams.price_max,
     ram: queryParams.ram,

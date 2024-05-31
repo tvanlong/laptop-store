@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { updateProfile } from '~/apis/user.api'
 import { AppContext } from '~/context/app.context'
 import { useForm } from 'react-hook-form'
@@ -11,6 +11,7 @@ import Navbar from '~/components/Navbar'
 import { useProfile } from '~/hooks/useProfile'
 
 function Profile({ setProgress }) {
+  const queryClient = useQueryClient()
   const { profile, setProfile } = useContext(AppContext)
   const { data: userData } = useProfile()
   const user = useMemo(() => userData?.data?.data || {}, [userData])
@@ -50,7 +51,10 @@ function Profile({ setProgress }) {
   }, [user, setValue])
 
   const { mutateAsync: updateProfileMutate, isPending } = useMutation({
-    mutationFn: (data) => updateProfile(profile?._id, data)
+    mutationFn: (data) => updateProfile(profile?._id, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile', profile?._id] })
+    }
   })
 
   const onSubmit = handleSubmit(async (data) => {

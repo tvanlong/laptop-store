@@ -11,6 +11,7 @@ import Navbar from '~/components/Navbar'
 import { useProfile } from '~/hooks/useProfile'
 import { deleteImage, uploadAvatar } from '~/apis/images.api'
 import { DEFAULT_AVATAR } from '~/constants/default'
+import { extractPublicIdFromUrl } from '~/utils/util'
 
 function Profile({ setProgress }) {
   const queryClient = useQueryClient()
@@ -76,7 +77,7 @@ function Profile({ setProgress }) {
     try {
       const toastId = toast.loading('Đang cập nhật thông tin...')
       if (profile?.avatar !== DEFAULT_AVATAR) {
-        await deleteImageMutate(profile?.avatar)
+        await deleteImageMutate(extractPublicIdFromUrl(profile?.avatar))
       }
 
       if (file) {

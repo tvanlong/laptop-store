@@ -5,11 +5,7 @@ function Navbar({ user }) {
   return (
     <div className='col-span-1'>
       <div className='flex items-center pb-6 border-b border-gray-200'>
-        <img
-          className='w-12 h-12 rounded-full'
-          src='https://i.pinimg.com/736x/9a/63/e1/9a63e148aaff53532b045f6d1f09d762.jpg'
-          alt='avatar'
-        />
+        <img className='w-12 h-12 rounded-full' src={user?.avatar} alt='avatar' />
         <span className='text-sm font-semibold ml-5'>{user?.name}</span>
       </div>
       <ul className='list-none mt-5'>

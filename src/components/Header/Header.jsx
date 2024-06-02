@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAllCategories } from '~/apis/categories.api'
@@ -8,9 +8,11 @@ import { path } from '~/constants/path'
 import { signOut } from '~/apis/auth.api'
 import { toast } from 'sonner'
 import { useCart } from '~/hooks/useCart'
+import { getCart } from '~/apis/carts.api'
 
 function Header() {
-  const { isAuthenticated } = useContext(AppContext)
+  const { isAuthenticated, profile } = useContext(AppContext)
+  const queryClient = useQueryClient()
   const navigate = useNavigate()
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
@@ -21,6 +23,8 @@ function Header() {
   const { data: cartData } = useCart()
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalQuantity = useMemo(() => cart?.cart_items?.map((item) => item.quantity).reduce((a, b) => a + b, 0), [cart])
+
+  const cartQuery = { queryKey: ['cart', profile?._id], queryFn: () => getCart(profile?._id) }
 
   const navigateToSubcategory = (categoryId, subcategoryId) => {
     navigate(`/subcategory/${subcategoryId}`, {
@@ -36,6 +40,12 @@ function Header() {
     await mutateAsync()
     window.location.reload()
     toast.success('Đăng xuất thành công')
+  }
+
+  const handlePrefetchOnHover = () => {
+    if (isAuthenticated && profile?._id) {
+      queryClient.prefetchQuery(cartQuery)
+    }
   }
 
   return (
@@ -110,7 +120,7 @@ function Header() {
               )}
             </ul>
           </div>
-          <div className='relative text-white ms-12'>
+          <div className='relative text-white ms-12' onMouseEnter={handlePrefetchOnHover}>
             <Link to={path.cart}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'

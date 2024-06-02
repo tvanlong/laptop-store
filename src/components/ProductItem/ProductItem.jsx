@@ -1,7 +1,16 @@
+import { useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
+import { getVersionById } from '~/apis/versions.api'
 import { formatCurrency } from '~/utils/format'
 
 function ProductItem({ version, isHover = false }) {
+  const queryClient = useQueryClient()
+  const detailQuery = { queryKey: ['version', version._id], queryFn: () => getVersionById(version._id) }
+
+  const handlePrefetchOnHover = () => {
+    queryClient.prefetchQuery(detailQuery)
+  }
+
   return (
     <div
       className={
@@ -10,6 +19,7 @@ function ProductItem({ version, isHover = false }) {
           ? ' hover:border hover:border-[#007745] transition ease-in-out delay-150 hover:-translate-y-1 duration-300'
           : '')
       }
+      onMouseEnter={handlePrefetchOnHover}
     >
       <Link to={`/product/${version._id}`}>
         <img src={version.product.images[0]} alt={`${version.product.name} ${version.name}`} className='rounded-lg' />

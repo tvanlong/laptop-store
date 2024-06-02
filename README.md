@@ -2,13 +2,37 @@
 
 This is a React-based web application for an online store. The application allows users to view, buy, manage cart, checkout products and manage information account. Also, the application provides an admin panel for managing products and orders. You can visit the application for store admin at [Store Admin](https://github.com/tvanlong/store-admin).
 
+## 🌐 Live Demo
+
+You can access the live demo of the application at [here](https://laptop-kt-store.vercel.app/).
+
 ## ✨ Features
 
-- **🔒 Authentication**: Users can sign in to the application using their email and password or Gmail and Facebook.
-- **📦 Products access**: Users can view, search, filter, and sort products.
-- **🛒 Cart Management**: Users can add, update, and remove products from the cart.
-- **🛍️ Checkout**: Users can checkout products and view order history.
-- **👤 Account Management**: Users can update their information account.
+- **🔒 Authentication**:
+  - Account sign-up.
+  - Account login (supports Google login).
+  - Account logout.
+  - Password reset.
+- **📦 Products access**:
+  - Viewing product listings.
+  - Viewing product details.
+  - Product search functionality.
+  - Filtering products by category.
+  - Sorting products by price.
+- **🛒 Cart Management**:
+  - Adding products to the cart.
+  - Updating product quantities in the cart.
+  - Removing products from the cart.
+  - Clearing the cart.
+- **🛍️ Checkout**:
+  - Viewing the cart summary.
+  - Entering shipping information.
+  - Entering payment information.
+  - Viewing the order summary.
+- **👤 Account Management**:
+  - Viewing and updating account information.
+  - Changing the account password.
+  - Viewing order history.
 
 ## 🛠️ Tech Stack
 

@@ -6,6 +6,13 @@ This is a React-based web application for an online store. The application allow
 
 You can access the live demo of the application at [here](https://laptop-kt-store.vercel.app/).
 
+A demo account is available for testing the application:
+
+- **Email**: nguyenvanb@gmail.com
+- **Password**: 123123123
+
+> **Note**: You can also log in using Google account.
+
 ## ✨ Features
 
 - **🔒 Authentication**:

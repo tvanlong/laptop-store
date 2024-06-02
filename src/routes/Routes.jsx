@@ -9,6 +9,8 @@ import LoadingBar from 'react-top-loading-bar'
 import LoginSuccess from '~/pages/LoginSuccess'
 import RegisterSuccess from '~/pages/RegisterSuccess'
 import CheckoutSuccess from '~/pages/CheckoutSuccess'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorPage from '~/pages/ErrorPage'
 
 const Cart = lazy(() => import('~/pages/Cart'))
 const Category = lazy(() => import('~/pages/Category'))
@@ -188,7 +190,7 @@ function Routes() {
   return (
     <div>
       <LoadingBar color='#337AB7' progress={progress} onLoaderFinished={() => setProgress(0)} />
-      {element}
+      <ErrorBoundary fallback={<ErrorPage />}>{element}</ErrorBoundary>
     </div>
   )
 }

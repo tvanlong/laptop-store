@@ -15,6 +15,7 @@ function ProductItem({ version, isHover = false }) {
     <div
       className={
         'rounded-lg bg-white p-6' +
+        ' ' +
         (isHover
           ? 'transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:border hover:border-[#007745]'
           : '')

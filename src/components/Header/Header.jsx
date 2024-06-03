@@ -1,14 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useMemo } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { getAllCategories } from '~/apis/categories.api'
-import { AppContext } from '~/context/app.context'
-import Search from './Search'
-import { path } from '~/constants/path'
-import { signOut } from '~/apis/auth.api'
 import { toast } from 'sonner'
-import { useCart } from '~/hooks/useCart'
+import { signOut } from '~/apis/auth.api'
 import { getCart } from '~/apis/carts.api'
+import { getAllCategories } from '~/apis/categories.api'
+import { path } from '~/constants/path'
+import { AppContext } from '~/context/app.context'
+import { useCart } from '~/hooks/useCart'
+import Search from './Search'
 
 function Header() {
   const { isAuthenticated, profile } = useContext(AppContext)

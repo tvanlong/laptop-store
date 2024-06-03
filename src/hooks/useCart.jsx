@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { getCart } from '~/apis/carts.api'
-import { useQuery } from '@tanstack/react-query'
 import { AppContext } from '~/context/app.context'
 
 export const useCart = (options = {}) => {

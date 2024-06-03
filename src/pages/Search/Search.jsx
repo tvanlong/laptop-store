@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
-import { useVersions } from '~/hooks/useVersions'
-import { Pagination } from 'flowbite-react'
-import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import { keepPreviousData } from '@tanstack/react-query'
+import { Pagination } from 'flowbite-react'
+import { useEffect } from 'react'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import FilterDropdown from '~/components/FilterDropdown'
 import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
@@ -10,6 +9,7 @@ import SortProductList from '~/components/SortProductList'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import { path } from '~/constants/path'
 import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
+import { useVersions } from '~/hooks/useVersions'
 
 function Search({ setProgress }) {
   const navigate = useNavigate()

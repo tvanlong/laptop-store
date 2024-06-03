@@ -1,14 +1,14 @@
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { signInSchema } from '~/schemas/auth.schema'
-import { useMutation } from '@tanstack/react-query'
-import { signIn } from '~/apis/auth.api'
-import { toast } from 'sonner'
-import { AppContext } from '~/context/app.context'
 import { useNavigate } from 'react-router-dom'
-import { path } from '~/constants/path'
+import { toast } from 'sonner'
+import { signIn } from '~/apis/auth.api'
 import config from '~/constants/config'
+import { path } from '~/constants/path'
+import { AppContext } from '~/context/app.context'
+import { signInSchema } from '~/schemas/auth.schema'
 
 function Login({ setProgress }) {
   const navigate = useNavigate()

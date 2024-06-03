@@ -1,15 +1,15 @@
 import { useEffect, useMemo } from 'react'
-import { useVersions } from '~/hooks/useVersions'
-import SlickSlider from '~/pages/Home/components/SlickSlider'
-import Banner from '~/pages/Home/components/Banner'
-import ProductItem from '~/components/ProductItem'
-import Loading from '~/components/Loading'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Mousewheel, Keyboard, Autoplay } from 'swiper/modules'
-import { shuffle } from '~/utils/shuffle'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import { Autoplay, Keyboard, Mousewheel } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import Loading from '~/components/Loading'
+import ProductItem from '~/components/ProductItem'
+import { useVersions } from '~/hooks/useVersions'
+import Banner from '~/pages/Home/components/Banner'
+import SlickSlider from '~/pages/Home/components/SlickSlider'
+import { shuffle } from '~/utils/shuffle'
 
 function Home({ setProgress }) {
   const { data, isLoading } = useVersions()

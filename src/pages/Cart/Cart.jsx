@@ -3,12 +3,12 @@ import { useContext, useEffect, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { removeCart, removeItem } from '~/apis/carts.api'
-import InputQuantity from '~/pages/Cart/components/InputQuantity'
 import Loading from '~/components/Loading'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
-import { formatCurrency } from '~/utils/format'
 import { useCart } from '~/hooks/useCart'
+import InputQuantity from '~/pages/Cart/components/InputQuantity'
+import { formatCurrency } from '~/utils/format'
 
 function Cart({ setProgress }) {
   const { profile } = useContext(AppContext)

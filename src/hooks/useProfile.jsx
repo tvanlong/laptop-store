@@ -1,7 +1,7 @@
-import { useContext } from 'react'
-import { AppContext } from '~/context/app.context'
 import { useQuery } from '@tanstack/react-query'
+import { useContext } from 'react'
 import { getProfile } from '~/apis/user.api'
+import { AppContext } from '~/context/app.context'
 
 export const useProfile = (options = {}) => {
   const { profile } = useContext(AppContext)

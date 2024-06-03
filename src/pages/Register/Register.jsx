@@ -50,54 +50,54 @@ function Register({ setProgress }) {
 
   return (
     <div className='bg-white py-16'>
-      <div className='max-w-[600px] form-shadow px-12 py-8 m-auto'>
-        <h2 className='uppercase text-lg font-normal text-center mb-7 cursor-pointer'>
-          <span className='text-[#ed3324] border-b-2 py-2 px-4 border-b-[#ed3324]'>Đăng ký</span>
+      <div className='form-shadow m-auto max-w-[600px] px-12 py-8'>
+        <h2 className='mb-7 cursor-pointer text-center text-lg font-normal uppercase'>
+          <span className='border-b-2 border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng ký</span>
         </h2>
         <form method='POST' onSubmit={onSubmit}>
           <div className='flex flex-col gap-4'>
             <input
               placeholder='Họ tên'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('name', e.target.value)}
               {...register('name')}
             />
-            {errors.name && <span className='text-red-500 text-sm'>{errors.name.message}</span>}
+            {errors.name && <span className='text-sm text-red-500'>{errors.name.message}</span>}
             <input
               placeholder='Số điện thoại'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('phone', e.target.value)}
               {...register('phone')}
             />
-            {errors.phone && <span className='text-red-500 text-sm'>{errors.phone.message}</span>}
+            {errors.phone && <span className='text-sm text-red-500'>{errors.phone.message}</span>}
             <input
               placeholder='Email'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('email', e.target.value)}
               {...register('email')}
             />
-            {errors.email && <span className='text-red-500 text-sm'>{errors.email.message}</span>}
+            {errors.email && <span className='text-sm text-red-500'>{errors.email.message}</span>}
             <input
               placeholder='Mật khẩu'
               type='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('password', e.target.value)}
               {...register('password')}
             />
-            {errors.password && <span className='text-red-500 text-sm'>{errors.password.message}</span>}
+            {errors.password && <span className='text-sm text-red-500'>{errors.password.message}</span>}
             <input
               placeholder='Nhập lại mật khẩu'
               type='password'
-              className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('confirm_password', e.target.value)}
               {...register('confirm_password')}
             />
-            {errors.confirm_password && <span className='text-red-500 text-sm'>{errors.confirm_password.message}</span>}
+            {errors.confirm_password && <span className='text-sm text-red-500'>{errors.confirm_password.message}</span>}
           </div>
-          <button className='bg-[#ec2127] flex items-center justify-center w-full p-4 rounded-md hover:opacity-80 mt-8'>
-            <span className='text-white font-medium text-xl uppercase'>Đăng ký</span>
+          <button className='mt-8 flex w-full items-center justify-center rounded-md bg-[#ec2127] p-4 hover:opacity-80'>
+            <span className='text-xl font-medium uppercase text-white'>Đăng ký</span>
             <svg
-              className='w-6 h-6 text-white ml-3'
+              className='ml-3 h-6 w-6 text-white'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'

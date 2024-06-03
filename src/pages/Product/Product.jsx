@@ -61,13 +61,13 @@ function Product({ setProgress }) {
   if (isLoading) return <Loading />
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
+    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
       <nav className='flex' aria-label='Breadcrumb'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>
             <Link to='/' className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'>
               <svg
-                className='w-3 h-3 mr-2.5'
+                className='mr-2.5 h-3 w-3'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'
@@ -81,7 +81,7 @@ function Product({ setProgress }) {
           <li className='opacity-60'>
             <div className='flex items-center'>
               <svg
-                className='w-3 h-3 text-gray-400 mx-1'
+                className='mx-1 h-3 w-3 text-gray-400'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -106,7 +106,7 @@ function Product({ setProgress }) {
           <li aria-current='page opacity-60'>
             <div className='flex items-center'>
               <svg
-                className='w-3 h-3 text-gray-400 mx-1'
+                className='mx-1 h-3 w-3 text-gray-400'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -127,7 +127,7 @@ function Product({ setProgress }) {
           </li>
         </ol>
       </nav>
-      <div className='grid grid-cols-12 gap-8 mt-10'>
+      <div className='mt-10 grid grid-cols-12 gap-8'>
         <div className='col-span-6'>
           <Carousel className='h-[30rem]' indicators={false}>
             {version?.product?.images?.map((image, index) => (
@@ -135,51 +135,51 @@ function Product({ setProgress }) {
                 key={index}
                 src={image}
                 alt={`${version.product.name} ${version.name}`}
-                className='w-full h-full object-cover'
+                className='h-full w-full object-cover'
               />
             ))}
           </Carousel>
-          <div className='flex justify-center gap-4 mt-10'>
-            <div className='border border-gray-300 py-2 px-4 flex flex-col items-center hover:border-green-600'>
-              <img className='w-8 h-8' src='https://laptopkhanhtran.vn/css/icon/images.svg' alt='' />
+          <div className='mt-10 flex justify-center gap-4'>
+            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/images.svg' alt='' />
               <span className='text-xs'>Xem ảnh thực tế</span>
             </div>
-            <div className='border border-gray-300 py-2 px-4 flex flex-col items-center hover:border-green-600'>
-              <img className='w-8 h-8' src='https://laptopkhanhtran.vn/css/icon/configuration.svg' alt='' />
+            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/configuration.svg' alt='' />
               <span className='text-xs'>Thông số kỹ thuật</span>
             </div>
-            <div className='border border-gray-300 py-2 px-4 flex flex-col items-center hover:border-green-600'>
-              <img className='w-8 h-8' src='https://laptopkhanhtran.vn/css/icon/article2.svg' alt='' />
+            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/article2.svg' alt='' />
               <span className='text-xs'>Thông tin sản phẩm</span>
             </div>
           </div>
-          <div className='bg-[#f4f4f4] rounded-lg mt-10 py-6'>
+          <div className='mt-10 rounded-lg bg-[#f4f4f4] py-6'>
             <div className='grid grid-cols-2 gap-4'>
               <div className='flex items-center px-4'>
-                <img className='w-14 h-14' src='https://laptopkhanhtran.vn/images/giaohang.svg' alt='' />
+                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/giaohang.svg' alt='' />
                 <div className='ml-5'>
-                  <div className='text-green-900 font-semibold text-sm'>Giao hàng toàn quốc</div>
+                  <div className='text-sm font-semibold text-green-900'>Giao hàng toàn quốc</div>
                   <div className='text-xs'>Miễn phí giao hàng tại Hà Nội</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='w-14 h-14' src='https://laptopkhanhtran.vn/images/support.svg' alt='' />
+                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/support.svg' alt='' />
                 <div className='ml-5'>
-                  <div className='text-green-900 font-semibold text-sm'>Hỗ trợ trực tuyến</div>
+                  <div className='text-sm font-semibold text-green-900'>Hỗ trợ trực tuyến</div>
                   <div className='text-xs'>Chúng tôi luôn hỗ trợ 24/7</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='w-14 h-14' src='https://laptopkhanhtran.vn/images/promotion.svg' alt='' />
+                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/promotion.svg' alt='' />
                 <div className='ml-5'>
-                  <div className='text-green-900 font-semibold text-sm'>Giá cả phải chăng</div>
+                  <div className='text-sm font-semibold text-green-900'>Giá cả phải chăng</div>
                   <div className='text-xs'>Chúng tôi luôn có giá tốt nhất cho khách hàng</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='w-14 h-14' src='https://laptopkhanhtran.vn/images/cashback.svg' alt='' />
+                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/cashback.svg' alt='' />
                 <div className='ml-5'>
-                  <div className='text-green-900 font-semibold text-sm'>Chính sách hoàn tiền</div>
+                  <div className='text-sm font-semibold text-green-900'>Chính sách hoàn tiền</div>
                   <div className='text-xs'>Hoàn tiền 100% nếu sản phẩm không tốt</div>
                 </div>
               </div>
@@ -187,16 +187,16 @@ function Product({ setProgress }) {
           </div>
         </div>
         <div className='col-span-6'>
-          <h2 className='font-bold text-2xl mb-5'>
+          <h2 className='mb-5 text-2xl font-bold'>
             [ Mới 100% ] {version?.product?.name} {version?.name}
           </h2>
-          <div className='flex items-end my-2 gap-3'>
-            <div className='text-red-500 font-bold text-3xl'>{formatCurrency(version?.current_price)} đ</div>
-            <div className='font-semibold text-gray-500 line-through text-lg'>
+          <div className='my-2 flex items-end gap-3'>
+            <div className='text-3xl font-bold text-red-500'>{formatCurrency(version?.current_price)} đ</div>
+            <div className='text-lg font-semibold text-gray-500 line-through'>
               {formatCurrency(version?.old_price)} đ
             </div>
           </div>
-          <ol className='my-5 list-none space-y-1 text-gray-500 list-inside'>
+          <ol className='my-5 list-inside list-none space-y-1 text-gray-500'>
             {version?.description?.map((spec, index) => {
               const [key, value] = spec.split(':')
               return (
@@ -209,25 +209,25 @@ function Product({ setProgress }) {
           </ol>
           <div className='flex'>
             <div className='text-sm text-green-700 underline'>Xem chi tiết cấu hình</div>
-            <div className='border-r mx-3'></div>
+            <div className='mx-3 border-r'></div>
             <div className='text-sm text-green-700 underline'>So sánh</div>
           </div>
-          <h3 className='my-5 font-semibold text-xl'>Tùy chọn cấu hình</h3>
+          <h3 className='my-5 text-xl font-semibold'>Tùy chọn cấu hình</h3>
           <div className='grid grid-cols-2 gap-3'>
             {product?.versions?.map((version, index) => (
               <div
                 key={index}
                 className={
                   versionId === version._id
-                    ? 'border border-green-600 p-3 bg-[#ebfff7] rounded-lg'
-                    : 'border border-gray-300 hover:border-green-600 hover:bg-[#ebfff7] p-3 bg-white rounded-lg'
+                    ? 'rounded-lg border border-green-600 bg-[#ebfff7] p-3'
+                    : 'rounded-lg border border-gray-300 bg-white p-3 hover:border-green-600 hover:bg-[#ebfff7]'
                 }
               >
                 <Link to={`/product/${version._id}`}>
-                  <div className='text-sm mb-2'>{version?.name}</div>
+                  <div className='mb-2 text-sm'>{version?.name}</div>
                   <div className='flex'>
-                    <div className='text-sm font-semibold mr-3'>{formatCurrency(version.current_price)} đ</div>
-                    <div className='text-sm font-semibold opacity-60 line-through'>
+                    <div className='mr-3 text-sm font-semibold'>{formatCurrency(version.current_price)} đ</div>
+                    <div className='text-sm font-semibold line-through opacity-60'>
                       {formatCurrency(version.old_price)} đ
                     </div>
                   </div>
@@ -235,7 +235,7 @@ function Product({ setProgress }) {
               </div>
             ))}
           </div>
-          <ul className='list-none mt-5 px-5 py-6 bg-[#f4f4f4] text-sm rounded-lg'>
+          <ul className='mt-5 list-none rounded-lg bg-[#f4f4f4] px-5 py-6 text-sm'>
             <li className='py-2'>🎁Giảm tới 1.000.000VNĐ khi quý khách mua máy lần 2.</li>
             <li className='py-2'>🎁Tặng Windows bản quyền theo máy</li>
             <li className='py-2'>🎁Chế độ bảo hành 12 tháng lỗi 1 đổi 1</li>
@@ -248,30 +248,30 @@ function Product({ setProgress }) {
               disabled={isPending}
               className={
                 isPending
-                  ? 'text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out cursor-not-allowed'
-                  : 'text-sm p-3 text-white bg-[#d62454] uppercase w-full rounded-lg hover:bg-[#d62454]/90 transition duration-300 ease-in-out'
+                  ? 'w-full cursor-not-allowed rounded-lg bg-[#d62454] p-3 text-sm uppercase text-white transition duration-300 ease-in-out hover:bg-[#d62454]/90'
+                  : 'w-full rounded-lg bg-[#d62454] p-3 text-sm uppercase text-white transition duration-300 ease-in-out hover:bg-[#d62454]/90'
               }
               onClick={handleAddToCart}
             >
               {isPending ? <Spinner size='sm' /> : 'Thêm vào giỏ hàng'}
             </button>
           </div>
-          <div className='grid grid-cols-3 gap-3 mt-5'>
-            <button className='bg-[#e00] p-1 rounded-lg'>
+          <div className='mt-5 grid grid-cols-3 gap-3'>
+            <button className='rounded-lg bg-[#e00] p-1'>
               <a>
-                <div className='text-sm font-semibold text-white uppercase'>Mua ngay</div>
-                <span className='text-xs text-white capitalize'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
+                <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
+                <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
               </a>
             </button>
-            <button className='bg-[#288ad6] p-1 rounded-lg'>
+            <button className='rounded-lg bg-[#288ad6] p-1'>
               <a>
-                <div className='text-sm font-semibold text-white uppercase'>Trả góp qua thẻ</div>
-                <span className='text-xs text-white capitalize'>Visa, Master, JCB</span>
+                <div className='text-sm font-semibold uppercase text-white'>Trả góp qua thẻ</div>
+                <span className='text-xs capitalize text-white'>Visa, Master, JCB</span>
               </a>
             </button>
-            <button className='bg-[#f1eb1f] p-1 rounded-lg'>
+            <button className='rounded-lg bg-[#f1eb1f] p-1'>
               <a>
-                <div className='text-sm font-semibold text-[#235d97] uppercase'>mua ngay - trả sau</div>
+                <div className='text-sm font-semibold uppercase text-[#235d97]'>mua ngay - trả sau</div>
                 <div className='flex justify-center'>
                   <img className='w-14' src='https://pc.baokim.vn/platform/img/icon-kredivo.svg' alt='' />
                   <img className='w-14' src='https://pc.baokim.vn/platform/img/home-paylater-ngang-small.svg' alt='' />

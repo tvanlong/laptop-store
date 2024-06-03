@@ -81,7 +81,7 @@ function InputQuantity({ item }) {
   }
 
   return (
-    <div className='flex items-centerflex items-center'>
+    <div className='items-centerflex flex items-center'>
       <button
         className='flex h-6 w-6 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600'
         onClick={() => handleDecreaseQuantity(item.version._id)}
@@ -99,7 +99,7 @@ function InputQuantity({ item }) {
       </button>
       <div>
         <input
-          className='text-xs h-6 w-12 border-t border-b border-gray-300 p-1 text-center outline-none'
+          className='h-6 w-12 border-b border-t border-gray-300 p-1 text-center text-xs outline-none'
           value={buyCount}
           onChange={(e) => handleChangeQuantity(e)}
           onBlur={() => handleUpdateQuantity(item.version._id)}

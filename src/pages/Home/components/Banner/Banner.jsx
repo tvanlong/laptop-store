@@ -2,7 +2,7 @@ import { Carousel } from 'flowbite-react'
 
 function Banner() {
   return (
-    <div className='mt-10 mb-20'>
+    <div className='mb-20 mt-10'>
       <div className='grid grid-cols-12 px-6'>
         <div className='col-span-8'>
           <div id='indicators-carousel' className='relative z-0 w-full' data-carousel='static'>
@@ -33,7 +33,7 @@ function Banner() {
           </div>
         </div>
         <div className='col-span-4 ml-5'>
-          <div className='h-96 flex flex-col gap-3.5'>
+          <div className='flex h-96 flex-col gap-3.5'>
             <div className=''>
               <img
                 className='w-full rounded-lg'

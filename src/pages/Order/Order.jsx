@@ -31,20 +31,20 @@ function Order({ setProgress }) {
   const orders = useMemo(() => orderData?.data?.data || [], [orderData])
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-10 mb-20'>
+    <div className='mx-auto mb-20 mt-10 max-w-[1400px]'>
       <div className='grid grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
         <div className='col-span-4'>
           {orders.map((order) => (
-            <div key={order._id} className='p-4 shadow-inner border border-gray-200 mb-10'>
-              <div className='flex justify-between p-4 border-b border-gray-200'>
+            <div key={order._id} className='mb-10 border border-gray-200 p-4 shadow-inner'>
+              <div className='flex justify-between border-b border-gray-200 p-4'>
                 <div>
                   Mã đơn hàng: <span className=''>#{order?._id.toUpperCase()}</span>
                 </div>
                 <h4 className='flex items-center gap-3'>
                   {order?.status === 'Chờ xác nhận' && (
                     <svg
-                      className='w-4 h-4 '
+                      className='h-4 w-4'
                       aria-hidden='true'
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -63,7 +63,7 @@ function Order({ setProgress }) {
                   )}
                   {order?.status === 'Đang giao hàng' && (
                     <svg
-                      className='w-4 h-4'
+                      className='h-4 w-4'
                       aria-hidden='true'
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -82,7 +82,7 @@ function Order({ setProgress }) {
                   )}
                   {order?.status === 'Đã giao hàng' && (
                     <svg
-                      className='w-4 h-4'
+                      className='h-4 w-4'
                       aria-hidden='true'
                       xmlns='http://www.w3.org/2000/svg'
                       width='24'
@@ -102,22 +102,22 @@ function Order({ setProgress }) {
                   {order?.status}
                 </h4>
               </div>
-              <div className='p-4 border-b border-gray-200'>
+              <div className='border-b border-gray-200 p-4'>
                 {order?.items?.map((item) => (
                   <div key={item._id} className='flex items-center py-4'>
                     <img
-                      className='w-20 h-20 object-cover rounded-lg'
+                      className='h-20 w-20 rounded-lg object-cover'
                       src={item.version.product.images[0]}
                       alt={`${item.version.product.name} ${item.version.name}`}
                     />
-                    <div className='flex-1 ml-5'>
+                    <div className='ml-5 flex-1'>
                       <h4 className='max-w-[600px]'>
                         [Mới 100%] {item.version.product.name} {item.version.name}
                       </h4>
                       <span className='text-gray-700'>x {item.quantity}</span>
                     </div>
                     <div>
-                      <span className='text-sm line-through text-gray-400 mr-4'>
+                      <span className='mr-4 text-sm text-gray-400 line-through'>
                         ₫ {formatCurrency(item.version.old_price)}
                       </span>
                       <span className='text-sm text-gray-400'>₫ {formatCurrency(item.version.current_price)}</span>
@@ -125,15 +125,15 @@ function Order({ setProgress }) {
                   </div>
                 ))}
               </div>
-              <h4 className='text-right p-4'>
-                <span className='text-lg mr-3'>Thành tiền:</span>
+              <h4 className='p-4 text-right'>
+                <span className='mr-3 text-lg'>Thành tiền:</span>
                 <span className='text-xl text-red-700'>₫ {formatCurrency(order?.total_price)}</span>
               </h4>
               {order?.status === 'Đang giao hàng' && (
                 <div className='text-right'>
                   <button
                     type='submit'
-                    className='text-white rounded-lg bg-green-700 hover:bg-green-800 font-medium text-sm px-5 py-2.5 text-center mr-2 mb-2'
+                    className='mb-2 mr-2 rounded-lg bg-green-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-800'
                   >
                     Đã nhận hàng
                   </button>
@@ -144,7 +144,7 @@ function Order({ setProgress }) {
                 <div className='text-right'>
                   <button
                     type='submit'
-                    className='text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2'
+                    className='mb-2 mr-2 rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800'
                   >
                     Hủy đơn hàng
                   </button>

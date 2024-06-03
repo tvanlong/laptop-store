@@ -64,53 +64,53 @@ function ChangePassword({ setProgress }) {
   })
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-10 mb-20'>
+    <div className='mx-auto mb-20 mt-10 max-w-[1400px]'>
       <div className='grid grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
         <div className='col-span-4'>
           <form className='p-4' method='POST' onSubmit={onSubmit}>
-            <h2 className='text-2xl font-semibold mb-6'>Thay đổi mật khẩu</h2>
-            <p className='text-sm text-gray-500 mb-6'>
+            <h2 className='mb-6 text-2xl font-semibold'>Thay đổi mật khẩu</h2>
+            <p className='mb-6 text-sm text-gray-500'>
               Để đảm bảo an toàn, vui lòng không chia sẻ mật khẩu với người khác
             </p>
             <div className='mb-6'>
-              <label htmlFor='password' className='block mb-2 text-sm font-medium text-gray-900'>
+              <label htmlFor='password' className='mb-2 block text-sm font-medium text-gray-900'>
                 Mật khẩu mới
               </label>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id='password'
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
                 onChange={(e) => handleChangeInput(e)}
                 {...register('password')}
               />
             </div>
             <div className='mb-6'>
-              <label htmlFor='password_confirmation' className='block mb-2 text-sm font-medium text-gray-900'>
+              <label htmlFor='password_confirmation' className='mb-2 block text-sm font-medium text-gray-900'>
                 Xác nhận mật khẩu
               </label>
               <input
                 type={showPassword ? 'text' : 'password'}
                 id='password_confirmation'
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
                 onChange={(e) => handleChangeInput(e)}
                 {...register('confirm_password')}
               />
             </div>
-            <label className='flex items-center mb-5 cursor-pointer'>
+            <label className='mb-5 flex cursor-pointer items-center'>
               <input
                 type='checkbox'
                 value=''
-                className='sr-only peer'
+                className='peer sr-only'
                 onChange={() => setShowPassword(!showPassword)}
               />
-              <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+              <div className="peer relative h-5 w-9 rounded-full bg-gray-200 after:absolute after:start-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rtl:peer-checked:after:-translate-x-full"></div>
               <span className='ms-3 text-sm font-medium text-gray-900'>Hiển thị mật khẩu</span>
             </label>
             <button
               type='submit'
               disabled={isPending}
-              className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
+              className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800'
             >
               Cập nhật lại thông tin
             </button>

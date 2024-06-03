@@ -69,7 +69,7 @@ function Cart({ setProgress }) {
   if (isLoading) return <Loading />
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
+    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
       <nav className='flex' aria-label='Breadcrumb'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>
@@ -78,7 +78,7 @@ function Cart({ setProgress }) {
               className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'
             >
               <svg
-                className='w-3 h-3 mr-2.5'
+                className='mr-2.5 h-3 w-3'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='currentColor'
@@ -92,7 +92,7 @@ function Cart({ setProgress }) {
           <li className='opacity-60'>
             <Link to={path.cart} className='flex items-center'>
               <svg
-                className='w-3 h-3 text-gray-400 mx-1'
+                className='mx-1 h-3 w-3 text-gray-400'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 fill='none'
@@ -111,12 +111,12 @@ function Cart({ setProgress }) {
           </li>
         </ol>
       </nav>
-      <h2 className='font-bold text-2xl my-5'>Giỏ hàng</h2>
+      <h2 className='my-5 text-2xl font-bold'>Giỏ hàng</h2>
       <div className='grid grid-cols-12 gap-8'>
         <div className='col-span-9'>
           <div className='relative shadow-lg sm:rounded-lg'>
-            <table className='w-full text-sm text-left text-gray-500'>
-              <thead className='text-xs text-gray-700 uppercase bg-[#f4f4f4]'>
+            <table className='w-full text-left text-sm text-gray-500'>
+              <thead className='bg-[#f4f4f4] text-xs uppercase text-gray-700'>
                 <tr>
                   <th scope='col' className='p-4'></th>
                   <th scope='col' className='px-6 py-3 text-center font-bold'>
@@ -135,11 +135,11 @@ function Cart({ setProgress }) {
               </thead>
               <tbody>
                 {cart?.cart_items?.map((item) => (
-                  <tr key={item._id} className='bg-white border-b hover:bg-gray-50'>
-                    <td className='p-4 font-bold cursor-pointer text-center'>
+                  <tr key={item._id} className='border-b bg-white hover:bg-gray-50'>
+                    <td className='cursor-pointer p-4 text-center font-bold'>
                       <button onClick={() => handleRemoveItem(item.version._id)}>
                         <svg
-                          className='w-6 h-6 text-gray-600 cursor-pointer hover:text-red-500 transition-colors duration-200'
+                          className='h-6 w-6 cursor-pointer text-gray-600 transition-colors duration-200 hover:text-red-500'
                           aria-hidden='true'
                           xmlns='http://www.w3.org/2000/svg'
                           width='24'
@@ -157,7 +157,7 @@ function Cart({ setProgress }) {
                     </td>
                     <td className='flex items-center px-6 py-4 font-medium text-gray-900'>
                       <img
-                        className='w-14 h-14 object-cover border border-gray-300 rounded-lg mr-3'
+                        className='mr-3 h-14 w-14 rounded-lg border border-gray-300 object-cover'
                         src={item.version.product.images[0]}
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
@@ -178,53 +178,53 @@ function Cart({ setProgress }) {
             </table>
             {/* Empty cart */}
             {!cart?.cart_items?.length && (
-              <div className='flex justify-center items-center h-80'>
+              <div className='flex h-80 items-center justify-center'>
                 <div className='text-center'>
-                  <h3 className='font-semibold text-2xl my-5'>Giỏ hàng trống</h3>
-                  <Link to={path.home} className='hover:underline text-sm font-semibold'>
+                  <h3 className='my-5 text-2xl font-semibold'>Giỏ hàng trống</h3>
+                  <Link to={path.home} className='text-sm font-semibold hover:underline'>
                     Tiếp tục mua hàng
                   </Link>
                 </div>
               </div>
             )}
           </div>
-          <div className='flex justify-end mt-5 gap-5'>
-            <div className='hover:underline text-sm font-semibold mr-4 cursor-pointer' onClick={handleRemoveCart}>
+          <div className='mt-5 flex justify-end gap-5'>
+            <div className='mr-4 cursor-pointer text-sm font-semibold hover:underline' onClick={handleRemoveCart}>
               Xóa toàn bộ sản phẩm
             </div>
-            <Link to={path.home} className='hover:underline text-sm font-semibold'>
+            <Link to={path.home} className='text-sm font-semibold hover:underline'>
               Tiếp tục mua hàng
             </Link>
           </div>
-          <button className='bg-yellow-400 px-3 py-2 text-white rounded-lg hover:bg-yellow-300' onClick={refreshCart}>
+          <button className='rounded-lg bg-yellow-400 px-3 py-2 text-white hover:bg-yellow-300' onClick={refreshCart}>
             Cập nhật giỏ hàng
           </button>
         </div>
         <div className='col-span-3'>
-          <div className='bg-[#f4f4f4] rounded-lg p-6'>
-            <h3 className='font-semibold text-xl mb-10'>Thông tin đơn hàng</h3>
-            <div className='flex justify-between items-center mb-6'>
+          <div className='rounded-lg bg-[#f4f4f4] p-6'>
+            <h3 className='mb-10 text-xl font-semibold'>Thông tin đơn hàng</h3>
+            <div className='mb-6 flex items-center justify-between'>
               <span className='text-sm font-semibold'>Tổng thanh toán:</span>
               <span className='text-xl font-semibold text-[#d62454]'>
                 ₫{totalAmount ? formatCurrency(totalAmount) : 0}
               </span>
             </div>
-            <div className='grid grid-cols-1 gap-3 mt-5'>
-              <button className='bg-[#e00] p-1 rounded-lg'>
+            <div className='mt-5 grid grid-cols-1 gap-3'>
+              <button className='rounded-lg bg-[#e00] p-1'>
                 <Link to={path.checkout}>
-                  <div className='text-sm font-semibold text-white uppercase'>Mua ngay</div>
-                  <span className='text-xs text-white capitalize'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
+                  <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
+                  <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
                 </Link>
               </button>
-              <button className='bg-[#288ad6] p-3 rounded-lg'>
+              <button className='rounded-lg bg-[#288ad6] p-3'>
                 <Link>
-                  <div className='text-sm font-semibold text-white uppercase'>Trả góp qua thẻ</div>
-                  <span className='text-xs text-white capitalize'>Visa, Master, JCB</span>
+                  <div className='text-sm font-semibold uppercase text-white'>Trả góp qua thẻ</div>
+                  <span className='text-xs capitalize text-white'>Visa, Master, JCB</span>
                 </Link>
               </button>
-              <button className='bg-[#f1eb1f] p-1 rounded-lg'>
+              <button className='rounded-lg bg-[#f1eb1f] p-1'>
                 <Link>
-                  <div className='text-sm font-semibold text-[#235d97] uppercase'>mua ngay - trả sau</div>
+                  <div className='text-sm font-semibold uppercase text-[#235d97]'>mua ngay - trả sau</div>
                   <div className='flex justify-center'>
                     <img className='w-14' src='https://pc.baokim.vn/platform/img/icon-kredivo.svg' alt='' />
                     <img

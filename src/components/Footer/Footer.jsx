@@ -1,18 +1,18 @@
 function Footer() {
   return (
     <footer className='bg-[#f5f6f6] py-10'>
-      <div className='max-w-[1400px] mx-auto grid grid-cols-4 gap-8 px-6'>
+      <div className='mx-auto grid max-w-[1400px] grid-cols-4 gap-8 px-6'>
         <div className=''>
-          <h3 className='font-bold text-lg mb-6'>Laptop Khánh Trần</h3>
-          <p className='text-sm mb-6 text-justify'>
+          <h3 className='mb-6 text-lg font-bold'>Laptop Khánh Trần</h3>
+          <p className='mb-6 text-justify text-sm'>
             Laptop Khánh Trần rất hân hạnh được phục vụ quý khách. Chúng tôi sẽ cố gắng hơn nữa để cảm ơn sự tin tưởng
             quý khách đã dành cho Laptop Khánh Trần.
           </p>
           <img src='https://laptopkhanhtran.vn/images/BCT.jpg' alt='' />
         </div>
         <div className=''>
-          <h3 className='font-bold text-lg mb-6'>Thông tin liên hệ</h3>
-          <ol className='my-2 list-none max-w-md space-y-1 text-gray-500 list-inside'>
+          <h3 className='mb-6 text-lg font-bold'>Thông tin liên hệ</h3>
+          <ol className='my-2 max-w-md list-inside list-none space-y-1 text-gray-500'>
             <li className='text-sm'>
               <span className='font-semibold text-gray-900'>Địa chỉ:</span>
               26 Ngõ 165 Thái Hà, Láng Hạ, Đống Đa, Hà Nội
@@ -32,24 +32,24 @@ function Footer() {
           </ol>
         </div>
         <div className=''>
-          <h3 className='font-bold text-lg mb-6'>Chính sách và Quy định</h3>
-          <div className='text-sm text-gray-500 mb-2'>Chính sách giao hàng và kiểm hàng</div>
-          <div className='text-sm text-gray-500 mb-2'>Chính sách đổi trả</div>
-          <div className='text-sm text-gray-500 mb-2'>Chính sách thanh toán</div>
-          <div className='text-sm text-gray-500 mb-2'>Chính sách bảo hành</div>
-          <div className='text-sm text-gray-500 mb-2'>Chính sách bảo mật thông tin</div>
+          <h3 className='mb-6 text-lg font-bold'>Chính sách và Quy định</h3>
+          <div className='mb-2 text-sm text-gray-500'>Chính sách giao hàng và kiểm hàng</div>
+          <div className='mb-2 text-sm text-gray-500'>Chính sách đổi trả</div>
+          <div className='mb-2 text-sm text-gray-500'>Chính sách thanh toán</div>
+          <div className='mb-2 text-sm text-gray-500'>Chính sách bảo hành</div>
+          <div className='mb-2 text-sm text-gray-500'>Chính sách bảo mật thông tin</div>
         </div>
         <div className=''>
-          <h3 className='font-bold text-lg mb-6'>Đăng ký nhận thông báo</h3>
-          <div className='text-sm text-gray-500 mb-2'>Đăng ký nhận thông báo để không bỏ lỡ bất kỳ khuyến mại nào</div>
+          <h3 className='mb-6 text-lg font-bold'>Đăng ký nhận thông báo</h3>
+          <div className='mb-2 text-sm text-gray-500'>Đăng ký nhận thông báo để không bỏ lỡ bất kỳ khuyến mại nào</div>
           <form>
-            <label htmlFor='search' className='mb-2 text-sm font-medium text-gray-900 sr-only'>
+            <label htmlFor='search' className='sr-only mb-2 text-sm font-medium text-gray-900'>
               Search
             </label>
             <div className='relative'>
-              <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
+              <div className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3'>
                 <svg
-                  className='w-4 h-4 text-gray-500'
+                  className='h-4 w-4 text-gray-500'
                   aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -67,13 +67,13 @@ function Footer() {
               <input
                 type='search'
                 id='search'
-                className='block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50'
+                className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900'
                 placeholder='Search'
                 required
               />
               <button
                 type='submit'
-                className='text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-4 py-2'
+                className='absolute bottom-2.5 right-2.5 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800'
               >
                 Search
               </button>

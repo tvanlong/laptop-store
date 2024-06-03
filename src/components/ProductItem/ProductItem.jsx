@@ -14,37 +14,37 @@ function ProductItem({ version, isHover = false }) {
   return (
     <div
       className={
-        'bg-white rounded-lg p-6' +
+        'rounded-lg bg-white p-6' +
         (isHover
-          ? ' hover:border hover:border-[#007745] transition ease-in-out delay-150 hover:-translate-y-1 duration-300'
+          ? 'transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:border hover:border-[#007745]'
           : '')
       }
       onMouseEnter={handlePrefetchOnHover}
     >
       <Link to={`/product/${version._id}`}>
         <img src={version.product.images[0]} alt={`${version.product.name} ${version.name}`} className='rounded-lg' />
-        <div className='font-bold text-sm line-clamp-2 my-2'>
+        <div className='my-2 line-clamp-2 text-sm font-bold'>
           {version?.product.name} {version?.name}
         </div>
-        <div className='flex my-2'>
-          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border-[#dcdcdc] border mr-3'>DDR4</div>
-          <div className='text-center text-xs py-1 bg-[#f4f4f4] rounded-lg w-20 border-[#dcdcdc] border'>SSD</div>
+        <div className='my-2 flex'>
+          <div className='mr-3 w-20 rounded-lg border border-[#dcdcdc] bg-[#f4f4f4] py-1 text-center text-xs'>DDR4</div>
+          <div className='w-20 rounded-lg border border-[#dcdcdc] bg-[#f4f4f4] py-1 text-center text-xs'>SSD</div>
         </div>
-        <ol className='my-2 list-none max-w-md space-y-1 text-gray-500 list-inside'>
+        <ol className='my-2 max-w-md list-inside list-none space-y-1 text-gray-500'>
           {version?.description.map((spec) => {
             const [key, value] = spec.split(':')
             return (
-              <li key={key} className='text-xs truncate'>
+              <li key={key} className='truncate text-xs'>
                 <span className='font-semibold text-gray-900'>{key} </span>
                 {value}
               </li>
             )
           })}
         </ol>
-        <div className='flex justify-between my-2 text-sm'>
-          <div className='text-red-700 font-bold'>{formatCurrency(version.current_price)} đ</div>
+        <div className='my-2 flex justify-between text-sm'>
+          <div className='font-bold text-red-700'>{formatCurrency(version.current_price)} đ</div>
           <div className='font-bold text-gray-500 line-through'>{formatCurrency(version.old_price)} đ</div>
-          <div className='text-red-700 font-bold'>
+          <div className='font-bold text-red-700'>
             -{Math.round(((version.old_price - version.current_price) / version.old_price) * 100)}%
           </div>
         </div>

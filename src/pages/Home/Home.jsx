@@ -36,65 +36,65 @@ function Home({ setProgress }) {
 
   return (
     <>
-      <div className='max-w-[1400px] mx-auto'>
+      <div className='mx-auto max-w-[1400px]'>
         <Banner />
         <SlickSlider />
-        <div className='p-6 border border-[#dcdcdc] rounded-lg mb-20'>
+        <div className='mb-20 rounded-lg border border-[#dcdcdc] p-6'>
           <div className='grid grid-cols-4'>
-            <div className='border-r border-[#dcdcdc] flex items-center px-8'>
+            <div className='flex items-center border-r border-[#dcdcdc] px-8'>
               <img src='https://laptopkhanhtran.vn/images/giaohang.svg' alt='' />
               <div className='ml-5'>
-                <div className='text-green-900 font-semibold'>Giao hàng toàn quốc</div>
+                <div className='font-semibold text-green-900'>Giao hàng toàn quốc</div>
                 <div className='text-sm'>Miễn phí giao hàng tại Hà Nội</div>
               </div>
             </div>
-            <div className='border-r border-[#dcdcdc] flex items-center px-8'>
+            <div className='flex items-center border-r border-[#dcdcdc] px-8'>
               <img src='https://laptopkhanhtran.vn/images/support.svg' alt='' />
               <div className='ml-5'>
-                <div className='text-green-900 font-semibold'>Hỗ trợ trực tuyến</div>
+                <div className='font-semibold text-green-900'>Hỗ trợ trực tuyến</div>
                 <div className='text-sm'>Chúng tôi luôn hỗ trợ 24/7</div>
               </div>
             </div>
-            <div className='border-r border-[#dcdcdc] flex items-center px-8'>
+            <div className='flex items-center border-r border-[#dcdcdc] px-8'>
               <img src='https://laptopkhanhtran.vn/images/promotion.svg' alt='' />
               <div className='ml-5'>
-                <div className='text-green-900 font-semibold'>Giá cả phải chăng</div>
+                <div className='font-semibold text-green-900'>Giá cả phải chăng</div>
                 <div className='text-sm'>Chúng tôi luôn có giá tốt nhất cho khách hàng</div>
               </div>
             </div>
             <div className='flex items-center px-8'>
               <img src='https://laptopkhanhtran.vn/images/cashback.svg' alt='' />
               <div className='ml-5'>
-                <div className='text-green-900 font-semibold'>Chính sách hoàn tiền</div>
+                <div className='font-semibold text-green-900'>Chính sách hoàn tiền</div>
                 <div className='text-sm'>Hoàn tiền 100% nếu sản phẩm không tốt</div>
               </div>
             </div>
           </div>
         </div>
-        <div className='relative bg-red-500 rounded-lg mb-20'>
-          <div className='bg-[#dc3545] rounded-t-lg px-6 py-4 flex items-center'>
+        <div className='relative mb-20 rounded-lg bg-red-500'>
+          <div className='flex items-center rounded-t-lg bg-[#dc3545] px-6 py-4'>
             <img src='https://laptopkhanhtran.vn/css/icon/lightning.svg' alt='' />
-            <h2 className='text-white font-bold ml-3'>GIỜ VÀNG GIÁ SỐC</h2>
-            <div className='font-semibold ml-5 mr-3 text-white'>chỉ còn</div>
-            <div className='flex flex-col items-center bg-[#000000b8] py-1 px-2 rounded-lg mr-3'>
+            <h2 className='ml-3 font-bold text-white'>GIỜ VÀNG GIÁ SỐC</h2>
+            <div className='ml-5 mr-3 font-semibold text-white'>chỉ còn</div>
+            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
               <span className='font-bold text-amber-400' id='days'>
                 11
               </span>
               <span className='text-white'>ngày</span>
             </div>
-            <div className='flex flex-col items-center bg-[#000000b8] py-1 px-2 rounded-lg mr-3'>
+            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
               <span className='font-bold text-amber-400' id='hours'>
                 20
               </span>
               <span className='text-white'>giờ</span>
             </div>
-            <div className='flex flex-col items-center bg-[#000000b8] py-1 px-2 rounded-lg mr-3'>
+            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
               <span className='font-bold text-amber-400' id='minutes'>
                 26
               </span>
               <span className='text-white'>phút</span>
             </div>
-            <div className='flex flex-col items-center bg-[#000000b8] py-1 px-2 rounded-lg'>
+            <div className='flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
               <span className='font-bold text-amber-400' id='seconds'>
                 36
               </span>
@@ -129,7 +129,7 @@ function Home({ setProgress }) {
           </Swiper>
         </div>
         <div className='mb-20'>
-          <h2 className='font-extrabold text-xl text-center mb-5'>LAPTOP DOANH NHÂN CAO CẤP</h2>
+          <h2 className='mb-5 text-center text-xl font-extrabold'>LAPTOP DOANH NHÂN CAO CẤP</h2>
           <div className='grid grid-cols-5 gap-3 p-6'>
             {versions.length > 0 &&
               versions.map((version) => <ProductItem key={version._id} version={version} isHover />)}

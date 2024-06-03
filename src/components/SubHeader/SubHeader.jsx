@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 function SubHeader() {
   return (
     <header className='h-[88px]'>
-      <div className='bg-[#242525] h-[88px] fixed top-0 left-0 right-0 z-20'>
-        <div className='h-full max-w-[95%] m-auto flex items-center justify-between gap-8'>
-          <Link to='/' className='font-semibold text-white cursor-pointer hover:underline'>
+      <div className='fixed left-0 right-0 top-0 z-20 h-[88px] bg-[#242525]'>
+        <div className='m-auto flex h-full max-w-[95%] items-center justify-between gap-8'>
+          <Link to='/' className='cursor-pointer font-semibold text-white hover:underline'>
             Trở về
           </Link>
           <Link to='/'>

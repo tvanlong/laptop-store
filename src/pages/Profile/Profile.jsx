@@ -119,58 +119,58 @@ function Profile({ setProgress }) {
   }
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-10 mb-20'>
+    <div className='mx-auto mb-20 mt-10 max-w-[1400px]'>
       <div className='grid grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
         <div className='col-span-4'>
           <form className='p-4' onSubmit={onSubmit}>
             <div className='border-b border-gray-200'>
-              <h2 className='text-2xl font-semibold mb-2'>Thông tin cá nhân</h2>
-              <p className='text-sm text-gray-500 mb-4'>
+              <h2 className='mb-2 text-2xl font-semibold'>Thông tin cá nhân</h2>
+              <p className='mb-4 text-sm text-gray-500'>
                 Cập nhật thông tin cá nhân để bảo mật tài khoản (* Địa chỉ email không thể thay đổi sau khi đăng ký)
               </p>
             </div>
-            <div className='grid grid-cols-5 gap-4 mt-6'>
+            <div className='mt-6 grid grid-cols-5 gap-4'>
               <div className='col-span-3 mr-12'>
                 <div className='mb-6'>
-                  <label htmlFor='cus_name' className='block mb-2 text-sm font-medium text-gray-900'>
+                  <label htmlFor='cus_name' className='mb-2 block text-sm font-medium text-gray-900'>
                     Tên khách hàng
                   </label>
                   <input
                     type='text'
                     id='cus_name'
-                    className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                    className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
                     onChange={(e) => handleChangeInput(e)}
                     {...register('name')}
                   />
-                  {errors.name && <p className='text-red-500 text-sm'>{errors.name.message}</p>}
+                  {errors.name && <p className='text-sm text-red-500'>{errors.name.message}</p>}
                 </div>
                 <div className='mb-6'>
-                  <label htmlFor='email' className='block mb-2 text-sm font-medium text-gray-900'>
+                  <label htmlFor='email' className='mb-2 block text-sm font-medium text-gray-900'>
                     Địa chỉ email
                   </label>
                   <input
                     type='text'
                     id='email'
                     disabled
-                    className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                    className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
                     onChange={(e) => handleChangeInput(e)}
                     {...register('email')}
                   />
-                  {errors.email && <p className='text-red-500 text-sm'>{errors.email.message}</p>}
+                  {errors.email && <p className='text-sm text-red-500'>{errors.email.message}</p>}
                 </div>
                 <div className='mb-6'>
-                  <label htmlFor='cus_phone' className='block mb-2 text-sm font-medium text-gray-900'>
+                  <label htmlFor='cus_phone' className='mb-2 block text-sm font-medium text-gray-900'>
                     Số điện thoại
                   </label>
                   <input
                     type='text'
                     id='cus_phone'
-                    className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5'
+                    className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
                     onChange={(e) => handleChangeInput(e)}
                     {...register('phone')}
                   />
-                  {errors.phone && <p className='text-red-500 text-sm'>{errors.phone.message}</p>}
+                  {errors.phone && <p className='text-sm text-red-500'>{errors.phone.message}</p>}
                 </div>
               </div>
               <div className='col-span-2'>
@@ -197,7 +197,7 @@ function Profile({ setProgress }) {
                     >
                       Chọn ảnh
                     </button>
-                    <div className='mt-3 text-gray-400 text-sm'>
+                    <div className='mt-3 text-sm text-gray-400'>
                       <div>Dung lượng file tối đa 1 MB</div>
                       <div>Định dạng: .JPEG, .PNG</div>
                     </div>
@@ -208,7 +208,7 @@ function Profile({ setProgress }) {
             <button
               type='submit'
               disabled={isPending}
-              className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center'
+              className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800'
             >
               Cập nhật lại thông tin
             </button>

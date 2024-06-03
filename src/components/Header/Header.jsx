@@ -50,22 +50,22 @@ function Header() {
 
   return (
     <>
-      <nav className='sticky z-20 top-0 left-0 right-0 bg-[#242525] border-gray-200'>
-        <div className='max-w-[1400px] mx-auto p-6 flex flex-wrap items-center justify-between'>
+      <nav className='sticky left-0 right-0 top-0 z-20 border-gray-200 bg-[#242525]'>
+        <div className='mx-auto flex max-w-[1400px] flex-wrap items-center justify-between p-6'>
           <Link to='/' className='basis-1/5 items-center'>
             <img
               src='https://laptopkhanhtran.vn/pic/banner/logo_6368_638173418442942155.png'
-              className='h-10 mr-3'
+              className='mr-3 h-10'
               alt='Flowbite Logo'
             />
           </Link>
           <Search />
-          <div className='justify-between hidden w-full md:flex md:w-auto' id='navbar-search'>
-            <ul className='flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-6 md:mt-0 md:border-0 bg-[#242525]'>
+          <div className='hidden w-full justify-between md:flex md:w-auto' id='navbar-search'>
+            <ul className='mt-4 flex flex-col rounded-lg border border-gray-100 bg-[#242525] p-4 md:mt-0 md:flex-row md:space-x-6 md:border-0 md:p-0'>
               <li>
                 <Link
                   to={path.home}
-                  className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                  className='block rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                   aria-current='page'
                 >
                   Trang chủ
@@ -74,7 +74,7 @@ function Header() {
               <li>
                 <Link
                   to='/'
-                  className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                  className='block rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                 >
                   Sản phẩm
                 </Link>
@@ -82,7 +82,7 @@ function Header() {
               <li>
                 <Link
                   to='/'
-                  className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                  className='block rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                 >
                   Tin tức
                 </Link>
@@ -91,7 +91,7 @@ function Header() {
                 <li>
                   <Link
                     to={path.login}
-                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    className='block rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                   >
                     Đăng nhập
                   </Link>
@@ -101,7 +101,7 @@ function Header() {
                 <li>
                   <Link
                     to={path.profile}
-                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0 cursor-pointer'
+                    className='block cursor-pointer rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                   >
                     Tài khoản
                   </Link>
@@ -111,7 +111,7 @@ function Header() {
                 <li>
                   <Link
                     to=''
-                    className='text-sm block opacity-60 hover:opacity-100 rounded bg-[#242525] text-white font-semibold md:p-0'
+                    className='block rounded bg-[#242525] text-sm font-semibold text-white opacity-60 hover:opacity-100 md:p-0'
                     onClick={handleSignOut}
                   >
                     Đăng xuất
@@ -120,7 +120,7 @@ function Header() {
               )}
             </ul>
           </div>
-          <div className='relative text-white ms-12' onMouseEnter={handlePrefetchOnHover}>
+          <div className='relative ms-12 text-white' onMouseEnter={handlePrefetchOnHover}>
             <Link to={path.cart}>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -128,7 +128,7 @@ function Header() {
                 viewBox='0 0 24 24'
                 strokeWidth='1.5'
                 stroke='currentColor'
-                className='w-6 h-6'
+                className='h-6 w-6'
               >
                 <path
                   strokeLinecap='round'
@@ -137,7 +137,7 @@ function Header() {
                 />
               </svg>
               {isAuthenticated && cart?.cart_items?.length > 0 && (
-                <div className='absolute p-1 w-5 h-5 bg-red-500 rounded-full top-[-10px] right-[-10px] text-xs flex items-center justify-center'>
+                <div className='absolute right-[-10px] top-[-10px] flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-1 text-xs'>
                   {totalQuantity}
                 </div>
               )}
@@ -145,12 +145,12 @@ function Header() {
           </div>
         </div>
       </nav>
-      <div className='sticky z-20 top-[88px] left-0 right-0 flex bg-[#2e3030] h-14'>
+      <div className='sticky left-0 right-0 top-[88px] z-20 flex h-14 bg-[#2e3030]'>
         <ul className='flex w-full items-center justify-between px-32'>
           {categories.map((category) => (
             <li
               key={category._id}
-              className='relative flex items-center text-white opacity-60 hover:opacity-100 h-full cursor-pointer group'
+              className='group relative flex h-full cursor-pointer items-center text-white opacity-60 hover:opacity-100'
             >
               <Link to={`/category/${category._id}`} className='text-xs font-semibold uppercase'>
                 {category.name}
@@ -162,16 +162,16 @@ function Header() {
                   viewBox='0 0 24 24'
                   strokeWidth='1.5'
                   stroke='currentColor'
-                  className='w-3 h-3 ml-1'
+                  className='ml-1 h-3 w-3'
                 >
                   <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' />
                 </svg>
               )}
-              <div className='hidden absolute top-[100%] left-0 drop-shadow-xl bg-white w-max rounded-lg group-hover:block'>
+              <div className='absolute left-0 top-[100%] hidden w-max rounded-lg bg-white drop-shadow-xl group-hover:block'>
                 <ul className=''>
                   {category.subcategories.length > 0 &&
                     category.subcategories.map((subcategory) => (
-                      <li key={subcategory._id} className='py-3 px-6 text-sm text-gray-900 hover:text-green-700'>
+                      <li key={subcategory._id} className='px-6 py-3 text-sm text-gray-900 hover:text-green-700'>
                         <Link
                           className='font-semibold'
                           to={`/subcategory/${subcategory._id}`}

@@ -88,47 +88,47 @@ function Checkout({ setProgress }) {
   })
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
-      <h2 className='font-bold text-3xl text-center'>Thanh Toán</h2>
-      <p className='text-lg text-center'>
+    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <h2 className='text-center text-3xl font-bold'>Thanh Toán</h2>
+      <p className='text-center text-lg'>
         Vui lòng kiểm tra thông tin khách hàng, thông tin giỏ hàng trước khi đặt hàng
       </p>
-      <div className='grid grid-cols-7 gap-8 mt-20'>
+      <div className='mt-20 grid grid-cols-7 gap-8'>
         <div className='col-span-4'>
           <h3 className='text-xl font-bold'>Thông tin khách hàng</h3>
           <form method='POST' onSubmit={onSubmit}>
             <div className='my-3'>
-              <div className='text-lg mb-2'>Họ tên</div>
+              <div className='mb-2 text-lg'>Họ tên</div>
               <input
                 type='text'
-                className='w-full border border-gray-300 rounded-lg p-3'
+                className='w-full rounded-lg border border-gray-300 p-3'
                 placeholder='Nhập họ tên'
                 {...register('name')}
               />
             </div>
             <div className='my-3'>
-              <div className='text-lg mb-2'>Email</div>
+              <div className='mb-2 text-lg'>Email</div>
               <input
                 disabled
                 type='text'
-                className='w-full border border-gray-300 rounded-lg p-3'
+                className='w-full rounded-lg border border-gray-300 p-3'
                 {...register('email')}
               />
             </div>
             <div className='my-3'>
-              <div className='text-lg mb-2'>Số điện thoại</div>
+              <div className='mb-2 text-lg'>Số điện thoại</div>
               <input
                 type='text'
-                className='w-full border border-gray-300 rounded-lg p-3'
+                className='w-full rounded-lg border border-gray-300 p-3'
                 placeholder='Nhập số điện thoại'
                 {...register('phone')}
               />
             </div>
             <div className='my-3'>
-              <div className='text-lg mb-2'>Địa chỉ</div>
+              <div className='mb-2 text-lg'>Địa chỉ</div>
               <input
                 type='text'
-                className='w-full border border-gray-300 rounded-lg p-3'
+                className='w-full rounded-lg border border-gray-300 p-3'
                 placeholder='Nhập địa chỉ'
                 onChange={(e) => handleChange(e)}
                 {...register('shipping_address')}
@@ -141,7 +141,7 @@ function Checkout({ setProgress }) {
             <div className='my-3'>
               <button
                 type='submit'
-                className='bg-blue-700 hover:bg-blue-600 w-full rounded-lg text-white font-bold text-lg text-center py-3 px-2 mt-8'
+                className='mt-8 w-full rounded-lg bg-blue-700 px-2 py-3 text-center text-lg font-bold text-white hover:bg-blue-600'
               >
                 Đặt hàng
               </button>
@@ -150,12 +150,12 @@ function Checkout({ setProgress }) {
         </div>
         <div className='col-span-3'>
           <h3 className='text-xl font-bold'>Giỏ hàng</h3>
-          <div className='border-2 border-gray-200 rounded-lg p-4 mt-8'>
+          <div className='mt-8 rounded-lg border-2 border-gray-200 p-4'>
             <ul className='list-none'>
               {cart?.cart_items?.map((item) => (
-                <li key={item._id} className='text-sm flex items-center justify-between my-3'>
+                <li key={item._id} className='my-3 flex items-center justify-between text-sm'>
                   <img
-                    className='w-16 h-16 mr-4 object-cover'
+                    className='mr-4 h-16 w-16 object-cover'
                     src={item.version.product.images[0]}
                     alt={`${item.version.product.name} ${item.version.name}`}
                   />
@@ -172,11 +172,11 @@ function Checkout({ setProgress }) {
                   </div>
                 </li>
               ))}
-              <li className='text-sm flex items-center justify-between my-5 py-3 border-t-2 border-gray-200'>
+              <li className='my-5 flex items-center justify-between border-t-2 border-gray-200 py-3 text-sm'>
                 <div>
-                  <p className='font-semibold underline text-lg'>Tổng thành tiền</p>
+                  <p className='text-lg font-semibold underline'>Tổng thành tiền</p>
                 </div>
-                <div className='font-semibold text-lg text-red-700'>₫{formatCurrency(totalAmount)}</div>
+                <div className='text-lg font-semibold text-red-700'>₫{formatCurrency(totalAmount)}</div>
               </li>
             </ul>
           </div>

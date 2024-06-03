@@ -53,15 +53,15 @@ function Category({ setProgress }) {
   if (isLoading) return <Loading />
 
   return (
-    <div className='max-w-[1400px] mx-auto mt-5 mb-20 p-6'>
+    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
       <div className='flex justify-between'>
-        <h2 className='text-3xl font-bold h-10 uppercase'>{category?.name}</h2>
+        <h2 className='h-10 text-3xl font-bold uppercase'>{category?.name}</h2>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
-            <li className='cursor-pointer inline-flex items-center opacity-60'>
+            <li className='inline-flex cursor-pointer items-center opacity-60'>
               <Link to='/' className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'>
                 <svg
-                  className='w-3 h-3 mr-2.5'
+                  className='mr-2.5 h-3 w-3'
                   aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='currentColor'
@@ -75,7 +75,7 @@ function Category({ setProgress }) {
             <li className='cursor-pointer opacity-60'>
               <div className='flex items-center'>
                 <svg
-                  className='w-3 h-3 text-gray-400 mx-1'
+                  className='mx-1 h-3 w-3 text-gray-400'
                   aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -95,7 +95,7 @@ function Category({ setProgress }) {
             <li className='cursor-pointer' aria-current='page opacity-60'>
               <div className='flex items-center'>
                 <svg
-                  className='w-3 h-3 text-gray-400 mx-1'
+                  className='mx-1 h-3 w-3 text-gray-400'
                   aria-hidden='true'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
@@ -117,10 +117,10 @@ function Category({ setProgress }) {
           </ol>
         </nav>
       </div>
-      <div className='grid grid-cols-12 gap-8 mt-10'>
+      <div className='mt-10 grid grid-cols-12 gap-8'>
         <div className='col-span-2'>
-          <div className='border border-gray-300 px-3 py-5 rounded-lg'>
-            <h3 className='text-xl font-semibold mb-4'>Lọc sản phẩm</h3>
+          <div className='rounded-lg border border-gray-300 px-3 py-5'>
+            <h3 className='mb-4 text-xl font-semibold'>Lọc sản phẩm</h3>
             <FilterDropdown title='Khoảng giá' options={priceOptions} queryParamsConfig={queryParamsConfig} />
             <FilterDropdown
               title='Kích thước màn hình'
@@ -135,13 +135,13 @@ function Category({ setProgress }) {
         </div>
         <div className='col-span-10'>
           <SortProductList pathname={`/category/${categoryId}`} queryParamsConfig={queryParamsConfig} />
-          <div className='grid grid-cols-4 gap-3 p-6 mb-10'>
+          <div className='mb-10 grid grid-cols-4 gap-3 p-6'>
             {versions.map((version) => (
               <ProductItem key={version._id} version={version} isHover />
             ))}
           </div>
           {data?.data?.data.totalPages > 1 && (
-            <div className='flex overflow-x-auto sm:justify-center mt-10'>
+            <div className='mt-10 flex overflow-x-auto sm:justify-center'>
               <Pagination
                 className='text-sm'
                 currentPage={queryParamsConfig.page}
@@ -152,7 +152,7 @@ function Category({ setProgress }) {
               />
             </div>
           )}
-          {versions.length === 0 && <div className='mt-10 text-lg font-bold text-center'>Không có sản phẩm nào</div>}
+          {versions.length === 0 && <div className='mt-10 text-center text-lg font-bold'>Không có sản phẩm nào</div>}
         </div>
       </div>
     </div>

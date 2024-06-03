@@ -35,11 +35,11 @@ function Search() {
   })
 
   return (
-    <div className='basis-2/5 flex'>
-      <form className='w-4/5 relative hidden md:block' method='POST' onSubmit={onSubmit}>
+    <div className='flex basis-2/5'>
+      <form className='relative hidden w-4/5 md:block' method='POST' onSubmit={onSubmit}>
         <button type='submit' className='absolute inset-y-0 left-0 z-10 flex items-center pl-3'>
           <svg
-            className='w-4 h-4 text-gray-500'
+            className='h-4 w-4 text-gray-500'
             aria-hidden='true'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -57,7 +57,7 @@ function Search() {
         <input
           type='text'
           id='search-navbar'
-          className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-full bg-gray-50'
+          className='block w-full rounded-full border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900'
           placeholder='Bạn muốn tìm sản phẩm gì...'
           ref={inputRef}
           value={searchValue}
@@ -68,7 +68,7 @@ function Search() {
         {searchValue !== '' && (
           <button className='absolute inset-y-0 right-3 z-10 flex items-center pl-3' onClick={handleClearSearch}>
             <svg
-              className='w-4 h-4 text-gray-500'
+              className='h-4 w-4 text-gray-500'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'

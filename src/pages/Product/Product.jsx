@@ -48,6 +48,12 @@ function Product({ setProgress }) {
       toast.error('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng')
       return
     }
+
+    if (version?.status === 'Hết hàng') {
+      toast.warning('Sản phẩm đã hết hàng')
+      return
+    }
+
     toast.promise(mutateAsync({ versionId }), {
       loading: 'Đang thêm sản phẩm vào giỏ hàng...',
       success: () => {

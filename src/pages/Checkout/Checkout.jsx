@@ -161,7 +161,7 @@ function Checkout({ setProgress }) {
                   />
                   <div>
                     <p className='font-semibold'>
-                      {item.version.product.name} {item.version.name}
+                      {item.version.product.name} ({item.version.name})
                     </p>
                     <p className='font-semibold'>
                       ₫{formatCurrency(item.version.current_price)} x {item.quantity}

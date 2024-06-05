@@ -23,9 +23,13 @@ function ProductItem({ version, isHover = false }) {
       onMouseEnter={handlePrefetchOnHover}
     >
       <Link to={`/product/${version._id}`}>
-        <img src={version.product.images[0]} alt={`${version.product.name} ${version.name}`} className='rounded-lg' />
+        <img
+          src={version.product.images[0]}
+          alt={`${version.product.name} ${version.name}`}
+          className='rounded-lg h-28 w-52 object-contain'
+        />
         <div className='my-2 line-clamp-2 text-sm font-bold'>
-          {version?.product.name} {version?.name}
+          {version?.product.name} ({version?.name})
         </div>
         <div className='my-2 flex'>
           <div className='mr-3 w-20 rounded-lg border border-[#dcdcdc] bg-[#f4f4f4] py-1 text-center text-xs'>DDR4</div>

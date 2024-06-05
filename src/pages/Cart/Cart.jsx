@@ -162,7 +162,7 @@ function Cart({ setProgress }) {
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
                       <Link to={`/product/${item.version._id}`} className='font-semibold'>
-                        [Mới 100%] {item.version.product.name} {item.version.name}
+                        [Mới 100%] {item.version.product.name} ({item.version.name})
                       </Link>
                     </td>
                     <td className='px-6 py-4 text-center font-bold'>₫{formatCurrency(item.version.current_price)}</td>

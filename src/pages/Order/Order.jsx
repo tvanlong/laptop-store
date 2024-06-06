@@ -25,6 +25,14 @@ function Order({ setProgress }) {
     }
   }, [setProgress])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   const { data: orderData } = useQuery({
     queryKey: ['orders', profile?._id],
     queryFn: () => getOrders(profile?._id),

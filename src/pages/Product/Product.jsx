@@ -39,6 +39,14 @@ function Product({ setProgress }) {
     }
   }, [setProgress])
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    })
+  }, [])
+
   const { mutateAsync, isPending } = useMutation({
     mutationFn: (data) => addToCart(profile?._id, data)
   })

@@ -1,10 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { createOrderCheckout } from '~/apis/order.api'
+import { getAllPaymentMethods } from '~/apis/payment.api'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { useCart } from '~/hooks/useCart'
@@ -29,7 +30,8 @@ function Checkout({ setProgress }) {
       name: '',
       email: '',
       phone: '',
-      shipping_address: ''
+      shipping_address: '',
+      payment_method: ''
     },
     resolver: yupResolver(checkoutSchema)
   })
@@ -52,6 +54,13 @@ function Checkout({ setProgress }) {
     }
   }, [setProgress])
 
+  const { data: paymentMethodsData } = useQuery({
+    queryKey: ['payment'],
+    queryFn: getAllPaymentMethods
+  })
+
+  const paymentMethods = useMemo(() => paymentMethodsData?.data?.data || [], [paymentMethodsData])
+
   useEffect(() => {
     if (user) {
       setValue('name', user.name)
@@ -73,8 +82,8 @@ function Checkout({ setProgress }) {
   })
 
   const onSubmit = handleSubmit((data) => {
-    const { shipping_address } = data
-    toast.promise(createOrderCheckoutMutate({ id: profile._id, data: { shipping_address } }), {
+    const { shipping_address, payment_method } = data
+    toast.promise(createOrderCheckoutMutate({ id: profile._id, data: { shipping_address, payment_method } }), {
       loading: 'Đang đặt hàng..',
       success: (res) => {
         queryClient.invalidateQueries({ queryKey: ['cart'] })
@@ -125,7 +134,9 @@ function Checkout({ setProgress }) {
               />
             </div>
             <div className='my-3'>
-              <div className='mb-2 text-lg'>Địa chỉ</div>
+              <div className='mb-2 text-lg'>
+                Địa chỉ <span className='text-red-500'>*</span>
+              </div>
               <input
                 type='text'
                 className='w-full rounded-lg border border-gray-300 p-3'
@@ -133,6 +144,21 @@ function Checkout({ setProgress }) {
                 onChange={(e) => handleChange(e)}
                 {...register('shipping_address')}
               />
+            </div>
+            <div className='my-3'>
+              <div className='mb-2 text-lg'>
+                Phương thức thanh toán <span className='text-red-500'>*</span>
+              </div>
+              <select
+                className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3'
+                {...register('payment_method')}
+              >
+                {paymentMethods.map((method) => (
+                  <option key={method._id} value={method._id}>
+                    {method.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='my-3 text-sm'>Vui lòng khai đầy đủ thông tin trước khi đặt hàng!</div>
             <div className='my-3 text-sm'>

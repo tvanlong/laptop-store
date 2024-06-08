@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { createOrderCheckout } from '~/apis/order.api'
+import { createOrderCheckout, createOrderCheckoutWithMomo } from '~/apis/order.api'
 import { getAllPaymentMethods } from '~/apis/payment.api'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -81,19 +81,36 @@ function Checkout({ setProgress }) {
     mutationFn: ({ id, data }) => createOrderCheckout(id, data)
   })
 
-  const onSubmit = handleSubmit((data) => {
+  const { mutateAsync: createOrderCheckoutWithMomoMutate } = useMutation({
+    mutationFn: ({ id, data }) => createOrderCheckoutWithMomo(id, data)
+  })
+
+  const onSubmit = handleSubmit(async (data) => {
     const { shipping_address, payment_method } = data
-    toast.promise(createOrderCheckoutMutate({ id: profile._id, data: { shipping_address, payment_method } }), {
-      loading: 'Đang đặt hàng..',
-      success: (res) => {
-        queryClient.invalidateQueries({ queryKey: ['cart'] })
-        navigate(path.checkoutSuccess)
-        return res.data.message || 'Đặt hàng thành công!'
-      },
-      error: (err) => {
-        return err.response.data.message || 'Đặt hàng thất bại!'
-      }
-    })
+    const methodName = paymentMethods.find((method) => method._id === payment_method)?.name
+    if (methodName === 'Thanh toán khi nhận hàng') {
+      toast.promise(createOrderCheckoutMutate({ id: profile._id, data: { shipping_address, payment_method } }), {
+        loading: 'Đang đặt hàng..',
+        success: (res) => {
+          queryClient.invalidateQueries({ queryKey: ['cart'] })
+          navigate(path.checkoutSuccess)
+          return res.data.message || 'Đặt hàng thành công!'
+        },
+        error: (err) => {
+          return err.response.data.message || 'Đặt hàng thất bại!'
+        }
+      })
+    } else if (methodName === 'Thanh toán trực tiếp qua Momo') {
+      const toastId = toast.loading('Đang chuyển hướng đến cổng thanh toán Momo..')
+      const res = await createOrderCheckoutWithMomoMutate({
+        id: profile._id,
+        data: { shipping_address, payment_method }
+      })
+      toast.dismiss(toastId)
+      window.location.href = res.data.shortLink || res.data.payUrl
+    } else {
+      toast.error('Phương thức thanh toán không hợp lệ!')
+    }
   })
 
   return (
@@ -153,6 +170,9 @@ function Checkout({ setProgress }) {
                 className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-3'
                 {...register('payment_method')}
               >
+                <option value='' disabled>
+                  Chọn phương thức thanh toán
+                </option>
                 {paymentMethods.map((method) => (
                   <option key={method._id} value={method._id}>
                     {method.name}

@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { createOrderCheckout, createOrderCheckoutWithMomo } from '~/apis/order.api'
+import { createOrderCheckout, createOrderCheckoutWithMomo, createOrderCheckoutWithZaloPay } from '~/apis/order.api'
 import { getAllPaymentMethods } from '~/apis/payment.api'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -85,6 +85,10 @@ function Checkout({ setProgress }) {
     mutationFn: ({ id, data }) => createOrderCheckoutWithMomo(id, data)
   })
 
+  const { mutateAsync: createOrderCheckoutWithZaloPayMutate } = useMutation({
+    mutationFn: ({ id, data }) => createOrderCheckoutWithZaloPay(id, data)
+  })
+
   const onSubmit = handleSubmit(async (data) => {
     const { shipping_address, payment_method } = data
     const methodName = paymentMethods.find((method) => method._id === payment_method)?.name
@@ -108,6 +112,14 @@ function Checkout({ setProgress }) {
       })
       toast.dismiss(toastId)
       window.location.href = res.data.shortLink || res.data.payUrl
+    } else if (methodName === 'Thanh toán trực tiếp qua ZaloPay') {
+      const toastId = toast.loading('Đang chuyển hướng đến cổng thanh toán ZaloPay..')
+      const res = await createOrderCheckoutWithZaloPayMutate({
+        id: profile._id,
+        data: { shipping_address, payment_method }
+      })
+      toast.dismiss(toastId)
+      window.location.href = res.data.order_url
     } else {
       toast.error('Phương thức thanh toán không hợp lệ!')
     }

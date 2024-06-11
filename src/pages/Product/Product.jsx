@@ -10,11 +10,13 @@ import { getVersionById } from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
+import { generateNameId, getIdFromNameId } from '~/utils/util'
 
 function Product({ setProgress }) {
   const { isAuthenticated, profile } = useContext(AppContext)
   const queryClient = useQueryClient()
-  const { versionId } = useParams()
+  const { nameId } = useParams()
+  const versionId = getIdFromNameId(nameId)
   const { data: versionData, isLoading } = useQuery({
     queryKey: ['version', versionId],
     queryFn: () => getVersionById(versionId),
@@ -109,7 +111,7 @@ function Product({ setProgress }) {
                 />
               </svg>
               <Link
-                to={`/product/${versionId}`}
+                to={`/product/${generateNameId({ name: version?.product?.name, id: version?.product?._id })}`}
                 className='ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2'
               >
                 Sản phẩm
@@ -133,7 +135,13 @@ function Product({ setProgress }) {
                   d='m1 9 4-4-4-4'
                 />
               </svg>
-              <Link to={`/product/${versionId}`} className='ml-1 text-sm text-gray-500 md:ml-2'>
+              <Link
+                to={`/product/${generateNameId({
+                  name: version?.product?.name,
+                  id: version?.product?._id
+                })}`}
+                className='ml-1 text-sm text-gray-500 md:ml-2'
+              >
                 [ Mới 100% ] {version?.product?.name} {version?.name}
               </Link>
             </div>
@@ -236,7 +244,12 @@ function Product({ setProgress }) {
                     : 'rounded-lg border border-gray-300 bg-white p-3 hover:border-green-600 hover:bg-[#ebfff7]'
                 }
               >
-                <Link to={`/product/${version._id}`}>
+                <Link
+                  to={`/product/${generateNameId({
+                    name: `${product.name} ${version.name}`,
+                    id: version._id
+                  })}`}
+                >
                   <div className='mb-2 text-sm'>{version?.name}</div>
                   <div className='flex'>
                     <div className='mr-3 text-sm font-semibold'>{formatCurrency(version.current_price)} đ</div>

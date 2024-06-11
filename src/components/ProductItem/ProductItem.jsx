@@ -2,6 +2,7 @@ import { useQueryClient } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 import { getVersionById } from '~/apis/versions.api'
 import { formatCurrency } from '~/utils/format'
+import { generateNameId } from '~/utils/util'
 
 function ProductItem({ version, isHover = false }) {
   const queryClient = useQueryClient()
@@ -22,7 +23,12 @@ function ProductItem({ version, isHover = false }) {
       }
       onMouseEnter={handlePrefetchOnHover}
     >
-      <Link to={`/product/${version._id}`}>
+      <Link
+        to={`/product/${generateNameId({
+          name: `${version.product.name} ${version.name}`,
+          id: version._id
+        })}`}
+      >
         <img
           src={version.product.images[0]}
           alt={`${version.product.name} ${version.name}`}

@@ -8,6 +8,7 @@ import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
 import { formatCurrency } from '~/utils/format'
+import { generateNameId } from '~/utils/util'
 
 function Order({ setProgress }) {
   const { profile } = useContext(AppContext)
@@ -160,7 +161,13 @@ function Order({ setProgress }) {
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
                       <div className='ml-5 flex-1'>
-                        <Link to={`/product/${item.version._id}`} className='max-w-[600px]'>
+                        <Link
+                          to={`/product/${generateNameId({
+                            name: `${item.version.product.name} ${item.version.name}`,
+                            id: item.version._id
+                          })}`}
+                          className='max-w-[600px]'
+                        >
                           [Mới 100%] {item.version.product.name} {item.version.name}
                         </Link>
                         <span className='text-gray-700'>x {item.quantity}</span>

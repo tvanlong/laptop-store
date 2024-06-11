@@ -10,6 +10,7 @@ import { AppContext } from '~/context/app.context'
 import { useCart } from '~/hooks/useCart'
 import InputQuantity from '~/pages/Cart/components/InputQuantity'
 import { formatCurrency } from '~/utils/format'
+import { generateNameId } from '~/utils/util'
 
 function Cart({ setProgress }) {
   const { profile } = useContext(AppContext)
@@ -166,7 +167,13 @@ function Cart({ setProgress }) {
                         src={item.version.product.images[0]}
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
-                      <Link to={`/product/${item.version._id}`} className='font-semibold'>
+                      <Link
+                        to={`/product/${generateNameId({
+                          name: `${item.version.product.name} ${item.version.name}`,
+                          id: item.version._id
+                        })}`}
+                        className='font-semibold'
+                      >
                         [Mới 100%] {item.version.product.name} ({item.version.name})
                       </Link>
                     </td>

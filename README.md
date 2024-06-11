@@ -36,6 +36,7 @@ A demo account is available for testing the application:
   - Entering shipping information.
   - Entering payment information.
   - Viewing the order summary.
+  - Payment method using ZaloPay (sandbox), Momo (developers), and COD.
 - **👤 Account Management**:
   - Viewing and updating account information.
   - Changing the account password.

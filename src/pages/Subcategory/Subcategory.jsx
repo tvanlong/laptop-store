@@ -57,7 +57,7 @@ function Subcategory({ setProgress }) {
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
       <Helmet>
-        <title>{subcategory?.name} | Danh mục sản phẩm</title>
+        <title>{`Danh mục sản phẩm ${subcategory?.name}`}</title>
         <meta name='description' content={`Danh mục sản phẩm ${subcategory?.name}`} />
       </Helmet>
       <div className='flex justify-between'>

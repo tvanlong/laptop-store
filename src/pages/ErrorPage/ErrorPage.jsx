@@ -1,7 +1,13 @@
+import { Helmet } from 'react-helmet-async'
+
 function ErrorPage() {
   return (
     <section className='flex h-full items-center dark:bg-gray-50 sm:p-16'>
       <div className='container mx-auto my-8 flex flex-col items-center justify-center space-y-8 px-5 text-center sm:max-w-md'>
+        <Helmet>
+          <title>Lỗi không xác định</title>
+          <meta name='description' content='Lỗi không xác định' />
+        </Helmet>
         <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' className='h-40 w-40'>
           <path
             fill='currentColor'

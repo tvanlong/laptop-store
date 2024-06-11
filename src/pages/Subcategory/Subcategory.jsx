@@ -1,6 +1,7 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { Pagination } from 'flowbite-react'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, createSearchParams, useNavigate, useParams } from 'react-router-dom'
 import { getSubcategoryById } from '~/apis/subcategories.api'
 import { getAllVersionsBySubcategoryId } from '~/apis/versions.api'
@@ -55,6 +56,10 @@ function Subcategory({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <Helmet>
+        <title>{subcategory?.name} | Danh mục sản phẩm</title>
+        <meta name='description' content={`Danh mục sản phẩm ${subcategory?.name}`} />
+      </Helmet>
       <div className='flex justify-between'>
         <h2 className='h-10 text-3xl font-bold uppercase'>{subcategory?.name}</h2>
         <nav className='flex' aria-label='Breadcrumb'>

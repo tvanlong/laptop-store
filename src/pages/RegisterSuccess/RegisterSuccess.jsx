@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { verifyEmail } from '~/apis/auth.api'
@@ -25,6 +26,10 @@ function RegisterSuccess() {
 
   return (
     <div className='h-screen bg-gray-100'>
+      <Helmet>
+        <title>Đăng ký thành công</title>
+        <meta name='description' content='Đăng ký thành công' />
+      </Helmet>
       <div className='bg-white p-6 md:mx-auto'>
         <svg viewBox='0 0 24 24' className='mx-auto my-6 h-16 w-16 text-green-600'>
           <path

@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -127,6 +128,10 @@ function Checkout({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <Helmet>
+        <title>Thanh toán</title>
+        <meta name='description' content='Thanh toán' />
+      </Helmet>
       <h2 className='text-center text-3xl font-bold'>Thanh Toán</h2>
       <p className='text-center text-lg'>
         Vui lòng kiểm tra thông tin khách hàng, thông tin giỏ hàng trước khi đặt hàng

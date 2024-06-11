@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 import { removeCart, removeItem } from '~/apis/carts.api'
@@ -70,6 +71,10 @@ function Cart({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <Helmet>
+        <title>Giỏ hàng</title>
+        <meta name='description' content='Giỏ hàng' />
+      </Helmet>
       <nav className='flex' aria-label='Breadcrumb'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>

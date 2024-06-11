@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { useContext } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { signInSuccess } from '~/apis/auth.api'
@@ -34,6 +35,10 @@ function LoginSuccess() {
 
   return (
     <div className='h-screen bg-gray-100'>
+      <Helmet>
+        <title>Đăng nhập thành công</title>
+        <meta name='description' content='Đăng nhập thành công' />
+      </Helmet>
       <div className='bg-white p-6 md:mx-auto'>
         <svg viewBox='0 0 24 24' className='mx-auto my-6 h-16 w-16 text-green-600'>
           <path

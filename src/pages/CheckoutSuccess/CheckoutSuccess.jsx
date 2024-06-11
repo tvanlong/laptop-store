@@ -1,8 +1,13 @@
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 
 function CheckoutSuccess() {
   return (
     <div className='h-screen bg-gray-100'>
+      <Helmet>
+        <title>Đặt hàng thành công</title>
+        <meta name='description' content='Đặt hàng thành công' />
+      </Helmet>
       <div className='bg-white p-6 md:mx-auto'>
         <svg viewBox='0 0 24 24' className='mx-auto my-6 h-16 w-16 text-green-600'>
           <path

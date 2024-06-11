@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { changePassword } from '~/apis/user.api'
@@ -65,6 +66,10 @@ function ChangePassword({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-10 max-w-[1400px]'>
+      <Helmet>
+        <title>Thay đổi mật khẩu</title>
+        <meta name='description' content='Thay đổi mật khẩu' />
+      </Helmet>
       <div className='grid grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
         <div className='col-span-4'>

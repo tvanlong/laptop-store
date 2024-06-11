@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -70,6 +71,10 @@ function Login({ setProgress }) {
 
   return (
     <div className='bg-white py-16'>
+      <Helmet>
+        <title>Đăng nhập</title>
+        <meta name='description' content='Đăng nhập' />
+      </Helmet>
       <div className='form-shadow m-auto max-w-[600px] px-12 py-8'>
         <h2 className='mb-7 cursor-pointer text-center text-lg font-normal uppercase'>
           <span className='border-b-2 border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng nhập</span>

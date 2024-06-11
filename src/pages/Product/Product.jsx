@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Carousel, Spinner } from 'flowbite-react'
 import { useContext, useEffect, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { addToCart } from '~/apis/carts.api'
@@ -68,6 +69,12 @@ function Product({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <Helmet>
+        <title>
+          [ Mới 100% ] {version?.product?.name} {version?.name}
+        </title>
+        <meta name='description' content={`[ Mới 100% ] ${version?.product?.name} ${version?.name}`} />
+      </Helmet>
       <nav className='flex' aria-label='Breadcrumb'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>

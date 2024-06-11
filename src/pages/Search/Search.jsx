@@ -1,6 +1,7 @@
 import { keepPreviousData } from '@tanstack/react-query'
 import { Pagination } from 'flowbite-react'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import FilterDropdown from '~/components/FilterDropdown'
 import Loading from '~/components/Loading'
@@ -42,6 +43,10 @@ function Search({ setProgress }) {
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+      <Helmet>
+        <title>Tìm kiếm sản phẩm : {queryParamsConfig.keyword}</title>
+        <meta name='description' content='Tìm kiếm sản phẩm' />
+      </Helmet>
       <div className='flex justify-between'>
         <h2 className='h-10 text-xl font-bold uppercase'>Từ khóa tìm kiếm: {queryParamsConfig.keyword}</h2>
         <nav className='flex' aria-label='Breadcrumb'>

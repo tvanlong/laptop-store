@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
@@ -37,6 +38,10 @@ function Home({ setProgress }) {
   return (
     <>
       <div className='mx-auto max-w-[1400px]'>
+        <Helmet>
+          <title>Trang chủ | Laptop KT</title>
+          <meta name='description' content='Laptop KT - Chuyên cung cấp laptop chính hãng' />
+        </Helmet>
         <Banner />
         <SlickSlider />
         <div className='mb-20 rounded-lg border border-[#dcdcdc] p-6'>

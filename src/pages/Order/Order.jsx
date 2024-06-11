@@ -69,8 +69,8 @@ function Order({ setProgress }) {
         <div className='col-span-4'>
           {orders.length > 0 ? (
             orders.map((order) => (
-              <div key={order._id} className='mb-10 border border-gray-200 p-4 shadow-inner'>
-                <div className='flex justify-between border-b border-gray-200 p-4'>
+              <div key={order._id} className='mb-10 border border-gray-300 p-4 shadow-inner'>
+                <div className='flex justify-between border-b border-gray-300 p-4'>
                   <div>
                     Mã đơn hàng: <span className=''>#{order?._id.toUpperCase()}</span>
                   </div>
@@ -152,7 +152,7 @@ function Order({ setProgress }) {
                     {order?.status}
                   </h4>
                 </div>
-                <div className='border-b border-gray-200 p-4'>
+                <div className='border-b border-gray-300 p-4'>
                   {order?.items?.map((item) => (
                     <div key={item._id} className='flex items-center py-4'>
                       <img
@@ -166,24 +166,26 @@ function Order({ setProgress }) {
                             name: `${item.version.product.name} ${item.version.name}`,
                             id: item.version._id
                           })}`}
-                          className='max-w-[600px]'
+                          className='max-w-[600px] truncate block hover:underline text-gray-900 font-medium'
                         >
                           [Mới 100%] {item.version.product.name} {item.version.name}
                         </Link>
-                        <span className='text-gray-700'>x {item.quantity}</span>
+                        <span className='text-gray-500'> - ( x{item.quantity})</span>
                       </div>
                       <div>
-                        <span className='mr-4 text-sm text-gray-400 line-through'>
+                        <span className='mr-4 text-sm text-gray-500 line-through'>
                           ₫ {formatCurrency(item.version.old_price)}
                         </span>
-                        <span className='text-sm text-gray-400'>₫ {formatCurrency(item.version.current_price)}</span>
+                        <span className='text-sm font-semibold text-gray-500'>
+                          ₫ {formatCurrency(item.version.current_price)}
+                        </span>
                       </div>
                     </div>
                   ))}
                 </div>
                 <h4 className='p-4 text-right'>
                   <span className='mr-3 text-lg'>Thành tiền:</span>
-                  <span className='text-xl text-red-700'>₫ {formatCurrency(order?.total_price)}</span>
+                  <span className='text-xl font-extrabold text-red-700'>₫ {formatCurrency(order?.total_price)}</span>
                 </h4>
                 {order?.status === 'Đang giao hàng' && (
                   <div className='text-right'>

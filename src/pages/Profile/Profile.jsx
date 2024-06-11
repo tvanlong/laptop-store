@@ -129,7 +129,7 @@ function Profile({ setProgress }) {
         <Navbar user={user} />
         <div className='col-span-4'>
           <form className='p-4' onSubmit={onSubmit}>
-            <div className='border-b border-gray-200'>
+            <div className='border-b border-gray-300'>
               <h2 className='mb-2 text-2xl font-semibold'>Thông tin cá nhân</h2>
               <p className='mb-4 text-sm text-gray-500'>
                 Cập nhật thông tin cá nhân để bảo mật tài khoản (* Địa chỉ email không thể thay đổi sau khi đăng ký)

@@ -4,7 +4,7 @@ import { path } from '~/constants/path'
 function Navbar({ user }) {
   return (
     <div className='col-span-1'>
-      <div className='flex items-center border-b border-gray-200 pb-6'>
+      <div className='flex items-center border-b border-gray-300 pb-6'>
         <img className='h-12 w-12 rounded-full' src={user?.avatar} alt='avatar' />
         <span className='ml-5 text-sm font-semibold'>{user?.name}</span>
       </div>

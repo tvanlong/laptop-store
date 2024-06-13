@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Carousel, Spinner } from 'flowbite-react'
-import { useContext, useEffect, useMemo } from 'react'
+import { Carousel, Modal, Spinner } from 'flowbite-react'
+import { useContext, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -15,6 +15,9 @@ import { generateNameId, getIdFromNameId } from '~/utils/util'
 function Product({ setProgress }) {
   const { isAuthenticated, profile } = useContext(AppContext)
   const queryClient = useQueryClient()
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+  const [isConfigurationModalOpen, setIsConfigurationModalOpen] = useState(false)
+  const [isProductInfoModalOpen, setIsProductInfoModalOpen] = useState(false)
   const { nameId } = useParams()
   const versionId = getIdFromNameId(nameId)
   const { data: versionData, isLoading } = useQuery({
@@ -161,15 +164,24 @@ function Product({ setProgress }) {
             ))}
           </Carousel>
           <div className='mt-10 flex justify-center gap-4'>
-            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+            <div
+              className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
+              onClick={() => setIsImageModalOpen(true)}
+            >
               <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/images.svg' alt='' />
               <span className='text-xs'>Xem ảnh thực tế</span>
             </div>
-            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+            <div
+              className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
+              onClick={() => setIsConfigurationModalOpen(true)}
+            >
               <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/configuration.svg' alt='' />
               <span className='text-xs'>Thông số kỹ thuật</span>
             </div>
-            <div className='flex flex-col items-center border border-gray-300 px-4 py-2 hover:border-green-600'>
+            <div
+              className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
+              onClick={() => setIsProductInfoModalOpen(true)}
+            >
               <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/article2.svg' alt='' />
               <span className='text-xs'>Thông tin sản phẩm</span>
             </div>
@@ -307,6 +319,98 @@ function Product({ setProgress }) {
           </div>
         </div>
       </div>
+      <Modal show={isImageModalOpen} size='lg' popup={true} onClose={() => setIsImageModalOpen(false)}>
+        <br />
+        <Modal.Body>
+          <div className='text-center'>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Xem ảnh thực tế</h3>
+            <div className='space-y-6'>
+              <div className='grid grid-cols-1 gap-4'>
+                {version?.product?.images?.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`${version.product.name} ${version.name}`}
+                    className='h-full w-full object-cover'
+                  />
+                ))}
+              </div>
+            </div>
+            <button
+              onClick={() => setIsImageModalOpen(false)}
+              className='mt-6 w-full rounded bg-red-600 py-3 text-white hover:bg-red-700'
+            >
+              Đóng
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={isConfigurationModalOpen} size='lg' popup={true} onClose={() => setIsConfigurationModalOpen(false)}>
+        <br />
+        <Modal.Body>
+          <div className=''>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 text-center'>Thông số sản phẩm</h3>
+            <div className='space-y-6'>
+              <div className='grid grid-cols-1 gap-4'>
+                <ol className='my-5 list-inside list-none space-y-1 text-gray-500'>
+                  {version?.description?.map((spec, index) => {
+                    const [key, value] = spec.split(':')
+                    return (
+                      <li key={index} className='text-sm'>
+                        <span className='font-semibold text-gray-700'>{key}</span>
+                        {value}
+                      </li>
+                    )
+                  })}
+                </ol>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsConfigurationModalOpen(false)}
+              className='mt-6 w-full rounded bg-red-600 py-3 text-white hover:bg-red-700'
+            >
+              Đóng
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
+      <Modal show={isProductInfoModalOpen} size='lg' popup={true} onClose={() => setIsProductInfoModalOpen(false)}>
+        <br />
+        <Modal.Body>
+          <div className=''>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 text-center'>
+              Thông tin sản phẩm
+            </h3>
+            <div className='space-y-6'>
+              <div className='grid grid-cols-2 gap-4'>
+                {version?.product?.images?.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`${version.product.name} ${version.name}`}
+                    className='h-full w-full object-cover'
+                  />
+                ))}
+              </div>
+              <p>
+                Chiếc laptop này là sự lựa chọn hoàn hảo cho những người cần một thiết bị di động mạnh mẽ và đa dạng
+                tính năng. Với vi xử lý hiệu suất cao và dung lượng RAM lớn, bạn có thể dễ dàng xử lý các tác vụ đa
+                nhiệm và các ứng dụng nặng. Màn hình lớn với độ phân giải cao mang lại trải nghiệm xem phim và làm việc
+                thú vị hơn bao giờ hết. Đặc biệt, laptop này được trang bị các cổng kết nối đa dạng, giúp bạn dễ dàng
+                kết nối với các thiết bị ngoại vi và phụ kiện. Với thiết kế mỏng nhẹ và pin lâu, chiếc laptop này là sự
+                lựa chọn lý tưởng cho việc di chuyển và làm việc từ xa. Tóm lại, đây là một sản phẩm đa năng, tiện ích
+                và hiệu quả cho nhu cầu làm việc và giải trí hàng ngày của bạn.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsProductInfoModalOpen(false)}
+              className='mt-6 w-full rounded bg-red-600 py-3 text-white hover:bg-red-700 style'
+            >
+              Đóng
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   )
 }

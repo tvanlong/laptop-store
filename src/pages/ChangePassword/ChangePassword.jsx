@@ -89,6 +89,7 @@ function ChangePassword({ setProgress }) {
                 onChange={(e) => handleChangeInput(e)}
                 {...register('password')}
               />
+              {errors.password && <p className='text-red-500 text-sm mt-1'>{errors.password.message}</p>}
             </div>
             <div className='mb-6'>
               <label htmlFor='password_confirmation' className='mb-2 block text-sm font-medium text-gray-900'>
@@ -101,6 +102,9 @@ function ChangePassword({ setProgress }) {
                 onChange={(e) => handleChangeInput(e)}
                 {...register('confirm_password')}
               />
+              {errors.confirm_password && (
+                <p className='text-red-500 text-sm mt-1'>{errors.confirm_password.message}</p>
+              )}
             </div>
             <label className='mb-5 flex cursor-pointer items-center'>
               <input

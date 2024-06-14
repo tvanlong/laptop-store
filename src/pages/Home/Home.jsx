@@ -11,6 +11,7 @@ import { useVersions } from '~/hooks/useVersions'
 import Banner from '~/pages/Home/components/Banner'
 import SlickSlider from '~/pages/Home/components/SlickSlider'
 import { shuffle } from '~/utils/shuffle'
+import CountdownTimer from './components/CountdownTimer'
 
 function Home({ setProgress }) {
   const { data, isLoading } = useVersions()
@@ -81,30 +82,7 @@ function Home({ setProgress }) {
             <img src='https://laptopkhanhtran.vn/css/icon/lightning.svg' alt='' />
             <h2 className='ml-3 font-bold text-white'>GIỜ VÀNG GIÁ SỐC</h2>
             <div className='ml-5 mr-3 font-semibold text-white'>chỉ còn</div>
-            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
-              <span className='font-bold text-amber-400' id='days'>
-                11
-              </span>
-              <span className='text-white'>ngày</span>
-            </div>
-            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
-              <span className='font-bold text-amber-400' id='hours'>
-                20
-              </span>
-              <span className='text-white'>giờ</span>
-            </div>
-            <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
-              <span className='font-bold text-amber-400' id='minutes'>
-                26
-              </span>
-              <span className='text-white'>phút</span>
-            </div>
-            <div className='flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
-              <span className='font-bold text-amber-400' id='seconds'>
-                36
-              </span>
-              <span className='text-white'>giây</span>
-            </div>
+            <CountdownTimer />
           </div>
           <Swiper
             breakpoints={{

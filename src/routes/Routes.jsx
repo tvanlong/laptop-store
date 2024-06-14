@@ -15,6 +15,7 @@ import RegisterSuccess from '~/pages/RegisterSuccess'
 const Cart = lazy(() => import('~/pages/Cart'))
 const Category = lazy(() => import('~/pages/Category'))
 const ChangePassword = lazy(() => import('~/pages/ChangePassword'))
+const ChangeEmail = lazy(() => import('~/pages/ChangeEmail'))
 const Checkout = lazy(() => import('~/pages/Checkout'))
 const Home = lazy(() => import('~/pages/Home'))
 const Login = lazy(() => import('~/pages/Login'))
@@ -141,6 +142,16 @@ function Routes() {
             <MainLayout>
               <Suspense fallback={<Loading />}>
                 <ChangePassword setProgress={setProgress} />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: path.changeEmail,
+          element: (
+            <MainLayout>
+              <Suspense fallback={<Loading />}>
+                <ChangeEmail setProgress={setProgress} />
               </Suspense>
             </MainLayout>
           )

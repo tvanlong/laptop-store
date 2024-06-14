@@ -75,8 +75,8 @@ function Profile({ setProgress }) {
   })
 
   const onSubmit = handleSubmit(async (data) => {
+    const toastId = toast.loading('Đang cập nhật thông tin...')
     try {
-      const toastId = toast.loading('Đang cập nhật thông tin...')
       if (profile?.avatar !== DEFAULT_AVATAR) {
         await deleteImageMutate(extractPublicIdFromUrl(profile?.avatar))
       }
@@ -96,7 +96,7 @@ function Profile({ setProgress }) {
       }
       toast.success('Cập nhật thông tin thành công', { id: toastId })
     } catch (error) {
-      toast.error('Cập nhật thông tin thất bại')
+      toast.error('Cập nhật thông tin thất bại', { id: toastId })
     }
   })
 
@@ -145,8 +145,8 @@ function Profile({ setProgress }) {
                     type='text'
                     id='cus_name'
                     className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
-                    onChange={(e) => handleChangeInput(e)}
                     {...register('name')}
+                    onChange={(e) => handleChangeInput(e)}
                   />
                   {errors.name && <p className='text-sm text-red-500'>{errors.name.message}</p>}
                 </div>
@@ -159,8 +159,8 @@ function Profile({ setProgress }) {
                     id='email'
                     disabled
                     className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
-                    onChange={(e) => handleChangeInput(e)}
                     {...register('email')}
+                    onChange={(e) => handleChangeInput(e)}
                   />
                   {errors.email && <p className='text-sm text-red-500'>{errors.email.message}</p>}
                 </div>
@@ -172,8 +172,8 @@ function Profile({ setProgress }) {
                     type='text'
                     id='cus_phone'
                     className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
-                    onChange={(e) => handleChangeInput(e)}
                     {...register('phone')}
+                    onChange={(e) => handleChangeInput(e)}
                   />
                   {errors.phone && <p className='text-sm text-red-500'>{errors.phone.message}</p>}
                 </div>

@@ -9,6 +9,7 @@ export const path = {
   search: '/search',
   profile: '/profile',
   changePassword: '/change-password',
+  changeEmail: '/change-email',
   order: '/order',
   category: '/category/:categoryId',
   subcategory: '/subcategory/:subcategoryId',

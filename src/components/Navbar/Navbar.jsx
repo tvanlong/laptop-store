@@ -29,7 +29,9 @@ function Navbar({ user }) {
           </svg>
           <NavLink
             to={path.profile}
-            className={({ isActive }) => (isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')}
+            className={({ isActive }) =>
+              isActive ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-900'
+            }
           >
             Tài khoản của tôi
           </NavLink>
@@ -54,7 +56,9 @@ function Navbar({ user }) {
           </svg>
           <NavLink
             to={path.order}
-            className={({ isActive }) => (isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')}
+            className={({ isActive }) =>
+              isActive ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-900'
+            }
           >
             Đơn mua
           </NavLink>
@@ -79,7 +83,9 @@ function Navbar({ user }) {
           </svg>
           <NavLink
             to={path.changePassword}
-            className={({ isActive }) => (isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')}
+            className={({ isActive }) =>
+              isActive ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-900'
+            }
           >
             Đổi mật khẩu
           </NavLink>
@@ -105,7 +111,9 @@ function Navbar({ user }) {
 
           <NavLink
             to={path.changeEmail}
-            className={({ isActive }) => (isActive ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')}
+            className={({ isActive }) =>
+              isActive ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-900'
+            }
           >
             Đổi địa chỉ email
           </NavLink>

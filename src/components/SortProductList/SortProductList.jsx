@@ -21,7 +21,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
     })
   }
   return (
-    <div className='flex items-center rounded-lg border border-gray-300 p-6'>
+    <div className='hidden lg:flex items-center rounded-lg border border-gray-300 p-6'>
       <div className='text-sm'>Sắp xếp theo:</div>
       <div className='ml-3 flex'>
         <div

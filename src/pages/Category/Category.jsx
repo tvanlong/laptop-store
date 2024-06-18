@@ -6,9 +6,11 @@ import { Link, createSearchParams, useNavigate, useParams } from 'react-router-d
 import { getCategoryById } from '~/apis/categories.api'
 import { getAllVersionsByCategoryId } from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
+import FilterProductMobile from '~/components/FilterProductMobile'
 import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
+import SortProductListMobile from '~/components/SortProductListMobile'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
 
@@ -60,7 +62,7 @@ function Category({ setProgress }) {
         <meta name='description' content={`Danh mục sản phẩm ${category?.name}`} />
       </Helmet>
       <div className='flex justify-between'>
-        <h2 className='h-10 text-3xl font-bold uppercase'>{category?.name}</h2>
+        <h2 className='hidden sm:block h-10 text-xl lg:text-2xl xl:text-3xl font-bold uppercase'>{category?.name}</h2>
         <nav className='flex' aria-label='Breadcrumb'>
           <ol className='inline-flex items-center space-x-1 md:space-x-3'>
             <li className='inline-flex cursor-pointer items-center opacity-60'>
@@ -122,8 +124,12 @@ function Category({ setProgress }) {
           </ol>
         </nav>
       </div>
-      <div className='mt-10 grid grid-cols-12 gap-8'>
-        <div className='col-span-2'>
+      <div className='mt-10 lg:hidden flex justify-end gap-4 border-t border-gray-300'>
+        <SortProductListMobile pathname={`/category/${categoryId}`} queryParamsConfig={queryParamsConfig} />
+        <FilterProductMobile queryParamsConfig={queryParamsConfig} />
+      </div>
+      <div className='mt-10 lg:grid lg:grid-cols-12 gap-8'>
+        <div className='hidden lg:block xl:col-span-2 lg:col-span-3'>
           <div className='rounded-lg border border-gray-300 px-3 py-5'>
             <h3 className='mb-4 text-xl font-semibold'>Lọc sản phẩm</h3>
             <FilterDropdown title='Khoảng giá' options={priceOptions} queryParamsConfig={queryParamsConfig} />
@@ -138,9 +144,9 @@ function Category({ setProgress }) {
             <FilterDropdown title='Card màn hình' options={vgaOptions} queryParamsConfig={queryParamsConfig} />
           </div>
         </div>
-        <div className='col-span-10'>
+        <div className='xl:col-span-10 lg:col-span-9'>
           <SortProductList pathname={`/category/${categoryId}`} queryParamsConfig={queryParamsConfig} />
-          <div className='mb-10 grid grid-cols-4 gap-3 p-6'>
+          <div className='mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 p-6'>
             {versions.map((version) => (
               <ProductItem key={version._id} version={version} isHover />
             ))}

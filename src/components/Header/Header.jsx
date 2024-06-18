@@ -181,7 +181,7 @@ function Header() {
             </svg>
           </label>
           <div
-            className={isOpenMobileMenu ? 'lg:hidden fixed left-0 right-0 z-10 top-[88px] bg-[#2e3030]' : 'hidden'}
+            className={`fixed left-0 right-0 z-10 top-[88px] bg-[#2e3030] ${isOpenMobileMenu ? 'lg:hidden' : 'hidden'}`}
             id='mobile-menu'
           >
             <div className='space-y-1 px-2 pb-3 pt-2'>
@@ -189,13 +189,19 @@ function Header() {
                 to={path.home}
                 className={({ isActive }) =>
                   isActive
-                    ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white hover:bg-none'
+                    ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
                     : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
                 }
               >
                 Trang chủ
               </NavLink>
-              <div className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer'>
+              <div
+                className={
+                  location.pathname.includes('/category') || location.pathname.includes('/subcategory')
+                    ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
+                    : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer'
+                }
+              >
                 <div
                   className='flex justify-between items-center'
                   onClick={() => setIsOpenMenuCategory(!isOpenMenuCategory)}
@@ -207,29 +213,46 @@ function Header() {
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='currentColor'
-                    className={`h-4 w-4 ${isOpenMenuCategory ? 'transform rotate-180' : ''}`}
+                    className={`h-4 w-4 transition-transform ${isOpenMenuCategory ? 'rotate-180' : ''}`}
                   >
                     <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 8.25l-7.5 7.5-7.5-7.5' />
                   </svg>
                 </div>
-                <ul
-                  className={`overflow-hidden transition-all duration-300 ${isOpenMenuCategory ? 'block' : 'hidden'}`}
-                >
+                <ul className={`transition-all duration-300 ${isOpenMenuCategory ? 'block' : 'hidden'}`}>
                   {categories.map((category) => (
                     <li key={category._id} className='px-6 py-3 text-sm text-gray-300 hover:text-green-700'>
                       <Link
                         className='font-semibold'
                         to={`/category/${category._id}`}
-                        onClick={() => navigateToSubcategory(category._id, category.subcategories[0]?._id)}
+                        onClick={() => {
+                          setIsOpenMobileMenu(false)
+                          setIsOpenMenuCategory(false)
+                        }}
                       >
                         {category.name}
                       </Link>
+                      <div className='flex flex-col gap-1 mt-2'>
+                        {category.subcategories.map((subcategory) => (
+                          <Link
+                            key={subcategory._id}
+                            className='text-gray-400 hover:text-gray-200'
+                            to={`/subcategory/${subcategory._id}`}
+                            onClick={() => {
+                              setIsOpenMobileMenu(false)
+                              setIsOpenMenuCategory(false)
+                              navigateToSubcategory(category._id, subcategory._id)
+                            }}
+                          >
+                            {subcategory.name}
+                          </Link>
+                        ))}
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
               <NavLink
-                to={'/about'}
+                to='/about'
                 className={({ isActive }) =>
                   isActive
                     ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
@@ -239,7 +262,7 @@ function Header() {
                 Giới thiệu
               </NavLink>
               <NavLink
-                to={'/product'}
+                to='/product'
                 className={({ isActive }) =>
                   isActive
                     ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
@@ -249,7 +272,7 @@ function Header() {
                 Sản phẩm
               </NavLink>
               <NavLink
-                to={'/news'}
+                to='/news'
                 className={({ isActive }) =>
                   isActive
                     ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
@@ -258,33 +281,42 @@ function Header() {
               >
                 Tin tức
               </NavLink>
-              {isAuthenticated && (
-                <NavLink
-                  to={path.profile}
-                  className={({ isActive }) =>
-                    isActive
-                      ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
-                      : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
-                  }
-                >
-                  Tài khoản
-                </NavLink>
-              )}
-              {!isAuthenticated && (
+              {isAuthenticated ? (
+                <>
+                  <NavLink
+                    to={path.profile}
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
+                        : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
+                    }
+                  >
+                    Tài khoản
+                  </NavLink>
+                  <div
+                    className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer'
+                    onClick={handleSignOut}
+                  >
+                    Đăng xuất
+                  </div>
+                  <NavLink
+                    to={path.cart}
+                    className={({ isActive }) =>
+                      isActive
+                        ? 'block rounded-md bg-gray-700 px-3 py-2 text-base font-medium text-white'
+                        : 'block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
+                    }
+                  >
+                    Giỏ hàng {totalQuantity > 0 && <span className='text-red-500'>({totalQuantity})</span>}
+                  </NavLink>
+                </>
+              ) : (
                 <Link
                   to={path.login}
                   className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
                 >
                   Đăng nhập
                 </Link>
-              )}
-              {isAuthenticated && (
-                <div
-                  className='block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white cursor-pointer'
-                  onClick={handleSignOut}
-                >
-                  Đăng xuất
-                </div>
               )}
             </div>
           </div>

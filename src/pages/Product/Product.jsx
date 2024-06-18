@@ -73,14 +73,14 @@ function Product({ setProgress }) {
   if (isLoading) return <Loading />
 
   return (
-    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6'>
+    <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6 overflow-hidden'>
       <Helmet>
         <title>
           [ Mới 100% ] {version?.product?.name} {version?.name}
         </title>
         <meta name='description' content={`[ Mới 100% ] ${version?.product?.name} ${version?.name}`} />
       </Helmet>
-      <nav className='flex' aria-label='Breadcrumb'>
+      <nav className='flex'>
         <ol className='inline-flex items-center space-x-1 md:space-x-3'>
           <li className='inline-flex items-center opacity-60'>
             <Link to='/' className='inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600'>
@@ -121,7 +121,7 @@ function Product({ setProgress }) {
               </Link>
             </div>
           </li>
-          <li aria-current='page opacity-60'>
+          <li className='opacity-60 hidden md:block'>
             <div className='flex items-center'>
               <svg
                 className='mx-1 h-3 w-3 text-gray-400'
@@ -143,7 +143,7 @@ function Product({ setProgress }) {
                   name: version?.product?.name,
                   id: version?.product?._id
                 })}`}
-                className='ml-1 text-sm text-gray-500 md:ml-2'
+                className='ml-1 text-sm text-gray-500 md:ml-2 line-clamp-1'
               >
                 [ Mới 100% ] {version?.product?.name} {version?.name}
               </Link>
@@ -152,8 +152,8 @@ function Product({ setProgress }) {
         </ol>
       </nav>
       <div className='mt-10 grid grid-cols-12 gap-8'>
-        <div className='col-span-6'>
-          <Carousel className='h-[30rem]' indicators={false}>
+        <div className='lg:col-span-6 md:col-span-5 col-span-12'>
+          <Carousel className='lg:h-[30rem] h-[20rem]' indicators={false}>
             {version?.product?.images?.map((image, index) => (
               <img
                 key={index}
@@ -163,54 +163,58 @@ function Product({ setProgress }) {
               />
             ))}
           </Carousel>
-          <div className='mt-10 flex justify-center gap-4'>
+          <div className='mt-10 hidden md:flex justify-center gap-4'>
             <div
               className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
               onClick={() => setIsImageModalOpen(true)}
             >
-              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/images.svg' alt='' />
+              <img className='w-4 h-4 lg:h-8 lg:w-8' src='https://laptopkhanhtran.vn/css/icon/images.svg' alt='' />
               <span className='text-xs'>Xem ảnh thực tế</span>
             </div>
             <div
               className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
               onClick={() => setIsConfigurationModalOpen(true)}
             >
-              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/configuration.svg' alt='' />
+              <img
+                className='w-4 h-4 lg:h-8 lg:w-8'
+                src='https://laptopkhanhtran.vn/css/icon/configuration.svg'
+                alt=''
+              />
               <span className='text-xs'>Thông số kỹ thuật</span>
             </div>
             <div
               className='flex flex-col items-center border border-gray-300 px-4 py-2 cursor-pointer hover:border-green-600'
               onClick={() => setIsProductInfoModalOpen(true)}
             >
-              <img className='h-8 w-8' src='https://laptopkhanhtran.vn/css/icon/article2.svg' alt='' />
+              <img className='w-4 h-4 lg:h-8 lg:w-8' src='https://laptopkhanhtran.vn/css/icon/article2.svg' alt='' />
               <span className='text-xs'>Thông tin sản phẩm</span>
             </div>
           </div>
-          <div className='mt-10 rounded-lg bg-[#f4f4f4] py-6'>
-            <div className='grid grid-cols-2 gap-4'>
+          <div className='mt-10 hidden md:block rounded-lg bg-[#f4f4f4] py-6'>
+            <div className='grid lg:grid-cols-2 gap-4'>
               <div className='flex items-center px-4'>
-                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/giaohang.svg' alt='' />
+                <img className='w-8 h-8 lg:h-14 lg:w-14' src='https://laptopkhanhtran.vn/images/giaohang.svg' alt='' />
                 <div className='ml-5'>
                   <div className='text-sm font-semibold text-green-900'>Giao hàng toàn quốc</div>
                   <div className='text-xs'>Miễn phí giao hàng tại Hà Nội</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/support.svg' alt='' />
+                <img className='w-8 h-8 lg:h-14 lg:w-14' src='https://laptopkhanhtran.vn/images/support.svg' alt='' />
                 <div className='ml-5'>
                   <div className='text-sm font-semibold text-green-900'>Hỗ trợ trực tuyến</div>
                   <div className='text-xs'>Chúng tôi luôn hỗ trợ 24/7</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/promotion.svg' alt='' />
+                <img className='w-8 h-8 lg:h-14 lg:w-14' src='https://laptopkhanhtran.vn/images/promotion.svg' alt='' />
                 <div className='ml-5'>
                   <div className='text-sm font-semibold text-green-900'>Giá cả phải chăng</div>
                   <div className='text-xs'>Chúng tôi luôn có giá tốt nhất cho khách hàng</div>
                 </div>
               </div>
               <div className='flex items-center px-4'>
-                <img className='h-14 w-14' src='https://laptopkhanhtran.vn/images/cashback.svg' alt='' />
+                <img className='w-8 h-8 lg:h-14 lg:w-14' src='https://laptopkhanhtran.vn/images/cashback.svg' alt='' />
                 <div className='ml-5'>
                   <div className='text-sm font-semibold text-green-900'>Chính sách hoàn tiền</div>
                   <div className='text-xs'>Hoàn tiền 100% nếu sản phẩm không tốt</div>
@@ -219,13 +223,13 @@ function Product({ setProgress }) {
             </div>
           </div>
         </div>
-        <div className='col-span-6'>
-          <h2 className='mb-5 text-2xl font-bold'>
+        <div className='lg:col-span-6 md:col-span-7 col-span-12'>
+          <h2 className='mb-5 lg:text-2xl md:text-xl font-bold'>
             [ Mới 100% ] {version?.product?.name} {version?.name}
           </h2>
           <div className='my-2 flex items-end gap-3'>
-            <div className='text-3xl font-bold text-red-500'>{formatCurrency(version?.current_price)} đ</div>
-            <div className='text-lg font-semibold text-gray-500 line-through'>
+            <div className='text-xl lg:text-3xl font-bold text-red-500'>{formatCurrency(version?.current_price)} đ</div>
+            <div className='lg:text-lg font-semibold text-gray-500 line-through'>
               {formatCurrency(version?.old_price)} đ
             </div>
           </div>
@@ -262,10 +266,12 @@ function Product({ setProgress }) {
                     id: version._id
                   })}`}
                 >
-                  <div className='mb-2 text-sm'>{version?.name}</div>
+                  <div className='mb-2 text-xs lg:text-sm'>{version?.name}</div>
                   <div className='flex'>
-                    <div className='mr-3 text-sm font-semibold'>{formatCurrency(version.current_price)} đ</div>
-                    <div className='text-sm font-semibold line-through opacity-60'>
+                    <div className='mr-3 text-xs lg:text-sm font-semibold'>
+                      {formatCurrency(version.current_price)} đ
+                    </div>
+                    <div className='text-xs lg:text-sm font-semibold line-through opacity-60'>
                       {formatCurrency(version.old_price)} đ
                     </div>
                   </div>

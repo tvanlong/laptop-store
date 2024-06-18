@@ -81,51 +81,96 @@ function InputQuantity({ item }) {
   }
 
   return (
-    <div className='items-centerflex flex items-center'>
-      <button
-        className='flex h-6 w-6 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600'
-        onClick={() => handleDecreaseQuantity(item.version._id)}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth='1.5'
-          stroke='currentColor'
-          className='h-3 w-3'
+    <>
+      <div className='hidden md:flex items-center'>
+        <button
+          className='flex h-6 w-6 items-center justify-center rounded-l-sm border border-gray-300 text-gray-600'
+          onClick={() => handleDecreaseQuantity(item.version._id)}
         >
-          <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 12h-15'></path>
-        </svg>
-      </button>
-      <div>
-        <input
-          className='h-6 w-12 border-b border-t border-gray-300 p-1 text-center text-xs outline-none'
-          value={buyCount}
-          onChange={(e) => handleChangeQuantity(e)}
-          onBlur={() => handleUpdateQuantity(item.version._id)}
-          onKeyDown={(e) => {
-            if (!/[0-9]|Backspace|Enter|Delete|ArrowLeft|ArrowRight/.test(e.key)) {
-              e.preventDefault()
-            }
-          }}
-        />
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='currentColor'
+            className='h-3 w-3'
+          >
+            <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 12h-15'></path>
+          </svg>
+        </button>
+        <div>
+          <input
+            className='h-6 w-12 border-b border-t border-gray-300 p-1 text-center text-xs outline-none'
+            value={buyCount}
+            onChange={(e) => handleChangeQuantity(e)}
+            onBlur={() => handleUpdateQuantity(item.version._id)}
+            onKeyDown={(e) => {
+              if (!/[0-9]|Backspace|Enter|Delete|ArrowLeft|ArrowRight/.test(e.key)) {
+                e.preventDefault()
+              }
+            }}
+          />
+        </div>
+        <button
+          className='flex h-6 w-6 items-center justify-center rounded-r-sm border border-gray-300 text-gray-600'
+          onClick={() => handleIncreaseQuantity(item.version._id)}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth='1.5'
+            stroke='currentColor'
+            className='h-3 w-3'
+          >
+            <path strokeLinecap='round' strokeLinejoin='round' d='M12 4.5v15m7.5-7.5h-15'></path>
+          </svg>
+        </button>
       </div>
-      <button
-        className='flex h-6 w-6 items-center justify-center rounded-r-sm border border-gray-300 text-gray-600'
-        onClick={() => handleIncreaseQuantity(item.version._id)}
-      >
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 24 24'
-          strokeWidth='1.5'
-          stroke='currentColor'
-          className='h-3 w-3'
+      <div className='flex items-center md:hidden'>
+        <button
+          type='button'
+          onClick={() => handleDecreaseQuantity(item.version._id)}
+          className='flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 focus:ring-2 focus:outline-none'
         >
-          <path strokeLinecap='round' strokeLinejoin='round' d='M12 4.5v15m7.5-7.5h-15'></path>
-        </svg>
-      </button>
-    </div>
+          <svg
+            className='w-2.5 h-2.5 text-gray-900'
+            aria-hidden='true'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 18 2'
+          >
+            <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M1 1h16' />
+          </svg>
+        </button>
+        <input
+          type='text'
+          value={buyCount}
+          className='flex-shrink-0 text-gray-900 border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center'
+        />
+        <button
+          type='button'
+          onClick={() => handleIncreaseQuantity(item.version._id)}
+          className='flex-shrink-0 bg-gray-100 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-md h-5 w-5 focus:ring-gray-100 focus:ring-2 focus:outline-none'
+        >
+          <svg
+            className='w-2.5 h-2.5 text-gray-900'
+            aria-hidden='true'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 18 18'
+          >
+            <path
+              stroke='currentColor'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
+              d='M9 1v16M1 9h16'
+            />
+          </svg>
+        </button>
+      </div>
+    </>
   )
 }
 

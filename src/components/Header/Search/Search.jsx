@@ -35,7 +35,7 @@ function Search() {
   })
 
   return (
-    <div className='flex basis-2/5'>
+    <div className='hidden md:flex md:basis-3/5 xl:basis-2/5 lg:basis-2/6'>
       <form className='relative hidden w-4/5 md:block' method='POST' onSubmit={onSubmit}>
         <button type='submit' className='absolute inset-y-0 left-0 z-10 flex items-center pl-3'>
           <svg
@@ -57,7 +57,7 @@ function Search() {
         <input
           type='text'
           id='search-navbar'
-          className='block w-full rounded-full border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900'
+          className='block w-full rounded-full border border-gray-300 bg-gray-50 md:text-xs p-2 pl-10 xl:text-sm text-gray-900'
           placeholder='Bạn muốn tìm sản phẩm gì...'
           ref={inputRef}
           value={searchValue}

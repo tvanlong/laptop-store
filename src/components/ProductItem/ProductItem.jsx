@@ -32,7 +32,7 @@ function ProductItem({ version, isHover = false }) {
         <img
           src={version.product.images[0]}
           alt={`${version.product.name} ${version.name}`}
-          className='rounded-lg h-28 w-52 object-contain'
+          className='rounded-lg h-28 w-full object-contain'
         />
         <div className='my-2 line-clamp-2 text-sm font-bold'>
           {version?.product.name} ({version?.name})
@@ -52,7 +52,7 @@ function ProductItem({ version, isHover = false }) {
             )
           })}
         </ol>
-        <div className='my-2 flex justify-between text-sm'>
+        <div className='my-2 flex justify-between text-xs 2xl:text-sm'>
           <div className='font-bold text-red-700'>{formatCurrency(version.current_price)} đ</div>
           <div className='font-bold text-gray-500 line-through'>{formatCurrency(version.old_price)} đ</div>
           <div className='font-bold text-red-700'>

@@ -21,19 +21,19 @@ function CountdownTimer() {
 
   return (
     <div className='flex'>
-      <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
+      <div className='mr-3 flex text-xs md:text-base flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
         <span className='font-bold text-amber-400' id='hours'>
           {hours < 10 ? `0${hours}` : hours}
         </span>
         <span className='text-white'>giờ</span>
       </div>
-      <div className='mr-3 flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
+      <div className='mr-3 flex text-xs md:text-base flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
         <span className='font-bold text-amber-400' id='minutes'>
           {minutes < 10 ? `0${minutes}` : minutes}
         </span>
         <span className='text-white'>phút</span>
       </div>
-      <div className='flex flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
+      <div className='flex text-xs md:text-base flex-col items-center rounded-lg bg-[#000000b8] px-2 py-1'>
         <span className='font-bold text-amber-400' id='seconds'>
           {seconds < 10 ? `0${seconds}` : seconds}
         </span>

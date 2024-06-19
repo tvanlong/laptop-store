@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import 'swiper/css'
@@ -5,23 +6,22 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Keyboard, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { getAllFeaturedVersions } from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import { useVersions } from '~/hooks/useVersions'
 import Banner from '~/pages/Home/components/Banner'
 import SlickSlider from '~/pages/Home/components/SlickSlider'
-import { shuffle } from '~/utils/shuffle'
 import CountdownTimer from './components/CountdownTimer'
 
 function Home({ setProgress }) {
   const { data, isLoading } = useVersions()
-
   const versions = useMemo(() => data?.data?.data?.docs || [], [data])
-
-  const reorderVersions = useMemo(() => {
-    const shuffledVersions = versions.length > 0 ? shuffle(versions) : []
-    return shuffledVersions
-  }, [versions])
+  const { data: featuredVersionsData } = useQuery({
+    queryKey: ['featured-versions'],
+    queryFn: getAllFeaturedVersions
+  })
+  const featuredVersions = useMemo(() => featuredVersionsData?.data?.data || [], [featuredVersionsData])
 
   useEffect(() => {
     setProgress(20)
@@ -124,8 +124,8 @@ function Home({ setProgress }) {
             modules={[Mousewheel, Keyboard, Autoplay]}
             style={{ padding: '20px' }}
           >
-            {reorderVersions.length > 0 &&
-              reorderVersions.map((version) => (
+            {featuredVersions.length > 0 &&
+              featuredVersions.map((version) => (
                 <SwiperSlide key={version._id}>
                   <ProductItem version={version} />
                 </SwiperSlide>

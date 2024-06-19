@@ -1,5 +1,5 @@
 import { keepPreviousData } from '@tanstack/react-query'
-import { Pagination } from 'flowbite-react'
+import { Pagination, Spinner } from 'flowbite-react'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
@@ -17,7 +17,7 @@ import { useVersions } from '~/hooks/useVersions'
 function Search({ setProgress }) {
   const navigate = useNavigate()
   const queryParamsConfig = useQueryParamsConfig()
-  const { data, isLoading } = useVersions(queryParamsConfig, { placeholderData: keepPreviousData })
+  const { data, isLoading, isFetching } = useVersions(queryParamsConfig, { placeholderData: keepPreviousData })
   const versions = data?.data?.data?.docs || []
 
   useEffect(() => {
@@ -134,11 +134,19 @@ function Search({ setProgress }) {
         </div>
         <div className='xl:col-span-10 lg:col-span-9'>
           <SortProductList pathname={path.search} queryParamsConfig={queryParamsConfig} />
-          <div className='mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 p-6'>
-            {versions.map((version) => (
-              <ProductItem key={version._id} version={version} isHover />
-            ))}
-          </div>
+          {!isFetching ? (
+            <div className='mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-3 p-6'>
+              {versions.map((version) => (
+                <ProductItem key={version._id} version={version} isHover />
+              ))}
+            </div>
+          ) : (
+            <div className='flex h-full items-center justify-center'>
+              <div className='text-center'>
+                <Spinner size='xl' aria-label='Center-aligned spinner example' />
+              </div>
+            </div>
+          )}
           {data?.data?.data.totalPages > 1 && (
             <div className='mt-10 flex overflow-x-auto sm:justify-center'>
               <Pagination

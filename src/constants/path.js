@@ -3,6 +3,7 @@ export const path = {
   login: '/login',
   register: '/register',
   logout: '/logout',
+  productList: '/product-list',
   product: '/product/:nameId',
   cart: '/cart',
   checkout: '/checkout',

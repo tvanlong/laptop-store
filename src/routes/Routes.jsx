@@ -20,6 +20,7 @@ const Checkout = lazy(() => import('~/pages/Checkout'))
 const Home = lazy(() => import('~/pages/Home'))
 const Login = lazy(() => import('~/pages/Login'))
 const Order = lazy(() => import('~/pages/Order'))
+const ProductList = lazy(() => import('~/pages/ProductList'))
 const Product = lazy(() => import('~/pages/Product'))
 const Profile = lazy(() => import('~/pages/Profile'))
 const Register = lazy(() => import('~/pages/Register'))
@@ -48,6 +49,17 @@ function Routes() {
         <MainLayout>
           <Suspense fallback={<Loading />}>
             <Home setProgress={setProgress} />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: path.productList,
+
+      element: (
+        <MainLayout>
+          <Suspense fallback={<Loading />}>
+            <ProductList setProgress={setProgress} />
           </Suspense>
         </MainLayout>
       )

@@ -20,7 +20,11 @@ function Product({ setProgress }) {
   const [isProductInfoModalOpen, setIsProductInfoModalOpen] = useState(false)
   const { nameId } = useParams()
   const versionId = getIdFromNameId(nameId)
-  const { data: versionData, isLoading } = useQuery({
+  const {
+    data: versionData,
+    isLoading,
+    isFetching
+  } = useQuery({
     queryKey: ['version', versionId],
     queryFn: () => getVersionById(versionId),
     enabled: !!versionId
@@ -70,7 +74,7 @@ function Product({ setProgress }) {
     })
   }
 
-  if (isLoading) return <Loading />
+  if (isLoading || isFetching) return <Loading />
 
   return (
     <div className='mx-auto mb-20 mt-5 max-w-[1400px] p-6 overflow-hidden'>

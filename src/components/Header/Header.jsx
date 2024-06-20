@@ -145,21 +145,14 @@ function Header() {
               )}
             </Link>
           </div>
-          <input
-            type='checkbox'
-            id='menu-toggle'
-            className='hidden'
-            onChange={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
-          />
-          <label
-            htmlFor='menu-toggle'
-            className='lg:hidden relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white cursor-pointer'
+          <button
+            className={`lg:hidden relative inline-flex items-center justify-center p-1 border border-white rounded-full text-white cursor-pointer 
+            ${isOpenMobileMenu ? 'bg-gray-700' : 'bg-[#242525]'}
+              `}
+            onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
           >
-            <span className='absolute -inset-0.5'></span>
-            <span className='sr-only'>Open main menu</span>
-
             <svg
-              className='block h-6 w-6'
+              className='block h-4 w-4'
               fill='none'
               viewBox='0 0 24 24'
               strokeWidth='1.5'
@@ -168,7 +161,6 @@ function Header() {
             >
               <path strokeLinecap='round' strokeLinejoin='round' d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5' />
             </svg>
-
             <svg
               className='hidden h-6 w-6'
               fill='none'
@@ -179,10 +171,9 @@ function Header() {
             >
               <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
             </svg>
-          </label>
+          </button>
           <div
-            className={`fixed left-0 right-0 z-10 top-[88px] bg-[#2e3030] ${isOpenMobileMenu ? 'lg:hidden' : 'hidden'}`}
-            id='mobile-menu'
+            className={`fixed left-0 right-0 z-10 top-[80px] bg-[#2e3030] ${isOpenMobileMenu ? 'lg:hidden translate-x-0' : 'lg:hidden -translate-x-full'} transition-transform`}
           >
             <div className='space-y-1 px-2 pb-3 pt-2'>
               <NavLink

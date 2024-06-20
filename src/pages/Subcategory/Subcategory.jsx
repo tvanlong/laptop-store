@@ -174,7 +174,9 @@ function Subcategory({ setProgress }) {
               />
             </div>
           )}
-          {versions.length === 0 && <div className='mt-10 text-center text-lg font-bold'>Không có sản phẩm nào</div>}
+          {!isFetching && versions.length === 0 && (
+            <div className='mt-10 text-center text-lg font-bold'>Không có sản phẩm nào</div>
+          )}
         </div>
       </div>
     </div>

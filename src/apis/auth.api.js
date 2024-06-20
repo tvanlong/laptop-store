@@ -9,3 +9,5 @@ export const signOut = () => http.post('/api/auth/signout-member')
 export const signInSuccess = (data) => http.post('/api/auth/signin-success', data)
 
 export const verifyEmail = (token) => http.post(`/api/auth/verify/${token}`)
+
+export const forgotPassword = (data) => http.patch('/api/auth/forgot-password', data)

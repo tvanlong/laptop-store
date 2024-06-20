@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { signIn } from '~/apis/auth.api'
 import config from '~/constants/config'
@@ -102,7 +102,9 @@ function Login({ setProgress }) {
               <input type='checkbox' className='mr-2' />
               <span className='text-gray-500'>Ghi nhớ tài khoản</span>
             </label>
-            <div className='cursor-pointer text-[#ec2127] hover:underline'>Quên mật khẩu?</div>
+            <Link to={path.forgotPassword} className='text-[#ec2127] hover:underline'>
+              Quên mật khẩu?
+            </Link>
           </div>
           <button
             type='submit'

@@ -24,6 +24,7 @@ const ProductList = lazy(() => import('~/pages/ProductList'))
 const Product = lazy(() => import('~/pages/Product'))
 const Profile = lazy(() => import('~/pages/Profile'))
 const Register = lazy(() => import('~/pages/Register'))
+const ForgotPassword = lazy(() => import('~/pages/ForgotPassword'))
 const Search = lazy(() => import('~/pages/Search'))
 const Subcategory = lazy(() => import('~/pages/Subcategory'))
 
@@ -190,6 +191,16 @@ function Routes() {
             <SubLayout>
               <Suspense fallback={<Loading />}>
                 <Register setProgress={setProgress} />
+              </Suspense>
+            </SubLayout>
+          )
+        },
+        {
+          path: path.forgotPassword,
+          element: (
+            <SubLayout>
+              <Suspense fallback={<Loading />}>
+                <ForgotPassword setProgress={setProgress} />
               </Suspense>
             </SubLayout>
           )

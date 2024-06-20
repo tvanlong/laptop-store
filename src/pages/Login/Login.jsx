@@ -75,15 +75,15 @@ function Login({ setProgress }) {
         <title>Đăng nhập</title>
         <meta name='description' content='Đăng nhập' />
       </Helmet>
-      <div className='form-shadow m-auto max-w-[600px] px-12 py-8'>
+      <div className='form-shadow m-auto max-w-xs md:max-w-[600px] px-12 py-8'>
         <h2 className='mb-7 cursor-pointer text-center text-lg font-normal uppercase'>
-          <span className='border-b-2 border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng nhập</span>
+          <span className='border-b-2 text-sm md:text-lg border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng nhập</span>
         </h2>
         <form method='POST' onSubmit={onSubmit}>
           <div className='flex flex-col gap-4'>
             <input
               placeholder='Email'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('email', e.target.value)}
               {...register('email')}
             />
@@ -91,13 +91,13 @@ function Login({ setProgress }) {
             <input
               type='password'
               placeholder='Mật khẩu'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('password', e.target.value)}
               {...register('password')}
             />
             {errors.password && <p className='text-sm text-red-500'>{errors.password.message}</p>}
           </div>
-          <div className='mt-3 flex items-center justify-between text-sm'>
+          <div className='mt-3 flex items-center justify-between text-xs md:text-sm'>
             <label className='flex cursor-pointer items-center'>
               <input type='checkbox' className='mr-2' />
               <span className='text-gray-500'>Ghi nhớ tài khoản</span>
@@ -110,9 +110,9 @@ function Login({ setProgress }) {
             type='submit'
             className='mt-8 flex w-full items-center justify-center rounded-md bg-[#ec2127] p-4 hover:opacity-80'
           >
-            <span className='text-xl font-medium uppercase text-white'>Đăng nhập</span>
+            <span className='text-sm md:text-xl font-medium uppercase text-white'>Đăng nhập</span>
             <svg
-              className='ml-3 h-6 w-6 text-white'
+              className='ml-3 h-4 w-4 md:h-6 md:w-6 text-white'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -133,9 +133,9 @@ function Login({ setProgress }) {
             className='mt-8 flex w-full items-center justify-center rounded-md bg-[#ec2127] p-4 hover:opacity-80'
             onClick={() => navigate(path.register)}
           >
-            <span className='text-xl font-medium uppercase text-white'>Đăng ký</span>
+            <span className='text-sm md:text-xl font-medium uppercase text-white'>Đăng ký</span>
             <svg
-              className='ml-3 h-6 w-6 text-white'
+              className='ml-3 h-4 w-4 md:h-6 md:w-6 text-white'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -166,7 +166,7 @@ function Login({ setProgress }) {
             src='https://www.nguyenkim.com/images/login_form/icon-fb.svg'
             alt=''
           />
-          <span className='text-xl font-normal uppercase text-white'>Đăng nhập bằng Facebook</span>
+          <span className='text-sm md:text-xl font-normal uppercase text-white'>Đăng nhập bằng Facebook</span>
         </button>
         <button
           className='flex w-full items-center justify-start rounded-md bg-[#3f81f9] p-4 hover:opacity-80'
@@ -177,7 +177,7 @@ function Login({ setProgress }) {
             src='https://www.nguyenkim.com/images/login_form/icon-gg.png'
             alt=''
           />
-          <span className='text-xl font-normal uppercase text-white'>Đăng nhập bằng Google</span>
+          <span className='text-sm md:text-xl font-normal uppercase text-white'>Đăng nhập bằng Google</span>
         </button>
       </div>
     </div>

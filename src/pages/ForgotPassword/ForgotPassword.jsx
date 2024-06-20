@@ -56,18 +56,20 @@ function ForgotPassword({ setProgress }) {
         <title>Quên mật khẩu</title>
         <meta name='description' content='Quên mật khẩu' />
       </Helmet>
-      <div className='form-shadow m-auto max-w-[600px] px-12 py-8'>
+      <div className='form-shadow m-auto max-w-xs md:max-w-[600px] px-12 py-8'>
         <h2 className='mb-7 cursor-pointer text-center text-lg font-normal uppercase'>
-          <span className='border-b-2 border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Quên mật khẩu</span>
+          <span className='border-b-2 text-sm md:text-lg border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>
+            Quên mật khẩu
+          </span>
         </h2>
-        <p className='text-center text-sm text-gray-500 mb-8'>
+        <p className='text-center text-xs md:text-sm text-gray-500 mb-8'>
           Vui lòng nhập email của bạn để nhận hướng dẫn khôi phục mật khẩu
         </p>
         <form method='POST' onSubmit={onSubmit}>
           <div className='flex flex-col gap-4'>
             <input
               placeholder='Email'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               {...register('email')}
               onChange={(e) => {
                 if (errors.email) {
@@ -83,9 +85,9 @@ function ForgotPassword({ setProgress }) {
             disabled={isPending}
             className={`mt-8 w-full bg-[#ed3324] rounded-lg p-3 flex items-center justify-center gap-2 ${isPending ? 'cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <span className='text-xl font-medium uppercase text-white'>Gửi yêu cầu</span>
+            <span className='text-sm md:text-xl font-medium uppercase text-white'>Gửi yêu cầu</span>
             <svg
-              className='ml-3 h-6 w-6 text-white'
+              className='ml-3 h-4 w-4 md:h-6 md:w-6 text-white'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -107,11 +109,11 @@ function ForgotPassword({ setProgress }) {
               type='submit'
               className='mt-8 flex w-full items-center justify-center rounded-md bg-[#ec2127] p-4 hover:opacity-80'
             >
-              <Link className='text-xl font-medium uppercase text-white' to={path.login}>
+              <Link className='text-sm md:text-xl font-medium uppercase text-white' to={path.login}>
                 Tiến hành đăng nhập
               </Link>
               <svg
-                className='ml-3 h-6 w-6 text-white'
+                className='ml-3 h-4 w-4 md:h-6 md:w-6 text-white'
                 aria-hidden='true'
                 xmlns='http://www.w3.org/2000/svg'
                 width='24'

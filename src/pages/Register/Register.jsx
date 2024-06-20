@@ -55,29 +55,29 @@ function Register({ setProgress }) {
         <title>Đăng ký</title>
         <meta name='description' content='Đăng ký tài khoản' />
       </Helmet>
-      <div className='form-shadow m-auto max-w-[600px] px-12 py-8'>
+      <div className='form-shadow m-auto max-w-xs md:max-w-[600px] px-12 py-8'>
         <h2 className='mb-7 cursor-pointer text-center text-lg font-normal uppercase'>
-          <span className='border-b-2 border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng ký</span>
+          <span className='border-b-2 text-sm md:text-lg border-b-[#ed3324] px-4 py-2 text-[#ed3324]'>Đăng ký</span>
         </h2>
         <form method='POST' onSubmit={onSubmit}>
           <div className='flex flex-col gap-4'>
             <input
               placeholder='Họ tên'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('name', e.target.value)}
               {...register('name')}
             />
             {errors.name && <span className='text-sm text-red-500'>{errors.name.message}</span>}
             <input
               placeholder='Số điện thoại'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('phone', e.target.value)}
               {...register('phone')}
             />
             {errors.phone && <span className='text-sm text-red-500'>{errors.phone.message}</span>}
             <input
               placeholder='Email'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('email', e.target.value)}
               {...register('email')}
             />
@@ -85,7 +85,7 @@ function Register({ setProgress }) {
             <input
               placeholder='Mật khẩu'
               type='password'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('password', e.target.value)}
               {...register('password')}
             />
@@ -93,16 +93,16 @@ function Register({ setProgress }) {
             <input
               placeholder='Nhập lại mật khẩu'
               type='password'
-              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm'
+              className='block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-xs md:text-sm text-gray-900 shadow-sm'
               onChange={(e) => setValue('confirm_password', e.target.value)}
               {...register('confirm_password')}
             />
             {errors.confirm_password && <span className='text-sm text-red-500'>{errors.confirm_password.message}</span>}
           </div>
           <button className='mt-8 flex w-full items-center justify-center rounded-md bg-[#ec2127] p-4 hover:opacity-80'>
-            <span className='text-xl font-medium uppercase text-white'>Đăng ký</span>
+            <span className='text-sm md:text-xl font-medium uppercase text-white'>Đăng ký</span>
             <svg
-              className='ml-3 h-6 w-6 text-white'
+              className='ml-3 h-4 w-4 md:h-6 md:w-6 text-white'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'

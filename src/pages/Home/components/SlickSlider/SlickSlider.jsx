@@ -37,7 +37,7 @@ function SlickSlider() {
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2
+          slidesToShow: 3
         }
       }
     ]
@@ -54,7 +54,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/h_638159618706283760-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Dell</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Dell</div>
           </div>
         </div>
         <div>
@@ -64,7 +64,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/thinkpa_638159618614796253-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Lenovo Thinkpad</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Lenovo Thinkpad</div>
           </div>
         </div>
         <div>
@@ -74,7 +74,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/h_638159618706283760-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop HP</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop HP</div>
           </div>
         </div>
         <div>
@@ -84,7 +84,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/h_638159618706283760-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Dell</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Dell</div>
           </div>
         </div>
         <div>
@@ -94,7 +94,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/asu_638159618788111097-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Asus</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Asus</div>
           </div>
         </div>
         <div>
@@ -104,7 +104,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/samsun_638159618865042754-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Samsung</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Samsung</div>
           </div>
         </div>
         <div>
@@ -114,7 +114,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/icon/no_image.gif'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop LG</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop LG</div>
           </div>
         </div>
         <div>
@@ -124,7 +124,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/surfac_638159618953001630-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Surface</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Surface</div>
           </div>
         </div>
         <div>
@@ -134,7 +134,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/desig_638159619107981928-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Đồ họa</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop Đồ họa</div>
           </div>
         </div>
         <div>
@@ -144,7 +144,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/gamin_638159619022147369-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Laptop gaming</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Laptop gaming</div>
           </div>
         </div>
         <div>
@@ -154,7 +154,7 @@ function SlickSlider() {
               src='https://laptopkhanhtran.vn/pic/product/p_638159619247537734-w.150-q.80.jpg'
               alt=''
             />
-            <div className='mt-2 text-xs xl:text-base font-bold uppercase'>Linh kiện máy tính</div>
+            <div className='hidden sm:block mt-2 text-xs xl:text-base font-bold uppercase'>Linh kiện máy tính</div>
           </div>
         </div>
       </Slider>

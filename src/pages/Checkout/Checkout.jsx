@@ -168,8 +168,8 @@ function Checkout({ setProgress }) {
       <p className='text-center text-lg'>
         Vui lòng kiểm tra thông tin khách hàng, thông tin giỏ hàng trước khi đặt hàng
       </p>
-      <div className='mt-20 grid grid-cols-7 gap-8'>
-        <div className='col-span-4'>
+      <div className='mt-20 md:grid md:grid-cols-7 gap-8'>
+        <div className='md:col-span-4'>
           <h3 className='text-xl font-bold'>Thông tin khách hàng</h3>
           <form method='POST' onSubmit={onSubmit}>
             <div className='my-3'>
@@ -314,35 +314,35 @@ function Checkout({ setProgress }) {
             </div>
           </form>
         </div>
-        <div className='col-span-3'>
+        <div className='md:col-span-3 mt-10 pt-10 md:mt-0 md:pt-0 md:border-none border-t border-gray-200'>
           <h3 className='text-xl font-bold'>Giỏ hàng</h3>
           <div className='mt-8 rounded-lg border-2 border-gray-200 p-4'>
             <ul className='list-none'>
               {cart?.cart_items?.map((item) => (
-                <li key={item._id} className='my-3 flex items-center justify-between text-sm'>
+                <li key={item._id} className='my-3 flex items-center justify-between gap-3 text-sm'>
                   <img
-                    className='mr-4 h-16 w-16 object-cover'
+                    className='mr-4 h-12 w-12 xl:h-16 xl:w-16 object-cover'
                     src={item.version.product.images[0]}
                     alt={`${item.version.product.name} ${item.version.name}`}
                   />
                   <div>
-                    <p className='font-semibold'>
+                    <p className='font-semibold text-xs xl:text-base line-clamp-2'>
                       {item.version.product.name} ({item.version.name})
                     </p>
-                    <p className='font-semibold'>
+                    <p className='font-semibold  text-xs xl:text-base'>
                       ₫{formatCurrency(item.version.current_price)} x {item.quantity}
                     </p>
                   </div>
-                  <div className='font-semibold text-red-700'>
+                  <div className='font-semibold  text-xs xl:text-base text-red-700'>
                     ₫{formatCurrency(item.version.current_price * item.quantity)}
                   </div>
                 </li>
               ))}
               <li className='my-5 flex items-center justify-between border-t-2 border-gray-200 py-3 text-sm'>
                 <div>
-                  <p className='text-lg font-semibold underline'>Tổng thành tiền</p>
+                  <p className='text-sm xl:text-lg font-semibold underline'>Tổng thành tiền</p>
                 </div>
-                <div className='text-lg font-semibold text-red-700'>₫{formatCurrency(totalAmount)}</div>
+                <div className='text-sm xl:text-lg font-semibold text-red-700'>₫{formatCurrency(totalAmount)}</div>
               </li>
             </ul>
           </div>

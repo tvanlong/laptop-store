@@ -92,7 +92,7 @@ function Search() {
         </form>
       </div>
       <div className='md:hidden flex basis-3/5 justify-end w-1/6'>
-        <button className='p-1 border border-white rounded-full' onClick={() => setIsOpenSearch(true)}>
+        <button className='p-1 mr-4 border border-white rounded-full' onClick={() => setIsOpenSearch(true)}>
           <svg
             className='w-4 h-4 text-white'
             aria-hidden='true'

@@ -70,11 +70,11 @@ function ChangePassword({ setProgress }) {
         <title>Thay đổi mật khẩu</title>
         <meta name='description' content='Thay đổi mật khẩu' />
       </Helmet>
-      <div className='grid grid-cols-5 gap-8 px-6'>
+      <div className='md:grid md:grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
-        <div className='col-span-4'>
+        <div className='md:col-span-4'>
           <form className='p-4' method='POST' onSubmit={onSubmit}>
-            <h2 className='mb-6 text-2xl font-semibold'>Thay đổi mật khẩu</h2>
+            <h2 className='mb-6 text-xl sm:text-2xl font-semibold'>Thay đổi mật khẩu</h2>
             <p className='mb-6 text-sm text-gray-500'>
               Để đảm bảo an toàn, vui lòng không chia sẻ mật khẩu với người khác
             </p>

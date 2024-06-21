@@ -104,11 +104,11 @@ function ChangeEmail({ setProgress }) {
         <title>Thay đổi địa chỉ email</title>
         <meta name='description' content='Thay đổi địa chỉ email' />
       </Helmet>
-      <div className='grid grid-cols-5 gap-8 px-6'>
+      <div className='md:grid md:grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
-        <div className='col-span-4'>
+        <div className='md:col-span-4'>
           <form className='p-4' method='POST' onSubmit={onSubmit}>
-            <h2 className='mb-6 text-2xl font-semibold'>Thay đổi địa chỉ email</h2>
+            <h2 className='mb-6 text-xl sm:text-2xl font-semibold'>Thay đổi địa chỉ email</h2>
             <div className='mb-6'>
               <label htmlFor='email' className='mb-2 block text-sm font-medium text-gray-900'>
                 Địa chỉ email hiện tại

@@ -125,9 +125,9 @@ function Profile({ setProgress }) {
         <title>Thông tin cá nhân</title>
         <meta name='description' content='Thông tin cá nhân' />
       </Helmet>
-      <div className='grid grid-cols-5 gap-8 px-6'>
+      <div className='md:grid md:grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
-        <div className='col-span-4'>
+        <div className='md:col-span-4'>
           <form className='p-4' onSubmit={onSubmit}>
             <div className='border-b border-gray-300'>
               <h2 className='mb-2 text-2xl font-semibold'>Thông tin cá nhân</h2>
@@ -135,8 +135,8 @@ function Profile({ setProgress }) {
                 Cập nhật thông tin cá nhân để bảo mật tài khoản (* Địa chỉ email không thể thay đổi sau khi đăng ký)
               </p>
             </div>
-            <div className='mt-6 grid grid-cols-5 gap-4'>
-              <div className='col-span-3 mr-12'>
+            <div className='mt-6 sm:grid sm:grid-cols-5 gap-4'>
+              <div className='sm:col-span-3 sm:mr-12'>
                 <div className='mb-6'>
                   <label htmlFor='cus_name' className='mb-2 block text-sm font-medium text-gray-900'>
                     Tên khách hàng
@@ -178,7 +178,7 @@ function Profile({ setProgress }) {
                   {errors.phone && <p className='text-sm text-red-500'>{errors.phone.message}</p>}
                 </div>
               </div>
-              <div className='col-span-2'>
+              <div className='sm:col-span-2'>
                 <div className='flex justify-center md:w-72 md:border-l md:border-l-gray-200'>
                   <div className='flex flex-col items-center'>
                     <div className='my-5 h-24 w-24'>
@@ -210,13 +210,15 @@ function Profile({ setProgress }) {
                 </div>
               </div>
             </div>
-            <button
-              type='submit'
-              disabled={isPending}
-              className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800'
-            >
-              Cập nhật lại thông tin
-            </button>
+            <div className='mt-8 sm:mt-0 text-center sm:text-left'>
+              <button
+                type='submit'
+                disabled={isPending}
+                className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800'
+              >
+                Cập nhật lại thông tin
+              </button>
+            </div>
           </form>
         </div>
       </div>

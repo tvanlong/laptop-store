@@ -64,17 +64,17 @@ function Order({ setProgress }) {
         <title>Đơn hàng của bạn</title>
         <meta name='description' content='Đơn hàng của bạn' />
       </Helmet>
-      <div className='grid grid-cols-5 gap-8 px-6'>
+      <div className='flex justify-center lg:grid lg:grid-cols-5 gap-8 px-6'>
         <Navbar user={user} />
-        <div className='col-span-4'>
+        <div className='lg:col-span-4'>
           {orders.length > 0 ? (
             orders.map((order) => (
               <div key={order._id} className='mb-10 border border-gray-300 p-4 shadow-inner'>
-                <div className='flex justify-between border-b border-gray-300 p-4'>
-                  <div>
+                <div className='sm:flex justify-between border-b border-gray-300 p-4'>
+                  <div className='text-sm sm:text-base'>
                     Mã đơn hàng: <span className=''>#{order?._id.toUpperCase()}</span>
                   </div>
-                  <h4 className='flex items-center gap-3'>
+                  <div className='flex items-center gap-3 mt-2 sm:mt-0'>
                     {order?.status === 'Chờ xác nhận' && (
                       <svg
                         className='h-4 w-4'
@@ -150,29 +150,33 @@ function Order({ setProgress }) {
                       </svg>
                     )}
                     {order?.status}
-                  </h4>
+                  </div>
                 </div>
                 <div className='border-b border-gray-300 p-4'>
                   {order?.items?.map((item) => (
                     <div key={item._id} className='flex items-center py-4'>
                       <img
-                        className='h-20 w-20 rounded-lg object-cover'
+                        className='h-12 w-12 sm:h-20 sm:w-20 rounded-lg object-cover'
                         src={item.version.product.images[0]}
                         alt={`${item.version.product.name} ${item.version.name}`}
                       />
-                      <div className='ml-5 flex-1'>
+                      <div className='ml-5 sm:flex-1'>
                         <Link
                           to={`/product/${generateNameId({
                             name: `${item.version.product.name} ${item.version.name}`,
                             id: item.version._id
                           })}`}
-                          className='max-w-[600px] truncate block hover:underline text-gray-900 font-medium'
+                          className='max-w-[250px] lg:max-w-[600px] line-clamp-2 hover:underline text-gray-900 font-medium'
                         >
                           [Mới 100%] {item.version.product.name} {item.version.name}
                         </Link>
-                        <span className='text-gray-500'> - ( x{item.quantity})</span>
+
+                        <span className='hidden sm:block text-gray-500'> - ( x{item.quantity})</span>
+                        <span className='text-gray-500 sm:hidden'>
+                          - ( ₫ {formatCurrency(item.version.current_price)} x {item.quantity})
+                        </span>
                       </div>
-                      <div>
+                      <div className='hidden sm:block'>
                         <span className='mr-4 text-sm text-gray-500 line-through'>
                           ₫ {formatCurrency(item.version.old_price)}
                         </span>

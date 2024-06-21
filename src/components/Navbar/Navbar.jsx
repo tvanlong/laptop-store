@@ -3,7 +3,7 @@ import { path } from '~/constants/path'
 
 function Navbar({ user }) {
   return (
-    <div className='col-span-1'>
+    <div className='md:col-span-1 hidden lg:block'>
       <div className='flex items-center border-b border-gray-300 pb-6'>
         <img className='h-12 w-12 rounded-full border border-gray-300' src={user?.avatar} alt='avatar' />
         <span className='ml-5 text-sm font-semibold'>{user?.name}</span>

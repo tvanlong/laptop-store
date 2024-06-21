@@ -6,14 +6,16 @@ function Footer() {
           <div className='text-teal-600'>
             <img
               src='https://static.vecteezy.com/system/resources/previews/011/758/162/non_2x/kt-k-t-letter-logo-design-initial-letter-kt-linked-circle-uppercase-monogram-logo-red-and-blue-kt-logo-k-t-design-kt-k-t-vector.jpg'
-              className='h-20 object-contain'
+              className='h-16 lg:h-20 rounded-full object-contain'
               alt='Flowbite Logo'
             />
           </div>
           <div className='mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16'>
             <div className='col-span-2'>
               <div>
-                <h2 className='text-xl font-bold text-gray-900'>Cập nhật thông tin mới nhất và nhận ưu đãi</h2>
+                <h2 className='text-lg xl:text-xl font-bold text-gray-900'>
+                  Cập nhật thông tin mới nhất và nhận ưu đãi
+                </h2>
                 <p className='mt-4 text-gray-500'>
                   Đăng ký nhận bản tin để nhận thông tin mới nhất về sản phẩm, khuyến mãi và sự kiện.
                 </p>
@@ -38,65 +40,95 @@ function Footer() {
               </form>
             </div>
             <div className='col-span-2 sm:col-span-1'>
-              <p className='font-medium text-gray-900'>Services</p>
+              <p className='font-medium text-gray-900'>Dịch vụ</p>
               <ul className='mt-6 space-y-4 text-sm'>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    1on1 Coaching
+                    Mua hàng trả góp
                   </a>
                 </li>
 
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Company Review
+                    Bảo hành
                   </a>
                 </li>
 
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Accounts Review
+                    Sửa chữa
                   </a>
                 </li>
 
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    HR Consulting
+                    Đổi trả
                   </a>
                 </li>
 
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    SEO Optimisation
+                    Bảo trì
                   </a>
                 </li>
               </ul>
             </div>
             <div className='col-span-2 sm:col-span-1'>
-              <p className='font-medium text-gray-900'>Company</p>
+              <p className='font-medium text-gray-900'>Tin tức</p>
               <ul className='mt-6 space-y-4 text-sm'>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    About
+                    Blog
                   </a>
                 </li>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Meet the Team
+                    Sự kiện
                   </a>
                 </li>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Accounts Review
+                    Bản tin
                   </a>
                 </li>
               </ul>
             </div>
             <div className='col-span-2 sm:col-span-1'>
-              <p className='font-medium text-gray-900'>Helpful Links</p>
+              <p className='font-medium text-gray-900'>Về chúng tôi</p>
               <ul className='mt-6 space-y-4 text-sm'>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Contact
+                    Giới thiệu
+                  </a>
+                </li>
+                <li>
+                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
+                    Liên hệ
+                  </a>
+                </li>
+                <li>
+                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
+                    Tuyển dụng
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className='col-span-2 sm:col-span-1'>
+              <p className='font-medium text-gray-900'>Hỗ trợ</p>
+              <ul className='mt-6 space-y-4 text-sm'>
+                <li>
+                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
+                    Hướng dẫn mua hàng
+                  </a>
+                </li>
+                <li>
+                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
+                    Chính sách bảo mật
+                  </a>
+                </li>
+                <li>
+                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
+                    Điều khoản sử dụng
                   </a>
                 </li>
                 <li>
@@ -104,49 +136,19 @@ function Footer() {
                     FAQs
                   </a>
                 </li>
-                <li>
-                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Live Chat
-                  </a>
-                </li>
               </ul>
             </div>
             <div className='col-span-2 sm:col-span-1'>
-              <p className='font-medium text-gray-900'>Legal</p>
+              <p className='font-medium text-gray-900'>Tài nguyên</p>
               <ul className='mt-6 space-y-4 text-sm'>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Accessibility
+                    Hướng dẫn sử dụng
                   </a>
                 </li>
                 <li>
                   <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Returns Policy
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Refund Policy
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Hiring Statistics
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className='col-span-2 sm:col-span-1'>
-              <p className='font-medium text-gray-900'>Downloads</p>
-              <ul className='mt-6 space-y-4 text-sm'>
-                <li>
-                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    Marketing Calendar
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='text-gray-700 transition hover:opacity-75'>
-                    SEO Infographics
+                    Hướng dẫn bảo quản
                   </a>
                 </li>
               </ul>
@@ -186,19 +188,6 @@ function Footer() {
               </li>
               <li>
                 <a href='#' rel='noreferrer' target='_blank' className='text-gray-700 transition hover:opacity-75'>
-                  <span className='sr-only'>GitHub</span>
-
-                  <svg className='h-6 w-6' fill='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
-                    <path
-                      fillRule='evenodd'
-                      d='M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z'
-                      clipRule='evenodd'
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href='#' rel='noreferrer' target='_blank' className='text-gray-700 transition hover:opacity-75'>
                   <span className='sr-only'>Dribbble</span>
                   <svg className='h-6 w-6' fill='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
                     <path
@@ -214,16 +203,16 @@ function Footer() {
         </div>
         <div className='mt-8 border-t border-gray-100 pt-8'>
           <div className='sm:flex sm:justify-between'>
-            <p className='text-xs text-gray-500'>&copy; 2022. Company Name. All rights reserved.</p>
+            <p className='text-xs text-gray-500'>&copy; 2024 Laptop-KT. All rights reserved.</p>
             <ul className='mt-8 flex flex-wrap justify-start gap-4 text-xs sm:mt-0 lg:justify-end'>
               <li>
                 <a href='#' className='text-gray-500 transition hover:opacity-75'>
-                  Terms & Conditions
+                  Điều khoản và điều kiện
                 </a>
               </li>
               <li>
                 <a href='#' className='text-gray-500 transition hover:opacity-75'>
-                  Privacy Policy
+                  Chính sách bảo mật
                 </a>
               </li>
               <li>

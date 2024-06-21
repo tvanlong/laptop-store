@@ -337,13 +337,13 @@ function Header() {
         </div>
       </nav>
       <div className='hidden sticky left-0 right-0 lg:top-[80px] xl:top-[81.6px] 2xl:top-[88px] z-20 lg:flex h-14 bg-[#2e3030]'>
-        <ul className='flex w-full items-center justify-between lg:px-10 xl:px-32'>
+        <ul className='flex w-full items-center gap-4 2xl:gap-10 justify-center lg:px-10 xl:px-32'>
           {categories.map((category) => (
             <li
               key={category._id}
               className='group relative flex h-full cursor-pointer items-center text-white opacity-60 hover:opacity-100'
             >
-              <Link to={`/category/${category._id}`} className='text-xs font-semibold uppercase'>
+              <Link to={`/category/${category._id}`} className='text-[10px] xl:text-xs font-semibold uppercase'>
                 {category.name}
               </Link>
               {category.subcategories.length > 0 && (

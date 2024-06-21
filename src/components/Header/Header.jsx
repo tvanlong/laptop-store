@@ -313,25 +313,27 @@ function Header() {
               )}
             </div>
           </div>
-          <Dropdown
-            color={'transparent'}
-            label={<Avatar className='lg:hidden' size='xs' bordered img={profile?.avatar} rounded />}
-            arrowIcon={null}
-          >
-            <Dropdown.Header>
-              <span className='block text-sm'>
-                {profile?.name} ({profile?.role === 'member' && 'Khách hàng'})
-              </span>
-              <span className='block truncate text-sm font-medium'>{profile?.email}</span>
-            </Dropdown.Header>
-            <Dropdown.Item href={path.profile}>Tài khoản của tôi</Dropdown.Item>
-            <Dropdown.Item href={path.order}>Đơn hàng của tôi</Dropdown.Item>
-            <Dropdown.Item href={path.changeEmail}>Thay đổi email</Dropdown.Item>
-            <Dropdown.Item href={path.changePassword}>Thay đổi mật khẩu</Dropdown.Item>
+          {isAuthenticated && (
+            <Dropdown
+              color={'transparent'}
+              label={<Avatar className='lg:hidden' size='xs' bordered img={profile?.avatar} rounded />}
+              arrowIcon={null}
+            >
+              <Dropdown.Header>
+                <span className='block text-sm'>
+                  {profile?.name} ({profile?.role === 'member' && 'Khách hàng'})
+                </span>
+                <span className='block truncate text-sm font-medium'>{profile?.email}</span>
+              </Dropdown.Header>
+              <Dropdown.Item href={path.profile}>Tài khoản của tôi</Dropdown.Item>
+              <Dropdown.Item href={path.order}>Đơn hàng của tôi</Dropdown.Item>
+              <Dropdown.Item href={path.changeEmail}>Thay đổi email</Dropdown.Item>
+              <Dropdown.Item href={path.changePassword}>Thay đổi mật khẩu</Dropdown.Item>
 
-            <Dropdown.Divider />
-            <Dropdown.Item onClick={handleSignOut}>Đăng xuất</Dropdown.Item>
-          </Dropdown>
+              <Dropdown.Divider />
+              <Dropdown.Item onClick={handleSignOut}>Đăng xuất</Dropdown.Item>
+            </Dropdown>
+          )}
         </div>
       </nav>
       <div className='hidden sticky left-0 right-0 lg:top-[80px] xl:top-[81.6px] 2xl:top-[88px] z-20 lg:flex h-14 bg-[#2e3030]'>

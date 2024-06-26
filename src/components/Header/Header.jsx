@@ -12,7 +12,7 @@ import { useCart } from '~/hooks/useCart'
 import Search from './Search'
 
 function Header() {
-  const { isAuthenticated, profile } = useContext(AppContext)
+  const { isAuthenticated, setIsAuthenticated, profile, setProfile } = useContext(AppContext)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false)
@@ -36,12 +36,15 @@ function Header() {
   }
 
   const { mutateAsync } = useMutation({
-    mutationFn: () => signOut()
+    mutationFn: () => signOut(),
+    onSuccess: () => {
+      setIsAuthenticated(false)
+      setProfile(null)
+    }
   })
 
   const handleSignOut = async () => {
     await mutateAsync()
-    window.location.reload()
     toast.success('Đăng xuất thành công')
   }
 

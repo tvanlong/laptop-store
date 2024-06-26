@@ -9,7 +9,7 @@ import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
 import { changeEmailSchema } from '~/schemas/user.schema'
-import { setUserDataIntoLocalStorage } from '~/utils/auth'
+import { setProfileToLS } from '~/utils/auth'
 
 function ChangeEmail({ setProgress }) {
   const queryClient = useQueryClient()
@@ -91,7 +91,7 @@ function ChangeEmail({ setProgress }) {
         toast.success(response.data.message || 'Xác nhận thay đổi email thành công', { id: toastId })
         setIsVerify(false)
         setProfile(response.data.data)
-        setUserDataIntoLocalStorage(response.data.data)
+        setProfileToLS(response.data.data)
       }
     } catch (error) {
       toast.error('Xác nhận email thất bại', { id: toastId })

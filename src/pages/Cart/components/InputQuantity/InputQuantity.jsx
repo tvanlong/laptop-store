@@ -146,6 +146,7 @@ function InputQuantity({ item }) {
         <input
           type='text'
           value={buyCount}
+          onChange={(e) => handleChangeQuantity(e)}
           className='flex-shrink-0 text-gray-900 border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center'
         />
         <button

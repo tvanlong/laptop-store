@@ -11,7 +11,7 @@ import { DEFAULT_AVATAR } from '~/constants/default'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
 import { profileSchema } from '~/schemas/user.schema'
-import { setUserDataIntoLocalStorage } from '~/utils/auth'
+import { setProfileToLS } from '~/utils/auth'
 import { extractPublicIdFromUrl } from '~/utils/util'
 
 function Profile({ setProgress }) {
@@ -88,11 +88,11 @@ function Profile({ setProgress }) {
 
         const res = await updateProfileMutate(data)
         setProfile(res.data.data)
-        setUserDataIntoLocalStorage(res.data.data)
+        setProfileToLS
       } else {
         const res = await updateProfileMutate(data)
         setProfile(res.data.data)
-        setUserDataIntoLocalStorage(res.data.data)
+        setProfileToLS
       }
       toast.success('Cập nhật thông tin thành công', { id: toastId })
     } catch (error) {

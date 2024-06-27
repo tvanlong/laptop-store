@@ -43,22 +43,20 @@ function Login({ setProgress }) {
   })
 
   const onSubmit = handleSubmit(async (data) => {
-    toast.promise(mutateAsync(data), {
-      loading: 'Đang tiến hành đăng nhập...',
-      success: (data) => {
-        if (data.data.data.role === 'member') {
-          setIsAuthenticated(true)
-          setProfile(data.data.data)
-          navigate('/')
-          return 'Đăng nhập thành công'
-        } else {
-          return 'Tài khoản của bạn không có quyền truy cập vào hệ thống'
-        }
-      },
-      error: (err) => {
-        return err?.response?.data?.message || 'Đăng nhập thất bại'
+    const toastId = toast.loading('Đang tiến hành đăng nhập...')
+    try {
+      const res = await mutateAsync(data)
+      if (res.data.data.role === 'member') {
+        setIsAuthenticated(true)
+        setProfile(res.data.data)
+        navigate(path.home)
+        toast.success('Đăng nhập thành công', { id: toastId })
+      } else {
+        toast.error('Tài khoản của bạn không có quyền truy cập vào hệ thống', { id: toastId })
       }
-    })
+    } catch (err) {
+      toast.error(err?.response?.data?.message || 'Đăng nhập thất bại', { id: toastId })
+    }
   })
 
   const signInWithGoogle = () => {

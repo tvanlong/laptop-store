@@ -58,13 +58,13 @@ function FilterOption({ title, options, queryParamsConfig }) {
         {options.map((option, index) => (
           <div className='mb-3 flex items-center' key={index}>
             <input
-              id={`checkbox-${index}`}
+              id={`checkbox-${option.param}-${index}`}
               type='checkbox'
               checked={selectedOption === option.value || queryParamsConfig[option.param] === option.value}
               onChange={() => handleCheckboxChange(option.param, option.value)}
               className='h-4 w-4 rounded border-gray-300 bg-white text-blue-600'
             />
-            <label htmlFor={`checkbox-${index}`} className='ml-2 text-sm text-gray-900 hover:underline'>
+            <label htmlFor={`checkbox-${option.param}-${index}`} className='ml-2 text-sm text-gray-900 hover:underline'>
               {option.label}
             </label>
           </div>

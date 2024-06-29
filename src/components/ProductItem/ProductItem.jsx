@@ -1,12 +1,13 @@
 import { useQueryClient } from '@tanstack/react-query'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { getVersionById } from '~/apis/versions.api'
+import versionsApi from '~/apis/versions.api'
 import { formatCurrency } from '~/utils/format'
 import { generateNameId } from '~/utils/util'
 
 function ProductItem({ version, isHover = false }) {
   const queryClient = useQueryClient()
-  const detailQuery = { queryKey: ['version', version._id], queryFn: () => getVersionById(version._id) }
+  const detailQuery = { queryKey: ['version', version._id], queryFn: () => versionsApi.getVersionById(version._id) }
 
   const handlePrefetchOnHover = () => {
     queryClient.prefetchQuery(detailQuery)
@@ -66,6 +67,11 @@ function ProductItem({ version, isHover = false }) {
       </Link>
     </div>
   )
+}
+
+ProductItem.propTypes = {
+  version: PropTypes.object.isRequired,
+  isHover: PropTypes.bool
 }
 
 export default ProductItem

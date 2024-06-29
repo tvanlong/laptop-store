@@ -2,14 +2,14 @@ import { useMutation } from '@tanstack/react-query'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
-import { verifyEmail } from '~/apis/auth.api'
+import authApi from '~/apis/auth.api'
 import { path } from '~/constants/path'
 
 function RegisterSuccess() {
   const { token } = useParams()
   const navigate = useNavigate()
   const { mutateAsync } = useMutation({
-    mutationFn: ({ token }) => verifyEmail(token)
+    mutationFn: ({ token }) => authApi.verifyEmail(token)
   })
 
   const handleRegisterSuccess = async () => {

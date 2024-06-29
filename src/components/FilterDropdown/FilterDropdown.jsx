@@ -1,4 +1,5 @@
 import { omit } from 'lodash'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 
@@ -69,6 +70,12 @@ function FilterDropdown({ title, options, queryParamsConfig }) {
       </div>
     </div>
   )
+}
+
+FilterDropdown.propTypes = {
+  title: PropTypes.string,
+  options: PropTypes.array,
+  queryParamsConfig: PropTypes.object
 }
 
 export default FilterDropdown

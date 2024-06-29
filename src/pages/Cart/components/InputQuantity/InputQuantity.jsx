@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import PropTypes from 'prop-types'
 import { useContext, useState } from 'react'
 import { toast } from 'sonner'
-import { decreaseQuantity, increaseQuantity, updateQuantity } from '~/apis/carts.api'
+import cartApi from '~/apis/carts.api'
 import { AppContext } from '~/context/app.context'
 
 function InputQuantity({ item }) {
@@ -10,21 +11,21 @@ function InputQuantity({ item }) {
   const [buyCount, setBuyCount] = useState(item.quantity)
 
   const { mutateAsync: increaseQuantityAsync } = useMutation({
-    mutationFn: (data) => increaseQuantity(profile?._id, data),
+    mutationFn: (data) => cartApi.increaseQuantity(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     }
   })
 
   const { mutateAsync: decreaseQuantityAsync } = useMutation({
-    mutationFn: (data) => decreaseQuantity(profile?._id, data),
+    mutationFn: (data) => cartApi.decreaseQuantity(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     }
   })
 
   const { mutateAsync: updateQuantityAsync } = useMutation({
-    mutationFn: (data) => updateQuantity(profile?._id, data),
+    mutationFn: (data) => cartApi.updateQuantity(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['cart'] })
     }
@@ -173,6 +174,10 @@ function InputQuantity({ item }) {
       </div>
     </>
   )
+}
+
+InputQuantity.propTypes = {
+  item: PropTypes.object
 }
 
 export default InputQuantity

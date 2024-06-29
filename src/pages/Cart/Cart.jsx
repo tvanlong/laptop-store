@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
-import { removeCart, removeItem } from '~/apis/carts.api'
+import cartApi from '~/apis/carts.api'
 import Loading from '~/components/Loading'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -33,11 +33,11 @@ function Cart({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync: removeItemAsync } = useMutation({
-    mutationFn: (data) => removeItem(profile?._id, data)
+    mutationFn: (data) => cartApi.removeItem(profile?._id, data)
   })
 
   const { mutateAsync: removeCartAsync } = useMutation({
-    mutationFn: () => removeCart(profile?._id)
+    mutationFn: () => cartApi.removeCart(profile?._id)
   })
 
   const handleRemoveItem = async (id) => {

@@ -4,9 +4,9 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
-import { addToCart } from '~/apis/carts.api'
-import { getProductById } from '~/apis/products.api'
-import { getVersionById } from '~/apis/versions.api'
+import cartApi from '~/apis/carts.api'
+import productsApi from '~/apis/products.api'
+import versionsApi from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import { AppContext } from '~/context/app.context'
 import { formatCurrency } from '~/utils/format'
@@ -26,14 +26,14 @@ function Product({ setProgress }) {
     isFetching
   } = useQuery({
     queryKey: ['version', versionId],
-    queryFn: () => getVersionById(versionId),
+    queryFn: () => versionsApi.getVersionById(versionId),
     enabled: !!versionId
   })
   const version = useMemo(() => versionData?.data?.data || {}, [versionData])
 
   const { data: productData } = useQuery({
     queryKey: ['product', version?.product?._id],
-    queryFn: () => getProductById(version?.product?._id),
+    queryFn: () => productsApi.getProductById(version?.product?._id),
     enabled: !!version?.product?._id
   })
   const product = useMemo(() => productData?.data?.data || {}, [productData])
@@ -50,7 +50,7 @@ function Product({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data) => addToCart(profile?._id, data)
+    mutationFn: (data) => cartApi.addToCart(profile?._id, data)
   })
 
   const handleAddToCart = async () => {

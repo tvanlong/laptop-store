@@ -3,8 +3,8 @@ import { Pagination, Spinner } from 'flowbite-react'
 import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link, createSearchParams, useNavigate, useParams } from 'react-router-dom'
-import { getSubcategoryById } from '~/apis/subcategories.api'
-import { getAllVersionsBySubcategoryId } from '~/apis/versions.api'
+import subcategoriesApi from '~/apis/subcategories.api'
+import versionsApi from '~/apis/versions.api'
 import FilterDropdown from '~/components/FilterDropdown'
 import FilterProductMobile from '~/components/FilterProductMobile'
 import Loading from '~/components/Loading'
@@ -21,13 +21,13 @@ function Subcategory({ setProgress }) {
 
   const { data: subcategoryData } = useQuery({
     queryKey: ['subcategory', subcategoryId],
-    queryFn: () => getSubcategoryById(subcategoryId)
+    queryFn: () => subcategoriesApi.getSubcategoryById(subcategoryId)
   })
   const subcategory = subcategoryData?.data?.data || {}
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['versions-by-subcategory', subcategoryId, queryParamsConfig],
-    queryFn: () => getAllVersionsBySubcategoryId(subcategoryId, queryParamsConfig),
+    queryFn: () => versionsApi.getAllVersionsBySubcategoryId(subcategoryId, queryParamsConfig),
     placeholderData: keepPreviousData
   })
 

@@ -6,7 +6,7 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { Autoplay, Keyboard, Mousewheel } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { getAllFeaturedVersions } from '~/apis/versions.api'
+import versionsApi from '~/apis/versions.api'
 import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import { useVersions } from '~/hooks/useVersions'
@@ -19,7 +19,7 @@ function Home({ setProgress }) {
   const versions = useMemo(() => data?.data?.data?.docs || [], [data])
   const { data: featuredVersionsData } = useQuery({
     queryKey: ['featured-versions'],
-    queryFn: getAllFeaturedVersions
+    queryFn: versionsApi.getAllFeaturedVersions
   })
   const featuredVersions = useMemo(() => featuredVersionsData?.data?.data || [], [featuredVersionsData])
 

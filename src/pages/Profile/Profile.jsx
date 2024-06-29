@@ -4,8 +4,8 @@ import { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { deleteImage, uploadAvatar } from '~/apis/images.api'
-import { updateProfile } from '~/apis/user.api'
+import imagesApi from '~/apis/images.api'
+import userApi from '~/apis/user.api'
 import Navbar from '~/components/Navbar'
 import { DEFAULT_AVATAR } from '~/constants/default'
 import { AppContext } from '~/context/app.context'
@@ -60,18 +60,18 @@ function Profile({ setProgress }) {
   }, [user, setValue])
 
   const { mutateAsync: updateProfileMutate, isPending } = useMutation({
-    mutationFn: (data) => updateProfile(profile?._id, data),
+    mutationFn: (data) => userApi.updateProfile(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['profile', profile?._id] })
     }
   })
 
   const { mutateAsync: uploadAvatarMutate } = useMutation({
-    mutationFn: (data) => uploadAvatar(profile?._id, data)
+    mutationFn: (data) => imagesApi.uploadAvatar(profile?._id, data)
   })
 
   const { mutateAsync: deleteImageMutate } = useMutation({
-    mutationFn: (public_id) => deleteImage(public_id)
+    mutationFn: (public_id) => imagesApi.deleteImage(public_id)
   })
 
   const onSubmit = handleSubmit(async (data) => {

@@ -5,8 +5,8 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { createOrderCheckout, createOrderCheckoutWithMomo, createOrderCheckoutWithZaloPay } from '~/apis/order.api'
-import { getAllPaymentMethods } from '~/apis/payment.api'
+import orderApi from '~/apis/order.api'
+import paymentApi from '~/apis/payment.api'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { useCart } from '~/hooks/useCart'
@@ -79,7 +79,7 @@ function Checkout({ setProgress }) {
 
   const { data: paymentMethodsData } = useQuery({
     queryKey: ['payment'],
-    queryFn: getAllPaymentMethods
+    queryFn: paymentApi.getAllPaymentMethods
   })
 
   const paymentMethods = useMemo(() => paymentMethodsData?.data?.data || [], [paymentMethodsData])
@@ -101,15 +101,15 @@ function Checkout({ setProgress }) {
   }
 
   const { mutateAsync: createOrderCheckoutMutate } = useMutation({
-    mutationFn: ({ id, data }) => createOrderCheckout(id, data)
+    mutationFn: ({ id, data }) => orderApi.createOrderCheckout(id, data)
   })
 
   const { mutateAsync: createOrderCheckoutWithMomoMutate } = useMutation({
-    mutationFn: ({ id, data }) => createOrderCheckoutWithMomo(id, data)
+    mutationFn: ({ id, data }) => orderApi.createOrderCheckoutWithMomo(id, data)
   })
 
   const { mutateAsync: createOrderCheckoutWithZaloPayMutate } = useMutation({
-    mutationFn: ({ id, data }) => createOrderCheckoutWithZaloPay(id, data)
+    mutationFn: ({ id, data }) => orderApi.createOrderCheckoutWithZaloPay(id, data)
   })
 
   const onSubmit = handleSubmit(async (data) => {

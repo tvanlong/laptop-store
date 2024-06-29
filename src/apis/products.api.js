@@ -1,3 +1,7 @@
 import http from '~/utils/http'
 
-export const getProductById = (id) => http.get(`/api/products/${id}`)
+const productsApi = {
+  getProductById: (id) => http.get(`/api/products/${id}`)
+}
+
+export default productsApi

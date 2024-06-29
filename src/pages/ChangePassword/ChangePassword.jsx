@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { changePassword } from '~/apis/user.api'
+import userApi from '~/apis/user.api'
 import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
@@ -49,7 +49,7 @@ function ChangePassword({ setProgress }) {
   }
 
   const { mutateAsync: changePasswordMutate, isPending } = useMutation({
-    mutationFn: (data) => changePassword(profile?._id, data)
+    mutationFn: (data) => userApi.changePassword(profile?._id, data)
   })
 
   const onSubmit = handleSubmit((data) => {

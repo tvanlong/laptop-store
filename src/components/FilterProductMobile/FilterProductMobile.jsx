@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import FilterOption from './FilterOption'
@@ -62,6 +63,10 @@ function FilterProductMobile({ queryParamsConfig }) {
       </div>
     </div>
   )
+}
+
+FilterProductMobile.propTypes = {
+  queryParamsConfig: PropTypes.object
 }
 
 export default FilterProductMobile

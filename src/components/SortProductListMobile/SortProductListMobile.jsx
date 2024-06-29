@@ -1,5 +1,6 @@
 import { Dropdown } from 'flowbite-react'
 import { omit } from 'lodash'
+import PropTypes from 'prop-types'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 
 function SortProductListMobile({ pathname, queryParamsConfig }) {
@@ -33,6 +34,11 @@ function SortProductListMobile({ pathname, queryParamsConfig }) {
       )}
     </Dropdown>
   )
+}
+
+SortProductListMobile.propTypes = {
+  pathname: PropTypes.string,
+  queryParamsConfig: PropTypes.object
 }
 
 export default SortProductListMobile

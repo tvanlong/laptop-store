@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { signUp } from '~/apis/auth.api'
+import authApi from '~/apis/auth.api'
 import { signUpSchema } from '~/schemas/auth.schema'
 
 function Register({ setProgress }) {
@@ -36,7 +36,7 @@ function Register({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync } = useMutation({
-    mutationFn: (data) => signUp(data)
+    mutationFn: (data) => authApi.signUp(data)
   })
 
   const onSubmit = handleSubmit(async (data) => {

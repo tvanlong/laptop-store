@@ -1,11 +1,11 @@
 import http from '~/utils/http'
 
-export const getAllVersions = (params) => http.get('/api/versions', { params })
+const versionsApi = {
+  getAllVersions: (params) => http.get('/api/versions', { params }),
+  getAllFeaturedVersions: () => http.get('/api/versions/featured'),
+  getAllVersionsByCategoryId: (id, params) => http.get(`/api/versions/category/${id}`, { params }),
+  getAllVersionsBySubcategoryId: (id, params) => http.get(`/api/versions/subcategory/${id}`, { params }),
+  getVersionById: (id) => http.get(`/api/versions/${id}`)
+}
 
-export const getAllFeaturedVersions = () => http.get('/api/versions/featured')
-
-export const getAllVersionsByCategoryId = (id, params) => http.get(`/api/versions/category/${id}`, { params })
-
-export const getAllVersionsBySubcategoryId = (id, params) => http.get(`/api/versions/subcategory/${id}`, { params })
-
-export const getVersionById = (id) => http.get(`/api/versions/${id}`)
+export default versionsApi

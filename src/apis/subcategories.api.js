@@ -1,5 +1,8 @@
 import http from '~/utils/http'
 
-export const getAllSubcategories = () => http.get('/api/subcategories')
+const subcategoriesApi = {
+  getAllSubcategories: () => http.get('/api/subcategories'),
+  getSubcategoryById: (id) => http.get(`/api/subcategories/${id}`)
+}
 
-export const getSubcategoryById = (id) => http.get(`/api/subcategories/${id}`)
+export default subcategoriesApi

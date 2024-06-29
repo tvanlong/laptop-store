@@ -4,7 +4,7 @@ import { useContext, useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { changeEmail, verifyEmail } from '~/apis/otp.api'
+import otpApi from '~/apis/otp.api'
 import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
@@ -50,11 +50,11 @@ function ChangeEmail({ setProgress }) {
   }, [user.email, setValue])
 
   const { mutateAsync: changeEmailMutate } = useMutation({
-    mutationFn: (data) => changeEmail(profile?._id, data)
+    mutationFn: (data) => otpApi.changeEmail(profile?._id, data)
   })
 
   const { mutateAsync: verifyEmailMutate } = useMutation({
-    mutationFn: (data) => verifyEmail(profile?._id, data),
+    mutationFn: (data) => otpApi.verifyEmail(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['profile', profile?._id] })
     }

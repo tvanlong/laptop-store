@@ -3,7 +3,8 @@ import { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
-import { signInSuccess } from '~/apis/auth.api'
+import authApi from '~/apis/auth.api'
+import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 
 function LoginSuccess() {
@@ -11,7 +12,7 @@ function LoginSuccess() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
   const navigate = useNavigate()
   const { mutateAsync } = useMutation({
-    mutationFn: (data) => signInSuccess(data)
+    mutationFn: (data) => authApi.signInSuccess(data)
   })
 
   const handleLoginSuccess = async () => {
@@ -21,7 +22,7 @@ function LoginSuccess() {
         if (data.data.data.role === 'member') {
           setIsAuthenticated(true)
           setProfile(data.data.data)
-          navigate('/')
+          navigate(path.home)
           return 'Đăng nhập thành công'
         } else {
           return 'Tài khoản của bạn không có quyền truy cập vào hệ thống'

@@ -1,4 +1,5 @@
 import { omit } from 'lodash'
+import PropTypes from 'prop-types'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 
 function SortProductList({ pathname, queryParamsConfig }) {
@@ -92,6 +93,11 @@ function SortProductList({ pathname, queryParamsConfig }) {
       </div>
     </div>
   )
+}
+
+SortProductList.propTypes = {
+  pathname: PropTypes.string,
+  queryParamsConfig: PropTypes.object
 }
 
 export default SortProductList

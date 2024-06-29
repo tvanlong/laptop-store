@@ -3,9 +3,9 @@ import { Avatar, Dropdown } from 'flowbite-react'
 import { useContext, useMemo, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { signOut } from '~/apis/auth.api'
-import { getCart } from '~/apis/carts.api'
-import { getAllCategories } from '~/apis/categories.api'
+import authApi from '~/apis/auth.api'
+import cartApi from '~/apis/carts.api'
+import categoriesApi from '~/apis/categories.api'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
 import { useCart } from '~/hooks/useCart'
@@ -19,7 +19,7 @@ function Header() {
   const [isOpenMenuCategory, setIsOpenMenuCategory] = useState(false)
   const { data: categoriesData } = useQuery({
     queryKey: ['categories'],
-    queryFn: () => getAllCategories()
+    queryFn: categoriesApi.getAllCategories
   })
   const categories = categoriesData?.data?.data || []
 
@@ -27,7 +27,7 @@ function Header() {
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalQuantity = useMemo(() => cart?.cart_items?.map((item) => item.quantity).reduce((a, b) => a + b, 0), [cart])
 
-  const cartQuery = { queryKey: ['cart', profile?._id], queryFn: () => getCart(profile?._id) }
+  const cartQuery = { queryKey: ['cart', profile?._id], queryFn: () => cartApi.getCart(profile?._id) }
 
   const navigateToSubcategory = (categoryId, subcategoryId) => {
     navigate(`/subcategory/${subcategoryId}`, {
@@ -36,7 +36,7 @@ function Header() {
   }
 
   const { mutateAsync } = useMutation({
-    mutationFn: () => signOut(),
+    mutationFn: authApi.signOut,
     onSuccess: () => {
       setIsAuthenticated(false)
       setProfile(null)

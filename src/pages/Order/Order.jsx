@@ -3,7 +3,7 @@ import { useContext, useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
-import { getOrders, updateStatusOrder } from '~/apis/order.api'
+import orderApi from '~/apis/order.api'
 import Navbar from '~/components/Navbar'
 import { AppContext } from '~/context/app.context'
 import { useProfile } from '~/hooks/useProfile'
@@ -29,14 +29,14 @@ function Order({ setProgress }) {
 
   const { data: orderData } = useQuery({
     queryKey: ['orders', profile?._id],
-    queryFn: () => getOrders(profile?._id),
+    queryFn: () => orderApi.getOrders(profile?._id),
     enabled: !!profile?._id
   })
 
   const orders = useMemo(() => orderData?.data?.data || [], [orderData])
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: ({ userId, orderId, data }) => updateStatusOrder(userId, orderId, data),
+    mutationFn: ({ userId, orderId, data }) => orderApi.updateStatusOrder(userId, orderId, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['orders', profile?._id] })
     }

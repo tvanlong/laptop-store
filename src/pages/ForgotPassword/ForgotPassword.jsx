@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
-import { forgotPassword } from '~/apis/auth.api'
+import authApi from '~/apis/auth.api'
 import { path } from '~/constants/path'
 import { forgotPasswordSchema } from '~/schemas/auth.schema'
 
@@ -36,7 +36,7 @@ function ForgotPassword({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync, isPending } = useMutation({
-    mutationFn: (data) => forgotPassword(data)
+    mutationFn: (data) => authApi.forgotPassword(data)
   })
 
   const onSubmit = handleSubmit(async (data) => {

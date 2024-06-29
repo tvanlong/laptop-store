@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import { path } from '~/constants/path'
 
@@ -121,6 +122,10 @@ function Navbar({ user }) {
       </ul>
     </div>
   )
+}
+
+Navbar.propTypes = {
+  user: PropTypes.object
 }
 
 export default Navbar

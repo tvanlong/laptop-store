@@ -1,3 +1,7 @@
 import http from '~/utils/http'
 
-export const getAllPaymentMethods = () => http.get('/api/payment')
+const paymentApi = {
+  getAllPaymentMethods: () => http.get('/api/payment')
+}
+
+export default paymentApi

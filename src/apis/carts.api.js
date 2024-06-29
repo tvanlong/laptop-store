@@ -1,15 +1,13 @@
 import http from '~/utils/http'
 
-export const addToCart = (userId, data) => http.post(`/api/carts/${userId}`, data)
+const cartApi = {
+  addToCart: (userId, data) => http.post(`/api/carts/${userId}`, data),
+  getCart: (userId) => http.get(`/api/carts/${userId}`),
+  increaseQuantity: (userId, data) => http.patch(`/api/carts/${userId}/increase`, data),
+  decreaseQuantity: (userId, data) => http.patch(`/api/carts/${userId}/decrease`, data),
+  updateQuantity: (userId, data) => http.patch(`/api/carts/${userId}`, data),
+  removeItem: (userId, data) => http.delete(`/api/carts/${userId}`, { data }),
+  removeCart: (userId) => http.delete(`/api/carts/${userId}/all`)
+}
 
-export const getCart = (userId) => http.get(`/api/carts/${userId}`)
-
-export const increaseQuantity = (userId, data) => http.patch(`/api/carts/${userId}/increase`, data)
-
-export const decreaseQuantity = (userId, data) => http.patch(`/api/carts/${userId}/decrease`, data)
-
-export const updateQuantity = (userId, data) => http.patch(`/api/carts/${userId}`, data)
-
-export const removeItem = (userId, data) => http.delete(`/api/carts/${userId}`, { data })
-
-export const removeCart = (userId) => http.delete(`/api/carts/${userId}/all`)
+export default cartApi

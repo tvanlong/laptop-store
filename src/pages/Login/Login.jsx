@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
-import { signIn } from '~/apis/auth.api'
+import authApi from '~/apis/auth.api'
 import config from '~/constants/config'
 import { path } from '~/constants/path'
 import { AppContext } from '~/context/app.context'
@@ -39,7 +39,7 @@ function Login({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync } = useMutation({
-    mutationFn: (data) => signIn(data)
+    mutationFn: (data) => authApi.signIn(data)
   })
 
   const onSubmit = handleSubmit(async (data) => {

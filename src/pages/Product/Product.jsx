@@ -333,7 +333,7 @@ function Product({ setProgress }) {
         <br />
         <Modal.Body>
           <div className='text-center'>
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>Xem ảnh thực tế</h3>
+            <h3 className='mb-5 text-lg font-normal text-gray-500'>Xem ảnh thực tế</h3>
             <div className='space-y-6'>
               <div className='grid grid-cols-1 gap-4'>
                 {version?.product?.images?.map((image, index) => (
@@ -359,7 +359,7 @@ function Product({ setProgress }) {
         <br />
         <Modal.Body>
           <div className=''>
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 text-center'>Thông số sản phẩm</h3>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 text-center'>Thông số sản phẩm</h3>
             <div className='space-y-6'>
               <div className='grid grid-cols-1 gap-4'>
                 <ol className='my-5 list-inside list-none space-y-1 text-gray-500'>
@@ -388,9 +388,7 @@ function Product({ setProgress }) {
         <br />
         <Modal.Body>
           <div className=''>
-            <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400 text-center'>
-              Thông tin sản phẩm
-            </h3>
+            <h3 className='mb-5 text-lg font-normal text-gray-500 text-center'>Thông tin sản phẩm</h3>
             <div className='space-y-6'>
               <div className='grid grid-cols-2 gap-4'>
                 {version?.product?.images?.map((image, index) => (

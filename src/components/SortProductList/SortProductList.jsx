@@ -71,7 +71,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
             onClick={handleRemoveFilter}
           >
             <svg
-              className='h-4 w-4 text-gray-800 dark:text-white'
+              className='h-4 w-4 text-gray-800'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'

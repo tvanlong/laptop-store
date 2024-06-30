@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async'
 
 function ErrorPage() {
   return (
-    <section className='flex h-full items-center dark:bg-gray-50 sm:p-16'>
+    <section className='flex h-full items-center sm:p-16'>
       <div className='container mx-auto my-8 flex flex-col items-center justify-center space-y-8 px-5 text-center sm:max-w-md'>
         <Helmet>
           <title>Lỗi không xác định</title>

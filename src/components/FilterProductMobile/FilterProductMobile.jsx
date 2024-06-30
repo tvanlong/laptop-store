@@ -13,7 +13,7 @@ function FilterProductMobile({ queryParamsConfig }) {
         onClick={() => setIsOpen(!isOpen)}
       >
         <svg
-          className='w-4 h-4 text-gray-800 dark:text-white'
+          className='w-4 h-4 text-gray-800'
           aria-hidden='true'
           xmlns='http://www.w3.org/2000/svg'
           width='24'
@@ -40,7 +40,7 @@ function FilterProductMobile({ queryParamsConfig }) {
           <h3 className='text-sm font-semibold'>Lọc sản phẩm</h3>
           <button onClick={() => setIsOpen(false)}>
             <svg
-              className='w-4 h-4 text-gray-800 dark:text-white'
+              className='w-4 h-4 text-gray-800'
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'

@@ -33,7 +33,8 @@ function Cart({ setProgress }) {
   }, [setProgress])
 
   const { mutateAsync: removeItemAsync } = useMutation({
-    mutationFn: (data) => cartApi.removeItem(profile?._id, data)
+    mutationFn: (data) => cartApi.removeItem(profile?._id, data),
+    onSuccess: () => refetch()
   })
 
   const { mutateAsync: removeCartAsync } = useMutation({
@@ -43,10 +44,7 @@ function Cart({ setProgress }) {
   const handleRemoveItem = async (id) => {
     toast.promise(removeItemAsync({ versionId: id }), {
       loading: 'Đang xóa sản phẩm khỏi giỏ hàng...',
-      success: () => {
-        refetch()
-        return 'Xóa sản phẩm thành công'
-      },
+      success: () => 'Xóa sản phẩm thành công',
       error: 'Xóa sản phẩm thất bại'
     })
   }

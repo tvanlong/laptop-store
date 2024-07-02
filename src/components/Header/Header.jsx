@@ -341,7 +341,7 @@ function Header() {
       </nav>
       <div className='hidden sticky left-0 right-0 lg:top-[80px] xl:top-[81.6px] 2xl:top-[88px] z-20 lg:flex h-14 bg-[#2e3030]'>
         <ul className='flex w-full items-center gap-4 2xl:gap-10 justify-center lg:px-10 xl:px-32'>
-          {categories.map((category) => (
+          {categories.slice(0, 9).map((category) => (
             <li
               key={category._id}
               className='group relative flex h-full cursor-pointer items-center text-white opacity-60 hover:opacity-100'

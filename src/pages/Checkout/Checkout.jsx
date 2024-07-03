@@ -171,23 +171,30 @@ function Checkout({ setProgress }) {
       <div className='mt-20 md:grid md:grid-cols-7 gap-8'>
         <div className='md:col-span-4'>
           <h3 className='text-xl font-bold'>Thông tin khách hàng</h3>
-          <form method='POST' onSubmit={onSubmit}>
+          <p className='text-sm text-gray-500 mt-2'>
+            Kiểm tra thông tin cá nhân thông qua{' '}
+            <strong className='underline cursor-pointer' onClick={() => navigate(path.profile)}>
+              Tài khoản của tôi
+            </strong>{' '}
+            trước khi đặt hàng! 🪪
+          </p>
+          <div className='mb-10'>
             <div className='my-3'>
               <div className='mb-2 text-lg'>Họ tên</div>
               <input
                 type='text'
                 className='w-full rounded-lg border border-gray-300 p-3'
-                placeholder='Nhập họ tên'
                 {...register('name')}
+                disabled
               />
             </div>
             <div className='my-3'>
               <div className='mb-2 text-lg'>Email</div>
               <input
-                disabled
                 type='text'
                 className='w-full rounded-lg border border-gray-300 p-3'
                 {...register('email')}
+                disabled
               />
             </div>
             <div className='my-3'>
@@ -195,10 +202,14 @@ function Checkout({ setProgress }) {
               <input
                 type='text'
                 className='w-full rounded-lg border border-gray-300 p-3'
-                placeholder='Nhập số điện thoại'
                 {...register('phone')}
+                disabled
               />
             </div>
+          </div>
+          <h3 className='text-xl font-bold'>Thông tin giao hàng</h3>
+          <p className='text-sm text-gray-500 mt-2'> Vui lòng nhập thông tin giao hàng! 🚚</p>
+          <form method='POST' onSubmit={onSubmit}>
             <div className='my-3'>
               <div className='mb-2 text-lg'>
                 Tỉnh thành <span className='text-red-500'>*</span>

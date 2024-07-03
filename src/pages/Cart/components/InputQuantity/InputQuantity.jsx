@@ -76,6 +76,8 @@ function InputQuantity({ item }) {
     if (/^\d+$/.test(quantity) || quantity === '') {
       if (quantity < 1) {
         quantity = 1
+      } else if (quantity > 99) {
+        quantity = 99
       }
       setBuyCount(quantity)
     }

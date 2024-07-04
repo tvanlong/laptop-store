@@ -262,12 +262,14 @@ function Cart({ setProgress }) {
               Tiếp tục mua hàng
             </Link>
           </div>
-          <button
-            className='hidden xl:block rounded-lg bg-yellow-400 px-3 py-2 text-white hover:bg-yellow-300'
-            onClick={refreshCart}
-          >
-            Cập nhật giỏ hàng
-          </button>
+          {cart?.cart_items?.length > 0 && (
+            <button
+              className='hidden xl:block rounded-lg bg-yellow-400 px-3 py-2 text-white hover:bg-yellow-300'
+              onClick={refreshCart}
+            >
+              Cập nhật giỏ hàng
+            </button>
+          )}
         </div>
         <div className='hidden xl:block xl:col-span-3'>
           <div className='rounded-lg bg-[#f4f4f4] p-6'>
@@ -279,11 +281,17 @@ function Cart({ setProgress }) {
               </span>
             </div>
             <div className='mt-5 grid grid-cols-1 gap-3'>
-              <button className='rounded-lg bg-[#e00] p-1'>
-                <Link to={path.checkout}>
-                  <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
-                  <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
-                </Link>
+              <button
+                className='rounded-lg bg-[#e00] p-1'
+                onClick={() => {
+                  if (cart?.cart_items?.length === 0) {
+                    return toast.warning('Vui lòng chọn sản phẩm trước khi mua hàng')
+                  }
+                  navigate(path.checkout)
+                }}
+              >
+                <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
+                <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
               </button>
               <button className='rounded-lg bg-[#288ad6] p-3'>
                 <Link>

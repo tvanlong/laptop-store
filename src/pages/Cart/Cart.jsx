@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 import { useContext, useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import cartApi from '~/apis/carts.api'
 import Loading from '~/components/Loading'
@@ -14,6 +14,7 @@ import { generateNameId } from '~/utils/util'
 
 function Cart({ setProgress }) {
   const { profile } = useContext(AppContext)
+  const navigate = useNavigate()
   const { data: cartData, isLoading, refetch } = useCart()
   const cart = useMemo(() => cartData?.data?.data, [cartData])
   const totalAmount = useMemo(
@@ -316,11 +317,17 @@ function Cart({ setProgress }) {
             </span>
           </div>
           <div className='mt-5 text-center'>
-            <button className='rounded-lg bg-[#e00] p-1'>
-              <Link to={path.checkout}>
-                <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
-                <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
-              </Link>
+            <button
+              className='rounded-lg bg-[#e00] p-1'
+              onClick={() => {
+                if (cart?.cart_items?.length === 0) {
+                  return toast.warning('Vui lòng chọn sản phẩm trước khi mua hàng')
+                }
+                navigate(path.checkout)
+              }}
+            >
+              <div className='text-sm font-semibold uppercase text-white'>Mua ngay</div>
+              <span className='text-xs capitalize text-white'>Giao hàng tận nơi hoặc nhận tại cửa hàng</span>
             </button>
           </div>
         </div>

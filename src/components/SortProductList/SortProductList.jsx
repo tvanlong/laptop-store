@@ -28,7 +28,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
         <div
           className={
             queryParamsConfig.sort === 'createdAt' && queryParamsConfig.order === 'old'
-              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white'
+              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white select-none'
               : 'mr-3 cursor-pointer rounded-lg border border-gray-300 p-2 text-sm hover:border hover:border-[#007745]'
           }
           onClick={() => handleOrderBy('createdAt', 'old')}
@@ -38,7 +38,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
         <div
           className={
             queryParamsConfig.sort === 'createdAt' && queryParamsConfig.order === 'new'
-              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white'
+              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white select-none'
               : 'mr-3 cursor-pointer rounded-lg border border-gray-300 p-2 text-sm hover:border hover:border-[#007745]'
           }
           onClick={() => handleOrderBy('createdAt', 'new')}
@@ -48,7 +48,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
         <div
           className={
             queryParamsConfig.sort === 'price' && queryParamsConfig.order === 'asc'
-              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white'
+              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white select-none'
               : 'mr-3 cursor-pointer rounded-lg border border-gray-300 p-2 text-sm hover:border hover:border-[#007745]'
           }
           onClick={() => handleOrderBy('price', 'asc')}
@@ -58,7 +58,7 @@ function SortProductList({ pathname, queryParamsConfig }) {
         <div
           className={
             queryParamsConfig.sort === 'price' && queryParamsConfig.order === 'desc'
-              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white'
+              ? 'mr-3 rounded-lg bg-[#007745] p-2 text-sm text-white select-none'
               : 'mr-3 cursor-pointer rounded-lg border border-gray-300 p-2 text-sm hover:border hover:border-[#007745]'
           }
           onClick={() => handleOrderBy('price', 'desc')}

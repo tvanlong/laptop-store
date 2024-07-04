@@ -41,7 +41,7 @@ function FilterDropdown({ title, options, queryParamsConfig }) {
   }
 
   return (
-    <div className='mb-4 cursor-pointer'>
+    <div className='mb-4 cursor-pointer select-none'>
       <div className='mb-4 flex items-center justify-between' onClick={toggleVisibility}>
         <div className='text-sm font-semibold hover:underline'>{title}</div>
         <svg

@@ -6,7 +6,8 @@ const initalAppContext = {
   setIsAuthenticated: () => null,
   profile: getProfileFromLS(),
   setProfile: () => null,
-  reset: () => null
+  reset: () => null,
+  isOpenSidebarMenu: false
 }
 
 export const AppContext = createContext(initalAppContext)
@@ -14,6 +15,7 @@ export const AppContext = createContext(initalAppContext)
 export const AppProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(initalAppContext.isAuthenticated)
   const [profile, setProfile] = useState(initalAppContext.profile)
+  const [isOpenSidebarMenu, setIsOpenSidebarMenu] = useState(initalAppContext.isOpenSidebarMenu)
 
   const reset = () => {
     setIsAuthenticated(false)
@@ -21,7 +23,17 @@ export const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ isAuthenticated, setIsAuthenticated, profile, setProfile, reset }}>
+    <AppContext.Provider
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        profile,
+        setProfile,
+        reset,
+        isOpenSidebarMenu,
+        setIsOpenSidebarMenu
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

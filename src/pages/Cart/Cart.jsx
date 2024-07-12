@@ -284,7 +284,7 @@ function Cart({ setProgress }) {
               <button
                 className='rounded-lg bg-[#e00] p-1'
                 onClick={() => {
-                  if (cart?.cart_items?.length === 0) {
+                  if (cart?.length === 0 || cart?.cart_items?.length === 0) {
                     return toast.warning('Vui lòng chọn sản phẩm trước khi mua hàng')
                   }
                   navigate(path.checkout)

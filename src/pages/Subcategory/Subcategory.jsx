@@ -11,6 +11,7 @@ import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
 import SortProductListMobile from '~/components/SortProductListMobile'
+import { LIMIT_PRODUCTS } from '~/constants/default'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
 
@@ -27,7 +28,8 @@ function Subcategory({ setProgress }) {
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['versions-by-subcategory', subcategoryId, queryParamsConfig],
-    queryFn: () => versionsApi.getAllVersionsBySubcategoryId(subcategoryId, queryParamsConfig),
+    queryFn: () =>
+      versionsApi.getAllVersionsBySubcategoryId(subcategoryId, { ...queryParamsConfig, limit: LIMIT_PRODUCTS }),
     placeholderData: keepPreviousData
   })
 

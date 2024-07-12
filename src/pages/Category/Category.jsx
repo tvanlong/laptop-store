@@ -11,6 +11,7 @@ import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
 import SortProductListMobile from '~/components/SortProductListMobile'
+import { LIMIT_PRODUCTS } from '~/constants/default'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
 
@@ -27,7 +28,7 @@ function Category({ setProgress }) {
 
   const { data, isFetching, isLoading } = useQuery({
     queryKey: ['versions-by-category', categoryId, queryParamsConfig],
-    queryFn: () => versionsApi.getAllVersionsByCategoryId(categoryId, queryParamsConfig),
+    queryFn: () => versionsApi.getAllVersionsByCategoryId(categoryId, { ...queryParamsConfig, limit: LIMIT_PRODUCTS }),
     placeholderData: keepPreviousData
   })
   const versions = data?.data?.data?.docs || []

@@ -9,6 +9,7 @@ import Loading from '~/components/Loading'
 import ProductItem from '~/components/ProductItem'
 import SortProductList from '~/components/SortProductList'
 import SortProductListMobile from '~/components/SortProductListMobile'
+import { LIMIT_PRODUCTS } from '~/constants/default'
 import { cpuOptions, memoryOptions, priceOptions, ramOptions, screenSizeOptions, vgaOptions } from '~/constants/options'
 import { path } from '~/constants/path'
 import useQueryParamsConfig from '~/hooks/useQueryParamsConfig'
@@ -17,7 +18,10 @@ import { useVersions } from '~/hooks/useVersions'
 function ProductList({ setProgress }) {
   const navigate = useNavigate()
   const queryParamsConfig = useQueryParamsConfig()
-  const { data, isFetching, isLoading } = useVersions(queryParamsConfig, { placeholderData: keepPreviousData })
+  const { data, isFetching, isLoading } = useVersions(
+    { ...queryParamsConfig, limit: LIMIT_PRODUCTS },
+    { placeholderData: keepPreviousData }
+  )
   const versions = data?.data?.data?.docs || []
 
   useEffect(() => {

@@ -23,6 +23,23 @@ body::-webkit-scrollbar-thumb {
   background-color: #242525;
 }
 
+.scrollbar-custom::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #d3d3d3;
+  border-radius: 4px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
 /* ---------------------Form CSS------------------------ */
 
 .form-shadow {

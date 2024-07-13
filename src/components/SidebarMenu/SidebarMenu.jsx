@@ -45,8 +45,8 @@ function SidebarMenu() {
       <div
         className={
           isOpenSidebarMenu
-            ? 'fixed top-[144px] left-0 w-64 text-white h-[calc(100vh-144px)] bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out overflow-y-auto no-scrollbar'
-            : 'fixed top-[144px] left-0 w-64 text-white h-[calc(100vh-144px)] bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out -translate-x-full overflow-y-auto no-scrollbar'
+            ? 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out overflow-y-auto scrollbar-custom'
+            : 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out -translate-x-full overflow-y-auto scrollbar-custom'
         }
       >
         <div className='flex items-center justify-between h-16 px-4 bg-gray-700 border-b border-gray-600'>

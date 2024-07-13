@@ -45,8 +45,8 @@ function SidebarMenu() {
       <div
         className={
           isOpenSidebarMenu
-            ? 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out overflow-y-auto scrollbar-custom'
-            : 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out -translate-x-full overflow-y-auto scrollbar-custom'
+            ? 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out'
+            : 'fixed top-0 bottom-0 left-0 w-64 text-white bg-[#242525] z-50 shadow-lg transition-transform transform duration-300 ease-in-out -translate-x-full'
         }
       >
         <div className='flex items-center justify-between h-16 px-4 bg-gray-700 border-b border-gray-600'>
@@ -66,7 +66,7 @@ function SidebarMenu() {
             </svg>
           </button>
         </div>
-        <ul className='mt-6'>
+        <ul className='py-6 overflow-y-auto scrollbar-custom h-[calc(100vh-80px)]'>
           {categories.map((category) => (
             <li key={category._id}>
               <div

@@ -75,6 +75,7 @@ function Profile({ setProgress }) {
   })
 
   const onSubmit = handleSubmit(async (data) => {
+    let result
     const toastId = toast.loading('Đang cập nhật thông tin...')
     try {
       if (profile?.avatar !== DEFAULT_AVATAR) {
@@ -87,15 +88,16 @@ function Profile({ setProgress }) {
         await uploadAvatarMutate(formData)
 
         const res = await updateProfileMutate(data)
-        setProfile(res.data.data)
-        setProfileToLS
+        result = res.data.data
       } else {
         const res = await updateProfileMutate(data)
-        setProfile(res.data.data)
-        setProfileToLS
+        result = res.data.data
       }
+      setProfile(result)
+      setProfileToLS(result)
       toast.success('Cập nhật thông tin thành công', { id: toastId })
     } catch (error) {
+      console.log(error.response)
       toast.error('Cập nhật thông tin thất bại', { id: toastId })
     }
   })

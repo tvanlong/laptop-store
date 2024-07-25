@@ -59,18 +59,18 @@ function Profile({ setProgress }) {
     }
   }, [user, setValue])
 
-  const { mutateAsync: updateProfileMutate, isPending } = useMutation({
+  const { mutateAsync: updateProfileMutate, isPending: isUpdateProfilePending } = useMutation({
     mutationFn: (data) => userApi.updateProfile(profile?._id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['profile', profile?._id] })
     }
   })
 
-  const { mutateAsync: uploadAvatarMutate } = useMutation({
+  const { mutateAsync: uploadAvatarMutate, isPending: isUploadAvatarPending } = useMutation({
     mutationFn: (data) => imagesApi.uploadAvatar(profile?._id, data)
   })
 
-  const { mutateAsync: deleteImageMutate } = useMutation({
+  const { mutateAsync: deleteImageMutate, isPending: isDeleteImagePending } = useMutation({
     mutationFn: (public_id) => imagesApi.deleteImage(public_id)
   })
 
@@ -97,7 +97,6 @@ function Profile({ setProgress }) {
       setProfileToLS(result)
       toast.success('Cập nhật thông tin thành công', { id: toastId })
     } catch (error) {
-      console.log(error.response)
       toast.error('Cập nhật thông tin thất bại', { id: toastId })
     }
   })
@@ -134,7 +133,7 @@ function Profile({ setProgress }) {
             <div className='border-b border-gray-300'>
               <h2 className='mb-2 text-2xl font-semibold'>Thông tin cá nhân</h2>
               <p className='mb-4 text-sm text-gray-500'>
-                Cập nhật thông tin cá nhân để bảo mật tài khoản (* Địa chỉ email không thể thay đổi sau khi đăng ký)
+                Cập nhật thông tin cá nhân để bảo mật tài khoản và nhận thông báo từ hệ thống
               </p>
             </div>
             <div className='mt-6 sm:grid sm:grid-cols-5 gap-4'>
@@ -215,7 +214,7 @@ function Profile({ setProgress }) {
             <div className='mt-8 sm:mt-0 text-center sm:text-left'>
               <button
                 type='submit'
-                disabled={isPending}
+                disabled={isUpdateProfilePending || isUploadAvatarPending || isDeleteImagePending}
                 className='rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800'
               >
                 Cập nhật lại thông tin
